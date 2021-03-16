@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PasteIt</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <header>
+            <ul class="nav-bar">
+                <div class="nav-left-items">
+                    <li><a class="active" href="#">PasteIT</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </div>
+                <div class="nav-right-items">
+                    <!-- <li><a href="#">Theme</a></li> -->
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                </div>
+            </ul>
+        </header>
+        <div class="main-container">
+            <div class="form">
+                <form>
+                    <label for="fname">New Paste</label><br>
+                    <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
+                    <!-- <input type="text" id="fname" name="fname"><br> -->
+                </form>
+            </div>
+            <div class="settings">
+                <label for="Highlight">Syntax highlight:</label>
+                <select id="syntax-highlight" name="highlight">
+                        <option value="None" selected >None</option>
+                        <option value="C++">C++</option>
+                        <option value="Haskell">Haskell</option>
+                        <option value="Java">Java</option>
+                </select>
+            
+                <label for="Expiration">Paste expiration:</label>
+                <select id="paste-expiration" name="expiration">
+                    <option value="1day">1 day</option>
+                    <option value="7days">7 days</option>
+                    <option value="14days">14 days</option>
+                </select>
+            
+                <label for="Paste Exposure">Paste Exposure:</label>
+                <select id="paste-exposure" name="exposure">
+                    <option value="Public" selected >Public</option>
+                    <option value="Private"></option>
+                </select>
+
+                <label for="Password">Password (optional):</label>
+                <input type="password" id="fname" name="fname">
+
+                <label for="">Burn after read</label>
+                <input type="checkbox" name="Burn after read" id="burn">
+
+                <label for="Password">Password (optional):</label>
+                <input type="text" id="fname" name="fname">
+
+
+                <label for=""></label>
+                <input type="button" value="Submit your code">
+
+            </div>
+
+            <h1>My pastes</h1>
+            <div class="my-pastes">
+                <div class="paste-obj">
+                    <h3>my latest paste</h3>
+                    <p></p> 
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
