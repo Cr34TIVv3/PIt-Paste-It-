@@ -24,7 +24,7 @@ ul.nav-bar li {
     text-align: center;
 }
 
-ul.nav-bar .nav-left-items li a.active {
+ul.nav-bar .nav-right-items li a.active {
     color: rgb(85, 85, 78);
 }
 
@@ -38,21 +38,14 @@ ul.nav-bar li a {
 }
 
 .nav-left-items {
+    margin-left: 15%;
     display: flex;
 }
 
 .nav-right-items {
+    margin-right: 15%;
     display: flex;
 }
-
-.main-container {
-    margin-left: 15%;
-    margin-right: 15%;
-    background-color: teal;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
 
 .form input[type=text]
 {
@@ -65,36 +58,31 @@ ul.nav-bar li a {
     border-radius: 4px;
 }
 
-.settings {
-    display: grid;
-    grid-template-columns: 18% 20%;
-    grid-row-gap: 10px;
+.center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vh;
+      
+}
+.login-form {
+    padding: 10vh;
+    font-size: 25px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    border: 5px solid rebeccapurple;
+    background-color: rgb(87, 87, 85);
+    border-radius: 3%;
+}
+input {
+    margin-top: 10px;
+    font-size: 25px;
 }
 
 
-textarea {
-    resize: none;
-    width: 100%;
-    height: auto;
-    min-height: 300px;
-}
-
-
-.line {
-    width: auto;
-    margin-top: 5%;
-    border-bottom: 4px solid red;
-    position: inherit;
-}
-
-
-.paste-obj {
-    background-color: blueviolet;
-    border: 5px solid burlywood;
-    width: 15vh;
-    display: inline-block;
-    margin-bottom: 5px;
-}
 
 
 

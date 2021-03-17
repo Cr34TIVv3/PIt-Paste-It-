@@ -38,12 +38,15 @@ ul.nav-bar li a {
 }
 
 .nav-left-items {
+    margin-left: 15%;
     display: flex;
 }
 
 .nav-right-items {
+    margin-right: 15%;
     display: flex;
 }
+
 
 .form input[type=text]
 {
