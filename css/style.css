@@ -1,13 +1,28 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: rgb(27, 27, 25);
+    background-color: #455E5E;
 }
     
 header {
-    background-color: rgb(27, 23, 23);
-    padding-top: 10px;
-    padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1A2323;
+    padding-top: 3px;
+    padding-bottom: 10px;
+    min-height: 8vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+a{
+    text-decoration: none;
+}
+
+header a.logo {
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px 10px 10px 10px;
+    margin-top: 15px;
 }
 
 ul.nav-bar {
@@ -17,43 +32,59 @@ ul.nav-bar {
 }
 
 ul.nav-bar li {
+    display: inline-block;
     list-style-type: none;
     padding: 10px 10px 10px 10px;
     font-size: 25px;
-    border: 2px solid green;
     text-align: center;
 }
 
-ul.nav-bar .nav-left-items li a.active {
+header a.logo {
     color: rgb(85, 85, 78);
 }
 
 ul.nav-bar li :hover{
-    color: rgb(85, 85, 78);
+    padding: 20px;
+    border: 3px solid #B1B9B9;
+    border-radius: 50%;
+    transition: .5s;
 }
 
 ul.nav-bar li a {
-    text-decoration: none;
     color: rgb(182, 173, 173);
+    text-transform: uppercase;
 }
 
-.nav-left-items {
-    margin-left: 15%;
-    display: flex;
+.burger {
+    padding: 10px 10px 10px 10px;
 }
 
-.nav-right-items {
-    margin-right: 15%;
-    display: flex;
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
 }
 
+@media screen and ( max-width: 852px) {
+    .body {
+        display: none;
+    }
+}
+
+
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
 
 .main-container {
+    margin-top: 5px;
     margin-left: 15%;
     margin-right: 15%;
-    background-color: teal;
+    background-color: #343C3C;
+    padding-top: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+    color: #B1B9B9;
 }
 
 
