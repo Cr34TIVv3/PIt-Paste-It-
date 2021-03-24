@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    min-height: 100vh; 
+    width: 100%;
+    background-image: url("../resources/facing2.jpg");
+    background-position: center; 
+    background-size: cover;
+    position: relative;
+       
+}
+
+.main-text{
+    
+    text-align: center;
+    top:50%; 
+    left: 50%; 
+    width: 90%;
+    position: absolute;
+    transform: translate(-60%,-50%);
+    font-size: 41px;
+}
+.get-started{
+    position: relative;
+     display: inline-block;
+     text-decoration: none;
+     border: 1px solid #fff;
+     color:black;
+     padding: 12px 31px;
+     cursor: pointer;
+     background: transparent;
+
+}
+.get-started:hover{
+   border: border: 1px solid #fff;
+   transition: 1s ; 
+   background:  #fff;
+    
+}
+  /* second section --- about us! */ 
+
+
+
+.about{
+     
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.about h1{
+    font-size: 42px;
+    font-weight: 600px;
+}
+
+.about p{
+    margin-top: 20px;
+    font-size : 24px; 
+    font-weight: 300;
+    padding: 10px;
+}
+
+.account{
+    margin-top: 50px;
+     display: flex; 
+     justify-content: space-between;
+}
+
+.login-type{
+    
+   flex-basis: 41%;
+   background: #fff3f3;
+   border-radius: 20px;
+   margin-bottom: 5%;
+   padding: 21px 21px;
+   box-sizing: border-box;
+   transition: 0.5s;
+}
+
+.login-type:hover{
+   box-shadow: 0 0 10px 0 rgba(0, 0, 0,0.2);
+}
+
+
+/* make it responsive for smaller screen */ 
+
+@media(max-width: 750px){
+
+     .account{
+         flex-direction: column;
+
+     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

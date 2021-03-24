@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Paste It</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script type="text/javascript" src="./js/script.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="content">
+            <div class="logo">
+                <a href="#">Paste It</a>
+            </div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/signin.html">Sign in</a></li>
+                <li><a href="/signup.html">Sign up</a></li>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="banner"></div>
+
+    <div class="source">
+
+        <div class="main-container">
+            <h1>New paste</h1>
+            <div class="form">
+               <form>
+                   <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
+                 </form>
+             </div>
+        
+            <h1>Optional settings:</h1>
+            <div class="line"></div>
+            <div class="settings">
+                <label for="Highlight">Syntax highlight:</label>
+                <select id="syntax-highlight" name="highlight">
+                    <option value="None" selected >None</option>
+                    <option value="C++">C++</option>
+                    <option value="Haskell">Haskell</option>
+                    <option value="Java">Java</option>
+                </select>
+
+                <label for="Expiration">Paste expiration:</label>
+                <select id="paste-expiration" name="expiration">
+                    <option value="1day">1 day</option>
+                    <option value="7days">7 days</option>
+                    <option value="14days">14 days</option>
+                </select>
+
+                <label for="Paste Exposure">Paste Exposure:</label>
+                <select id="paste-exposure" name="exposure">
+                    <option value="Public" selected >Public</option>
+                    <option value="Private"></option>
+                </select> 
+
+                <label for="Password">Password (optional):</label>
+                <input type="password" id="fname" name="fname">
+
+                <label for="">Burn after read</label>
+                <input type="checkbox" name="Burn after read" id="burn">
+
+
+                <label for=""></label>
+                <input id="submit" type="button" value="Create New Paste">
+            
+            </div>
+
+                
+        
+
+            <h1>My pastes</h1>
+            <div class="line"></div>
+
+            <div class="my-pastes">
+               <table>
+                      <tr>
+                          <th>Titlu</th>
+                          <th>Date</th>
+                          <th>Expires</th>
+                          <th>Syntax</th>
+                          <th>Visibility</th>
+                      </tr>
+                      <tr>
+                          <td>Tuxy</td>
+                          <td>21.02.2019</td>
+                          <td>Never</td>
+                          <td>Java</td>
+                          <td>Private</td>
+                      </tr>
+                      <tr>
+                        <td>Pinguinescu</td>
+                        <td>21.01.2020</td>
+                        <td>Never</td>
+                        <td>C++</td>
+                        <td>Public</td>
+                    </tr>
+                    <tr>
+                      <td>Pinguin</td>
+                      <td>21.01.2020</td>
+                      <td>Never</td>
+                      <td>C++</td>
+                      <td>Public</td>
+                  </tr>
+               </table>
+            </div> <!--div for my-pastes!-->
+
+            
+            <h1>Public posts</h1>
+            <div class="line"></div>
+            <div class="public-pastes">
+                <div class="paste-obj">
+                    <h3>Tuxi</h3>
+                    <p>some description</p> 
+                </div>
+                <div class="paste-obj">
+                    <h3>my latest paste1</h3>
+                    <p>some description1</p> 
+                </div>
+                <div class="paste-obj">
+                    <h3>my latest paste2</h3>
+                    <p>some description2</p> 
+                </div>
+            </div> <!--div for public-pastes!-->
+        </div>
+    </div> <!--div from source!!-->
+</body>
+</html>
