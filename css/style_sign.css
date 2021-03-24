@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body{
+  background-color: #1B1D23;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -169,20 +173,6 @@
   }
 }
 
-.source{
-    background-color: #757E84;
-}
-
-.main-container {
-    min-width: 500px;
-    margin-left: 8%; 
-    margin-right: 8%;
-    background-color: #363946;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-
 .form input[type=text]
 {
     width: 85vh;
@@ -194,63 +184,71 @@
     border-radius: 4px;
 }
 
-.settings {
-    display: grid;
-    grid-template-columns: 20% 28%;
-    grid-row-gap: 10px;
+.center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vh;
+      
 }
-
-#submit{
-    /* grid-column-start: 1;
-    grid-column-end: 3; */
-    grid-column: span 1;
-}
-
-label{
-    font-weight: bold;
-}
-
-textarea {
-    resize: none;
-    width: 100%;
-    height: auto;
-    min-height: 300px;
-}
-
-table{
-
-    width: 100%;
-    border-collapse: collapse ;
-}
-td,th {
-
-    text-align: left;
-    padding: 5px;
-}
-tr:nth-child(even){
-    background-color:#565C65;
-}
-
-.line {
-    width: auto;
-    margin-top: 7px;
-    margin-bottom: 10px;
-    border-bottom: 4px solid black;
-    position: inherit;  
-    height: 0px;
-}
-
-.my-pastes{
+.login-form {
+    padding: 10vh;
+    font-size: 25px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    border: 5px solid #3E424E;
+    background-color: #3E424E;
+    border-radius: 2%;
+    
+input {
     margin-top: 10px;
-}
-.public-pastes{
-    margin-top: 10px;
+    font-size: 25px;
 }
 
-.paste-obj {
-    background-color: rgb(114, 111, 117);
-    border: 5px solid burlywood;
-    width: 400px;
-    display: inline-block;
-    margin-bottom: 5px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
