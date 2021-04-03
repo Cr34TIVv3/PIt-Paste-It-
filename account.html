@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Paste It</title>
+    <title>Paste It</title>
     <link rel="stylesheet" href="./css/style_account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript" src="./js/chart_script.js"></script>
 </head>
 
 
@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="content">
             <div class="logo">
-                <a href="#">Paste It</a>
+                <a href="/index.html">Paste It</a>
             </div>
             <ul class="menu-list">
                 <div class="icon cancel-btn">
@@ -95,17 +95,13 @@
                 </table>
             </div> <!--div for my-pastes!-->
 
-            <h1>Statistics</h1>
-            <div class="line"></div>
-
-            <div class="statistics">
-                <canvas id="myChart" width="200" height="200"></canvas>
-            </div>
+        
 
             <h1>My profile</h1>
             <div class="line"></div>
-
-        <table class="informationAccount"> 
+            
+         <div class="yourProfile"> 
+            <table class="informationAccount"> 
                 <tr>
                     <th><label for="Username">Change username:</label></td>
                     <td><input type="text"></input></td>
@@ -119,71 +115,44 @@
                     <td><input type="passsword"></input></td>
                 </tr>
                 <tr>
+                    <th><label for="Username">Confirm password:</label></td>
+                    <td><input type="passsword"></input></td>
+                </tr>
+                <tr>
                     <td> &nbsp </td>
                     <td><input type="submit" value="Save changes"></td>
                 </tr>
-        </table> 
+            </table> 
 
-            <div class="log-out">
-                <button> Log out </button>
+
+            <div class="card">
+                <img src="./resources/fantoma.png" alt="avatar">
+                <p>iustin2000</p>
+                <p>iustinian.petrariu@gmail.com</p>
             </div>
+         </div>
+       
+
+        <h1>Statistics</h1>
+        <div class="line"></div>
+
+        <div class="statistics">
+            <canvas id="myCanvas" width="500" height="500"></canvas>
+        </div>
+
+        <div class="log-out">
+            <button> Log out </button>
+        </div>
            
         </div>
+    </div>
+
+    <div class="footer">   
+        <p>Copyright &copy; Paste IT</p>
+        <p>Scholarly HTML <a href="./scholarly.html">HERE</a></p>
     </div>
 
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
