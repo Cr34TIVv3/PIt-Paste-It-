@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-body{
+body {
   background: linear-gradient(0deg, rgba(22,27,55,1) 0%, rgba(0,0,0,1) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 *{
   margin: 0;
   padding: 0;
@@ -11,43 +12,33 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-::selection{
-  background: rgb(0,123,255,0.3);
-}
-.content{
+.content {
   max-width: 1250px;
   margin: auto;
   padding: 0 30px;
 }
-.navbar{
+
+.navbar {
   position: fixed;
   width: 100%;
   z-index: 2;
   padding: 25px 0;
   transition: all 0.3s ease;
 }
-.navbar.sticky{
+
+.navbar.sticky {
   background: #1b1b1b;
   padding: 10px 0;
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
 }
-.navbar .content{
+
+.navbar .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.menu-list li::after{
+
+.menu-list li::after {
   content: ' '; 
   width: 0%; 
   height: 2px; 
@@ -57,22 +48,26 @@ body{
   transition: 0.5s; 
   transform: translateX(10px);
 }
-.menu-list li:hover::after{
-  width: 70%;
-}
 
-.navbar .logo a{
+.menu-list li:hover::after {
+  width: 70%;
+ }
+
+.navbar .logo a {
   color: #fff;
   font-size: 30px;
   font-weight: 600;
   text-decoration: none;
 }
-.navbar .menu-list{
+
+.navbar .menu-list {
   display: inline-flex;
 }
-.menu-list li{
+
+.menu-list li {
   list-style: none;
 }
+
 .menu-list li a{
   color: #fff;
   font-size: 18px;
@@ -81,6 +76,7 @@ body{
   text-decoration: none;
   transition: all 0.3s ease;
 }
+
 .banner{
   background: url("../resources/background.jpg") no-repeat;
   height: 15vh;
@@ -88,55 +84,61 @@ body{
   background-position: center;
   background-attachment: fixed;
 }
+
 .about .title{
   font-size: 38px;
   font-weight: 700;
 }
+
 .about p{
   padding-top: 20px;
   text-align: justify;
 }
+
 .icon{
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   display: none;
 }
+
 .menu-list .cancel-btn{
   position: absolute;
   right: 30px;
   top: 20px;
 }
+
 @media (max-width: 1230px) {
   .content{
     padding: 0 60px;
   }
 }
+
 @media (max-width: 1100px) {
   .content{
     padding: 0 40px;
   }
-  
 }
 
 @media (max-width: 900px) {
   .content{
     padding: 0 30px;
   }
- 
 }
 
 @media (max-width: 868px) {
-
   body.disabled{
     overflow: hidden;
   }
+
   .icon{
     display: block;
   }
+
   .icon.hide{
     display: none;
   }
+
   .navbar .menu-list{
     position: fixed;
     height: 100vh;
@@ -147,20 +149,24 @@ body{
     display: block;
     padding: 40px 0;
     text-align: center;
-    background: #222;
+    background: #222222;
     transition: all 0.3s ease;
   }
+
   .navbar.show .menu-list{
     left: 0%;
   }
+
   .navbar .menu-list li{
     margin-top: 45px;
   }
+
   .navbar .menu-list li a{
     font-size: 23px;
     margin-left: -100%;
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
+
   .navbar.show .menu-list li a{
     margin-left: 0px;
   }
@@ -176,8 +182,7 @@ body{
   color: #fff;
  }
 
- .center
-{
+ .center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,11 +265,11 @@ body{
   user-select: none;
   padding-left: 5px;
  }
- form .content .pass-link{
+ /* form .content .pass-link{
    color: "";
- }
+ } */
  form .field input[type="submit"]{
-  color: #fff;
+  color: #ffffff;
   border: none;
   padding-left: 0;
   margin-top: -10px;
@@ -274,12 +279,11 @@ body{
   background: radial-gradient(circle, rgba(87,87,87,1) 0%, rgba(0,24,54,1) 0%, rgba(5,94,182,1) 100%);
   transition: all 0.3s ease;
  }
+
  form .field input[type="submit"]:active{
    transform: scale(0.95);
  }
  
-
-
  .footer {
   position: fixed;
   left: 0;
@@ -290,12 +294,10 @@ body{
   color: white;
   text-align: center;
   display : flex ;
-  align-items: row;
   justify-content: space-around;
 }
 
-.footer p 
-{
+.footer p {
   margin-top: 5px;
 }
 

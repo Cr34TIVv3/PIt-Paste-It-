@@ -5,23 +5,17 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
+
 ::selection{
   background: rgb(0,123,255,0.3);
 }
+
 .content{
   max-width: 1250px;
   margin: auto;
   padding: 0 30px;
 }
+
 .navbar{
   position: fixed;
   width: 100%;
@@ -29,17 +23,20 @@
   padding: 25px 0;
   transition: all 0.3s ease;
 }
+
 .navbar.sticky{
   background: #1b1b1b;
   padding: 10px 0;
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
 }
-.navbar .content{
+
+.navbar .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.menu-list li::after{
+
+.menu-list li::after {
   content: ' '; 
   width: 0%; 
   height: 2px; 
@@ -49,23 +46,27 @@
   transition: 0.5s; 
   transform: translateX(10px);
 }
-.menu-list li:hover::after{
-  width: 70%;
- }
 
-.navbar .logo a{
+.menu-list li:hover::after {
+  width: 70%;
+}
+
+.navbar .logo a {
   color: #fff;
   font-size: 30px;
   font-weight: 600;
   text-decoration: none;
 }
-.navbar .menu-list{
+
+.navbar .menu-list {
   display: inline-flex;
 }
-.menu-list li{
+
+.menu-list li {
   list-style: none;
 }
-.menu-list li a{
+
+.menu-list li a {
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -73,63 +74,70 @@
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.banner{
+
+.banner {
   background: url("../resources/background.jpg") no-repeat;
   height: 15vh;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
-.about .title{
+
+.about .title {
   font-size: 38px;
   font-weight: 700;
 }
-.about p{
+
+.about p {
   padding-top: 20px;
   text-align: justify;
 }
-.icon{
+
+.icon {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   display: none;
 }
-.menu-list .cancel-btn{
+
+.menu-list .cancel-btn {
   position: absolute;
   right: 30px;
   top: 20px;
 }
+
 @media (max-width: 1230px) {
   .content{
     padding: 0 60px;
   }
 }
+
 @media (max-width: 1100px) {
   .content{
     padding: 0 40px;
   }
-  
 }
 
 @media (max-width: 900px) {
   .content{
     padding: 0 30px;
   }
- 
 }
 
 @media (max-width: 868px) {
-
   body.disabled{
     overflow: hidden;
   }
-  .icon{
+  
+  .icon {
     display: block;
   }
-  .icon.hide{
+
+  .icon.hide {
     display: none;
   }
-  .navbar .menu-list{
+
+  .navbar .menu-list {
     position: fixed;
     height: 100vh;
     width: 100%;
@@ -142,21 +150,26 @@
     background: #222222;
     transition: all 0.3s ease;
   }
-  .navbar.show .menu-list{
+
+  .navbar.show .menu-list {
     left: 0%;
   }
-  .navbar .menu-list li{
+
+  .navbar .menu-list li {
     margin-top: 45px;
   }
-  .navbar .menu-list li a{
+
+  .navbar .menu-list li a {
     font-size: 23px;
     margin-left: -100%;
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  .navbar.show .menu-list li a{
+
+  .navbar.show .menu-list li a {
     margin-left: 0px;
   }
 }
+
 @media (max-width: 380px) {
   .navbar .logo a{
     font-size: 27px;
@@ -176,9 +189,7 @@
   padding-right: 30px;
 }
 
-
-.form input[type=text]
-{
+.form input[type=text] {
   width: 85vh;
   height: 50vh;
   max-width: 100%;
@@ -194,11 +205,11 @@
   grid-row-gap: 10px;
 }
 
-#submit{
+#submit {
   grid-column: span 1;
 }
 
-label{
+label {
   font-weight: bold;
 }
 
@@ -210,7 +221,7 @@ textarea {
   min-height: 300px;
   max-height: 300px;
   border: #222 solid 3px;
-  transition-duration:2s;
+  transition-duration: 2s;
 }
 
 textarea:focus {
@@ -220,21 +231,22 @@ textarea:focus {
   transition: max-height 0.60s ease-in-out;
 } 
 
-
 textarea:focus::after {
   min-height: 300px;
   transition: 2s;
 }
 
-table{
+table {
   width: 100%;
   border-collapse: collapse ;
 }
+
 td,th {
   text-align: left;
   padding: 5px;
 }
-tr:nth-child(even){
+
+tr:nth-child(even) {
   background-color:#565C65;
 }
 
@@ -247,10 +259,10 @@ tr:nth-child(even){
   height: 0px;
 }
 
-.my-pastes{
+.my-pastes {
   margin-top: 10px;
 }
-.public-pastes{
+.public-pastes {
   margin-top: 10px;
 }
 
@@ -272,15 +284,12 @@ tr:nth-child(even){
   color: white;
   text-align: center;
   display : flex ;
-  align-items: row;
   justify-content: space-around;
 }
 
-.footer p 
-{
+.footer p {
   margin-top: 5px;
 }
-
 
 body::after{
   content: "\n";

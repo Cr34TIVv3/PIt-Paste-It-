@@ -11,15 +11,6 @@ body{
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
 ::selection{
   background: rgb(0,123,255,0.3);
 }
@@ -145,7 +136,7 @@ body{
     display: block;
     padding: 40px 0;
     text-align: center;
-    background: #222;
+    background: #222222;
     transition: all 0.3s ease;
   }
   .navbar.show .menu-list{
@@ -162,7 +153,6 @@ body{
   .navbar.show .menu-list li a{
     margin-left: 0px;
   }
-
 }
 @media (max-width: 380px) {
   .navbar .logo a{
@@ -170,7 +160,7 @@ body{
   }
 }
 
-section {
+.section {
   width: 100%;
   height: 100%;
   background: linear-gradient(0deg, rgba(22,27,55,1) 0%, rgba(0,0,0,1) 100%);
@@ -181,32 +171,32 @@ section {
 
 .container {
   width: 100%;
-  max-width: 80rem;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 24;
 }
 
 .acordion .item {
-  border-radius: .4rem; 
-  margin-bottom: 1rem;
-  padding: 1rem; 
-  box-shadow: .5rem 2px .5rem  rgba(0,0,0,.1);
+  border-radius: 6.4px; 
+  margin-bottom: 16px;
+  padding: 16px; 
+  box-shadow: 8px 2px 8px rgba(0,0,0,.1);
   background-color: #283042;
 }
  
 .acordion .item a {
-  font-size: 1.3rem;
+  font-size: 20.8px;
   text-decoration: none;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 16px 0px;
 }
 
 .acordion .item a i {
   color: #aebabd;
-  padding: .5rem;
+  padding: .8px;
 }
 
 a .fas.fa-minus {
@@ -220,15 +210,14 @@ a .fas.fa-minus {
   transition: max-height 670ms;
 }
 
-
 .answer p{
   color: white;
-  font-size: 1.4rem;
-  padding: 2rem;
+  font-size: 22.4px;
+  padding: 32px;
 }
 
 .item:target .answer{
-    max-height: 20rem;
+    max-height: 320px;
 }
 
 .item:target a .fas.fa-plus{
@@ -241,7 +230,6 @@ a .fas.fa-minus {
 
 .item a{
 color: white;
-     /* margin-left: 5px;  */
 }
 
 .footer {
@@ -254,12 +242,10 @@ color: white;
   color: white;
   text-align: center;
   display : flex ;
-  align-items: row;
   justify-content: space-around;
 }
 
-.footer p 
-{
+.footer p {
   margin-top: 5px;
 }
 

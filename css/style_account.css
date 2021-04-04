@@ -5,22 +5,14 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-::selection{
-  background: rgb(0,123,255,0.3);
-}
+
 .content{
   max-width: 1250px;
   margin: auto;
   padding: 0 30px;
+}
+::selection{
+  background: rgb(0,123,255,0.3);
 }
 .navbar{
   position: fixed;
@@ -66,7 +58,7 @@
   list-style: none;
 }
 .menu-list li a{
-  color: #ffffff;
+  color: #fff;
   font-size: 18px;
   font-weight: 500;
   margin-left: 25px;
@@ -108,33 +100,15 @@
   .content{
     padding: 0 40px;
   }
-  
 }
 
 @media (max-width: 900px) {
   .content{
     padding: 0 30px;
   }
- 
 }
 
-.yourProfile { 
-  display: flex;
-  justify-content: space-around;
-}
-
-.card p::before{
-  content: 'Username: ';
-}
-
-.card p:last-child::before{
-  content: 'E-mail: ';
-}
-
-@media screen and (max-width: 868px) {
-  .yourProfile {
-    display: block;
-  }
+@media (max-width: 868px) {
 
   body.disabled{
     overflow: hidden;
@@ -155,7 +129,7 @@
     display: block;
     padding: 40px 0;
     text-align: center;
-    background: #222;
+    background: #222222;
     transition: all 0.3s ease;
   }
   .navbar.show .menu-list{
@@ -172,8 +146,8 @@
   .navbar.show .menu-list li a{
     margin-left: 0px;
   }
-  
 }
+
 @media (max-width: 380px) {
   .navbar .logo a{
     font-size: 27px;
@@ -181,78 +155,81 @@
 }
 
 .source{
-    background: linear-gradient(0deg, rgba(22,27,55,1) 0%, rgba(0,0,0,1) 100%);
-    background-attachment:fixed;
-    background-size: cover;
+  background: linear-gradient(0deg, rgba(22,27,55,1) 0%, rgba(0,0,0,1) 100%);
+  background-attachment:fixed;
+  background-size: cover;
 }
 
 .main-container {
-    min-width: 500px;
-    margin-left: 8%; 
-    margin-right: 8%;
-    background-color: #363946;
-    padding-left: 30px;
-    padding-right: 30px;
+  min-width: 500px;
+  margin-left: 8%; 
+  margin-right: 8%;
+  background-color: #363946;
+  padding-left: 30px;
+  padding-right: 30px;
 }
   
-
 .welcome {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .welcome h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .welcome p  {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30px;
-    color: #8d8d8d;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  color: #8d8d8d;
 }
 
 .my-pastes { 
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
-.my-pastes table{
-    width: 100%;
-    border-collapse: collapse ;
-  }
-  .my-pastes td, .my-pastes th {
-    text-align: left;
-    padding: 5px;
-  }
-  .my-pastes tr:nth-child(even){
-    background-color:#565C65;
-  }
+
+.my-pastes table {
+  width: 100%;
+  border-collapse: collapse ;
+}
+
+.my-pastes td, .my-pastes th {
+  text-align: left;
+  padding: 5px;
+}
+
+.my-pastes tr:nth-child(even) {
+  background-color:#565C65;
+}
+
 .line {
-    width: auto;
-    margin-top: 7px;
-    margin-bottom: 10px;
-    border-bottom: 4px solid black;
-    position: inherit;  
-    height: 0px;
-  }
+  width: auto;
+  margin-top: 7px;
+  margin-bottom: 10px;
+  border-bottom: 4px solid black;
+  position: inherit;  
+  height: 0px;
+}
   
-  .my-pastes{
-    margin-top: 10px;
-  }
+.my-pastes{
+  margin-top: 10px;
+}
 
 .fas.fa-pen:hover{
-    cursor: pointer;
-}
-.fas.fa-times:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.informationAccount tr 
-{
-    background-color:#565C65;
-    text-align: left;
+.fas.fa-times:hover{
+  cursor: pointer;
+}
+
+.informationAccount tr {
+  background-color:#565C65;
+  text-align: left;
 }
 
 .informationAccount th {
-    padding-right: 20px;
-    padding-left: 5px;
+  padding-right: 20px;
+  padding-left: 5px;
 }
 
 .informationAccount td input{
@@ -260,67 +237,57 @@
 }
 
 .informationAccount {
-    border-collapse: collapse ;
-    text-align: left;
-    font-size: 25px; 
-    margin-top: 30px;
-    margin-bottom: 30px;
- 
+  border-collapse: collapse ;
+  text-align: left;
+  font-size: 25px; 
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.informationAccount input[type = 'submit']
-{
-    width: 100%; 
+.informationAccount input[type = 'submit'] {
+  width: 100%; 
 }
 
 .log-out{
-    margin-top: 20px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .log-out button {
-    font-size: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-bottom: 7px;
-    border-radius: 10%;
-}
+  font-size: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 7px;
+  border-radius: 10%;
+  }
+
 .log-out button:hover{
-    background-color: #969696;
-    transition: .6s;
-    content: "cmon bruh";
+  background-color: #969696;
+  transition: .6s;
+  content: " ";
 }
-
-
 
 .statistics {
   display: flex; 
   justify-content: center;
-
 }
-
 
 .card {
   display: grid;
   grid-template-rows: 100px 30px 30px;
   margin-top: 30px;
-  
 }
 
-.card img 
-{
+.card img {
   width: 100px;
   height: 100px;
 }
 
-
 .card p {
   font-size: 22px;
 }
-
 
 .footer {
   position: fixed;
@@ -332,15 +299,12 @@
   color: white;
   text-align: center;
   display : flex ;
-  align-items: row;
   justify-content: space-around;
 }
 
-.footer p 
-{
+.footer p {
   margin-top: 5px;
 }
-
 
 body::after{
   content: "\n";

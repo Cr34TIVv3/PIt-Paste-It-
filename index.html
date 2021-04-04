@@ -6,19 +6,17 @@
         <title>Paste It</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <script type="text/javascript" src="./js/script.js"></script>
+    <script src="./js/nav.js"></script>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="content">
             <div class="logo">
-                <a href="#">Paste It</a>
+                <a href="/index.html">Paste It</a>
             </div>
             <ul class="menu-list">
-                <div class="icon cancel-btn">
-                    <i class="fas fa-times"></i>
-                </div>
+                <li><div class="icon cancel-btn"><i class="fas fa-times"></i></div></li>
                 <li><a href="/faq.html">FAQ</a></li>
                 <li><a href="/contact.html">Contact</a></li>
                 <li><a href="/signin.html">Sign in</a></li>
@@ -43,7 +41,7 @@
             <h1>Optional settings:</h1>
             <div class="line"></div>
             <div class="settings">
-                <label for="Highlight">Syntax highlight:</label>
+                <label id="Highlight">Syntax highlight:</label>
                 <select id="syntax-highlight" name="highlight">
                     <option value="None" selected >None</option>
                     <option value="C++">C++</option>
@@ -51,23 +49,23 @@
                     <option value="Java">Java</option>
                 </select>
 
-                <label for="Expiration">Paste expiration:</label>
+                <label id="Expiration">Paste expiration:</label>
                 <select id="paste-expiration" name="expiration">
                     <option value="1day">1 day</option>
                     <option value="7days">7 days</option>
                     <option value="14days">14 days</option>
                 </select>
 
-                <label for="Paste Exposure">Paste Exposure:</label>
+                <label id="Past-Exposure">Paste Exposure:</label>
                 <select id="paste-exposure" name="exposure">
                     <option value="Public" selected >Public</option>
-                    <option value="Private"></option>
+                    <option value="Private">Private</option>
                 </select> 
 
-                <label for="Password">Password (optional):</label>
+                <label id="Password">Password (optional):</label>
                 <input type="password" id="fname" name="fname">
 
-                <label for="">Burn after read:</label>
+                <label id="Burn">Burn after read:</label>
                 <input type="checkbox" name="Burn after read" id="burn">
 
                 <label>Paste Name/Title:</label>
@@ -75,7 +73,7 @@
             
 
 
-                <label for=""></label>
+                <label id="submit-l"></label>
                 <input id="submit" type="button" value="Create New Paste">
             
             </div>
