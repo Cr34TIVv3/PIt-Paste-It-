@@ -139,7 +139,7 @@
     display: block;
     padding: 40px 0;
     text-align: center;
-    background: #222;
+    background: #222222;
     transition: all 0.3s ease;
   }
   .navbar.show .menu-list{
@@ -156,7 +156,6 @@
   .navbar.show .menu-list li a{
     margin-left: 0px;
   }
-
 }
 @media (max-width: 380px) {
   .navbar .logo a{
@@ -196,8 +195,6 @@
 }
 
 #submit{
-  /* grid-column-start: 1;
-  grid-column-end: 3; */
   grid-column: span 1;
 }
 
