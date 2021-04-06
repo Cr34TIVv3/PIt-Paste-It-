@@ -10,8 +10,8 @@
 </head>
 
 
-<body>
-    <nav class="navbar">
+<body itemscope itemtype="http://schema.org/WebPage">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
         <div class="content">
             <div class="logo">
                 <a href="/index.html">Paste It</a>
@@ -34,26 +34,26 @@
         <div class="main-container">
 
             <div class="welcome">
-                <h1>Welcome</h1>
+                <h1 itemprop="headline">Welcome</h1>
                 <div class="line"></div>
-                    <p> 
+                    <p itemprop="description" > 
                         Hi Guest, this is your personal Pastebin. 
                         Feel free to share this page with anyone you like.
                     </p>
-                    <p>
+                    <p itemprop="description">
                         There are some sections that would help you to manage your profile
                     </p>
-                    <p>
+                    <p itemprop="description">
                         Only you (when logged in) can see your folders, 
                         unlisted and private pastes, and only you see the options to edit and delete.
                     </p>
             </div>
 
-            <h1>My pastes</h1>
+            <h1 itemprop="headline">My pastes</h1>
             <div class="line"></div>
 
             <div class="my-pastes">
-                <table>
+                <table itemscope itemtype="https://schema.org/Table">
                         <tr>
                             <th>Titlu</th>
                             <th>Date</th>
@@ -95,11 +95,11 @@
 
         
 
-            <h1>My profile</h1>
-            <div class="line"></div>
-            
+        <h1 itemprop="headline">My profile</h1>
+        <div class="line"></div>
+        
          <div class="yourProfile"> 
-            <table class="informationAccount"> 
+            <table class="informationAccount" itemscope itemtype="https://schema.org/Table"> 
                 <tr>
                     <th><label id="username">Change username:</label></th>
                     <td><input type="text"></td>
@@ -124,17 +124,17 @@
 
 
             <div class="card">
-                <img src="./resources/fantoma.png" alt="avatar">
-                <p>iustin2000</p>
+                <img itemprop="image" src="./resources/fantoma.png" alt="avatar">
+                <p itemprop="alternateName">iustin2000</p>
                 <p>iustinian.petrariu@gmail.com</p>
             </div>
          </div>
        
 
-        <h1>Statistics</h1>
+        <h1 itemprop="headline">Statistics</h1>
         <div class="line"></div>
 
-        <div class="statistics">
+        <div itemprop="interactionStatistic" class="statistics">
             <canvas id="myCanvas" width="500" height="500"></canvas>
         </div>
 

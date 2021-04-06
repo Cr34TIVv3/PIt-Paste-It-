@@ -31,9 +31,11 @@ body {
     transform: translate(-60%,-50%);
     font-size: 41px;
 }
+
 .main-text p{
     margin-bottom: 10px;
 }
+
 .get-started{
     position: relative;
     display: inline-block;
@@ -43,13 +45,12 @@ body {
     padding: 12px 31px;
     cursor: pointer;
     background: transparent;
-
 }
+
 .get-started:hover{
    border: 1px solid #ffffff;
    transition: 1s ; 
    background:  #ffffff;
-    
 }
 
 .about{
@@ -94,7 +95,6 @@ body {
    box-shadow: 0 0 20px 0 #ffffff;
 }
 
-
 section.about h1, section.about > p {
     color: white;
 }
@@ -102,7 +102,6 @@ section.about h1, section.about > p {
 /* make it responsive for smaller screen */ 
 
 @media(max-width: 750px){
-
     .account{
         flex-direction: column;
     }
@@ -116,7 +115,6 @@ section.about h1, section.about > p {
     display: flex; 
     justify-content: center;
     margin-top: 40px;
-  
 }
 
 .footer {
