@@ -108,8 +108,19 @@
   }
 }
 
+
+
+.yourProfile { 
+  display: flex;
+  justify-content: space-around;
+}
+
+
 @media (max-width: 868px) {
 
+  .yourProfile {
+    display: block;
+  }
   body.disabled{
     overflow: hidden;
   }
@@ -146,6 +157,7 @@
   .navbar.show .menu-list li a{
     margin-left: 0px;
   }
+  
 }
 
 @media (max-width: 380px) {
@@ -309,7 +321,6 @@
 body::after{
   content: "\n";
 }
-
 
 
 

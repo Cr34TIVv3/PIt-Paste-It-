@@ -2,9 +2,28 @@ li {
     list-style-type: none;
 }
 
+section ol li {
+    list-style-type: circle;
+}
 
+body{
+    margin: auto;
+    max-width: 900px;
+    font-size: 23px;
+    font-family: 'Open Sans', sans-serif;
+}
 
+h1, h2 {
+    color: #4b0061; 
+}
 
+body > h1{
+    text-align: center;
+}
 
+img{
+    max-width: 100vh;
+    width: auto;
+}
 
 
