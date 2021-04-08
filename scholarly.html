@@ -9,78 +9,70 @@
   
 </head>
 
-<body prefix="schema: http://schema.org">
-    <h1>Contents</h1>
+<body prefix="schema: http://schema.org" itemscope="" itemtype="http://schema.org/WebPage">
+    <h1 itemprop="name">Paste It</h1>
+                                   <!-- Cuprins-->
     <ol>
         <li>
-            <a href="">Revision History</a>
+            <a href="#authors"> <span>1 </span>Autori</a>
         </li>
         <li>
-            <a href="">Introduction</a>
+            <a href="#introduction"> <span>2 </span>Introducere</a>
             <ol>
-                <li><a href="">Purpose</a></li>
-                <li><a href="">Document Conventions</a></li>
-                <li><a href="">Intended Audience and Reading Suggestions</a></li>
-                <li><a href="">Product Scope</a></li>
-                <li><a href="">References</a></li>
+                <li><a href="#scope"> <span>2.1 </span>Scop</a></li>
+                <li><a href="#conventions"> <span>2.2</span> Convenții</a></li>
+                <li><a href="#productScope"><span>2.3</span> Țelul produsului</a></li>
+                <li><a href="#references"><span>2.4</span> Referinţe</a></li>
             </ol>
         </li>
         <li>
-            <a href="">Overall Description</a>
+            <a href="#generalDescription"><span>3.</span> Descreire generală</a>
             <ol>
-                <li><a href="">Product Perspective</a></li>
-                <li><a href="">Product Functions</a></li>
-                <li><a href="">User Classes and Characteristics</a></li>
-                <li><a href="">Operating Environment</a></li>
-                <li><a href="">Design and Implementation Constraints</a></li>
-                <li><a href="">User Documentation</a></li>
-                <li><a href="">Assumptions and Dependencies</a></li>
+                <li><a href="#productPerspective"><span>3.1</span> Perspectiva produsului</a></li>
+                <li><a href="#productFunctions"><span>3.2</span> Funcționalitățile produsului</a></li>
+                <li><a href="#classesAndCharacteristics"><span>3.3</span> Categorii de utilizatori</a></li>
+                <li><a href="#operationEnvironment"><span>3.4</span> Mediu de operare</a></li>
+                <li><a href="#designConstrains"><span>3.5</span> Design și constrângeri de implementare</a></li>
+                <li><a href="#userDocumentation"><span>3.6</span> Documentație pentru utilizator</a></li>
             </ol>
         </li>
         <li>
-            <a href="">External Interface Requirements</a>
+            <a href="#externalRequirements"><span>4.</span> Cerințe externe</a>
             <ol>
-                <li><a href="">User Interfaces</a></li>
-                <li><a href="">Hardware Interfaces</a></li>
-                <li><a href="">Software Interfaces</a></li>
-                <li><a href="">Communications Interfaces</a></li>
+                <li><a href="#userInterface"><span>4.1</span> Interfață utilizator</a></li>
+                <li><a href="#softwareInterface"><span>4.2</span> Interfață software</a></li>
+                <li><a href="#communicationInterface"><span>4.3</span> Interfață de comunicare</a></li>
             </ol>
         </li>
         <li>
-            <a href="">System Features</a>
+            <a href="#functionalRequirements"><span>5.</span>Cerințe funcționale</a>
             <ol>
-                <li><a href="">System Feature 1</a></li>
-                <li><a href="">System Feature 2 (and so on)</a></li>
+                <li><a href="#register"><span>5.1 </span>Inregistrare</a></li>
+                <li><a href="#login"><span>5.2 </span>Autentificare</a></li>
+                <li><a href="#uploadCode"><span>5.3 </span>Încărcarea codului</a></li>
+                <li><a href="#postsManagement"><span>5.4 </span>Gestionarea postărilor</a></li>
+                <li><a href="#postsProtection"><span>5.5 </span>Protejarea postării prin parola</a></li>
+                <li><a href="#burnAfterRead"><span>5.6 </span>Burn after read</a></li>
+                <li><a href="#syntaxHighlight"><span>5.7 </span>Selectarea sintaxei</a></li>
+                <li><a href="#capcha"><span>5.8 </span>Probleme tip CAPCHA</a></li>
+                <li><a href="#postsModifiers"><span>5.9 </span>Postări publice/private</a></li>            </ol>
+        </li>
+        <li>
+            <a href="#nonfunctionalRequirements"><span>6. </span>Cerințe nonfuncționale</a>
+            <ol>
+                <li><a href="#safety"><span>6.1 </span>Cerințe de siguranță</a></li>
+                <li><a href="#security"><span>6.2 </span>Cerințe de securitate</a></li>
             </ol>
         </li>
         <li>
-            <a href="">Other Nonfunctional Requirements</a>
-            <ol>
-                <li><a href="">Performance Requirements</a></li>
-                <li><a href="">Safety Requirements</a></li>
-                <li><a href="">Security Requirements</a></li>
-                <li><a href="">Software Quality Attributes</a></li>
-                <li><a href="">Business Rules</a></li>
-            </ol>
-        </li>
-        <li>
-            <a href="">Other Requirements</a>
-        </li>
-        <li>
-            <a href="">Appendix A: Glossary</a>
-        </li>
-        <li>
-            <a href="">Appendix B: Analysis Models</a>
-        </li>
-        <li>
-            <a href="">Appendix C: To Be Determined List</a>
+            <a href="#bibliography"><span>7. </span>Referinţe bibliografice</a>
         </li>
     </ol>
 
 
-    <article id = "our-article" typeof = "schema:ScholarlyArticle" resource = "#"> 
-        <h1>Paste It</h1>
-        <section> 
+    <article id = "article" typeof = "schema:ScholarlyArticle" resource = "#"> 
+        <section id="#authors"  typeof="sa:AuthorsList"> 
+                <h2><span>1. </span>Autori</h2>
                 <ol> 
                     <li property = "schema:author" typeof="sa:ContributorRole"> 
                         <a property = "schema:author" href="#" typeof="schema:Person"> 
@@ -105,19 +97,94 @@
         </section>
 
 
-        <section>
-            
+        <section role="doc-introduction">
+                <h2 id="introduction"> <span>2. </span>Introducere</h2>
+                <p> 
+                    Paste It este o aplicație Web prin intermediul căreia se poate distribui cod sursă (scris într-un anumit limbaj de programare). 
+                    Aplicația oferă suport pentru mai multe limbaje de programare (Java, Haskell, C/++) și este în continuă dezvoltare.
+                    Pot posta atât utilizatorii autentificați, cât și cei care nu doresc să-și creeze un cont. 
+                </p>
+                
+                <h3 id="scope"><span>2.1 </span>Scop</h3>
+                <p>  
+                    Paste It este o aplicatie Web usor de utilizat, intuitiva si gratis. Aplicatie vine in ajutorul celor care doresc sa faca share codului scris intr-o maniera rapida 
+                    si sigura. 
+                </p>
+                
+                <h3 id="conventions"><span>2.2 </span>Convenții</h3>
+                <p>
+                    
+                    Aplicatie este gandita pentru a fi foarte intuitiva si usor de utilizat. Un alt aspect important pe care aplicatie il urmareste
+                    este rapiditatea cu care clientul reuseste sa interactioneze cu aceasta. Astfel, pe pagina principala, utilizatorul
+                    poate posta printr-un singur click intregul cod si poate crea un "New Paste" foarte rapid pe care mai apoi 
+                    il poate distribui prin intermediul link-ului. 
+                
+                </p>
+
+                <h3 id="productScope"><span>2.3 </span>Țelul produsului</h3>
+                <p>
+                    Produsul are scopul de a furniza un mediu facil și plăcut, în care utilizatorul
+                    va putea să își distribuie codul sursă. 
+                    
+                </p>
+                <h3 id="references"><span>2.4 </span>Referinţe</h3>
+
+                <ol>
+                    <li><a href="https://www.pinterest.se/fromupnorth/web-design/">https://www.pinterest.se/fromupnorth/web-design/<a></li>
+                    <li><a href="https://www.w3schools.com/css/">https://www.w3schools.com/css/<a></li>
+                </ol>    
         </section>
+
+        <section>
+            <h2 id="generalDescription">Descriere generală</h2>
+
+            <h3 id="productPerspective">Perspectiva produsului</h3>
+
+            <h3 id="productFunctions">Perspectiva produsului</h3>
+
+            <h3 id="productPerspective">Perspectiva produsului</h3>
+        </article>
           
-
-
-
-
-
-
-
-        
     </article>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,6 @@
-article section ol::before{
-    content: 'Authors'
+li {
+    list-style-type: none;
 }
-
 
 
 
