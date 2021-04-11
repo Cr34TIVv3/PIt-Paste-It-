@@ -50,6 +50,11 @@ body{
   width: 70%;
  }
 
+ body > nav > div > ul > li:nth-child(1):hover::after {
+  width: 0px;
+}
+
+
 .navbar .logo a{
   color: #fff;
   font-size: 30px;
