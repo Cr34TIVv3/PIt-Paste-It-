@@ -1,148 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paste It</title>
-    <meta name="subject" content="Paste It">
-    <meta name="description" content="Paste It. Provide a simple way to share your code" > 
-    <meta name="keywords" content="share code, paste code, copy code, share, code"/>
-    <meta name="author" content=" Petrariu Iustin, Burca Rafael">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <script src="./js/nav.js"></script>
+    <title>PasteIT</title>
+    <link rel="stylesheet" href="./css/style_index.css">
+    <script src="./js/chart.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" >
-    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
-        <div class="content">
-            <div class="logo">
-                <a href="/index.html">Paste It</a>
-            </div>
-            <ul class="menu-list">
-                <li><div class="icon cancel-btn"><i class="fas fa-times"></i></div></li>
-                <li><a href="/faq.html">FAQ</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-                <li><a href="/signin.html">Sign in</a></li>
-                <li><a href="/signup.html">Sign up</a></li>
-            </ul>
-            <div class="icon menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+    <section class="header">
+        <div class="main-text">
+            <h1>Paste It</h1>
+            <p> Share your code now.</p>
+            <a href="home.html" class="get-started">Get Started</a>
         </div>
-    </nav>
-    <div class="banner"></div>
+    </section>
 
-    <div class="source">
-        <div class="main-container">
-            <h1 itemprop="name">New paste</h1>
-            <div class="form">
-               <form>
-                   <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
-                 </form>
-             </div>
-        
-            <h1 itemprop="name">Optional settings</h1>
-            <div class="line"></div>
-            <div class="settings">
-                <label itemprop="name" id="Highlight">Syntax highlight:</label>
-                <select id="syntax-highlight" name="highlight">
-                    <option value="None" selected >None</option>
-                    <option value="C++">C++</option>
-                    <option value="Haskell">Haskell</option>
-                    <option value="Java">Java</option>
-                </select>
-
-                <label itemprop="name" id="Expiration">Paste expiration:</label>
-                <select itemscope itemtype="https://schema.org/Date" id="paste-expiration" name="expiration">
-                    <option itemprop="expires" value="1day">1 day</option>
-                    <option itemprop="expires" value="7days">7 days</option>
-                    <option itemprop="expires" value="14days">14 days</option>
-                </select>
-
-                <label itemprop="name" id="Past-Exposure">Paste Exposure:</label>
-                <select id="paste-exposure" name="exposure">
-                    <option value="Public" selected >Public</option>
-                    <option value="Private">Private</option>
-                </select> 
-
-                <label itemprop="name" id="Password">Password (optional):</label>
-                <input type="password" id="fname" name="fname">
-
-                <label itemprop="name" id="Burn">Burn after read:</label>
-                <input type="checkbox" name="Burn after read" id="burn">
-
-                <label itemprop="name">Paste Name/Title:</label>
-                <input type="text" required>
-            
-
-
-                <label itemprop="name" id="submit-l"></label>
-                <input id="submit" type="button" value="Create New Paste">
-            
-            </div>
-
+    
+    <section class="about">
+        <h1 itemprop="headline">About Us</h1>
+        <p>Paste It is a free online content hosting service where users
+            can store souce code snippets for code review </p>
+        <div class="account">
+            <div itemprop="description" class="login-type">
+                <h3 itemprop="headline">Having and account</h3>
+                <p itemprop="description">If you already have an account then it's great!
+                    You can share your code with unlimited time expiration.<br> You also
+                    have at your disposal some great option that will help you a lot.
+                    You cand protect your paste with a password for extra protection.
                 
-        
+                </p>
+            </div>
 
-            <h1 itemprop="name">My pastes</h1>
-            <div class="line"></div>
-
-            <div class="my-pastes">
-               <table itemscope itemtype="https://schema.org/Table">
-                      <tr>
-                          <th>Titlu</th>
-                          <th>Date</th>
-                          <th>Expires</th>
-                          <th>Syntax</th>
-                          <th>Visibility</th>
-                      </tr>
-                      <tr>
-                          <td>Tuxy</td>
-                          <td>21.02.2019</td>
-                          <td>Never</td>
-                          <td>Java</td>
-                          <td>Private</td>
-                      </tr>
-                      <tr>
-                        <td>Pinguinescu</td>
-                        <td>21.01.2020</td>
-                        <td>Never</td>
-                        <td>C++</td>
-                        <td>Public</td>
-                    </tr>
-                    <tr>
-                        <td>Pinguin</td>
-                        <td>21.01.2020</td>
-                        <td>Never</td>
-                        <td>C++</td>
-                        <td>Public</td>
-                    </tr>
-               </table>
-            </div> <!--div for my-pastes!-->
-
-            
-            <h1 itemprop="name">Public posts</h1>
-            <div class="line"></div>
-            <div class="public-pastes">
-                <div class="paste-obj">
-                    <h3>Tuxi</h3>
-                    <p>some description</p> 
-                </div>
-                <div class="paste-obj">
-                    <h3>my latest paste1</h3>
-                    <p>some description1</p> 
-                </div>
-                <div class="paste-obj">
-                    <h3>my latest paste2</h3>
-                    <p>some description2</p> 
-                </div>
-            </div> <!--div for public-pastes!-->
+            <div itemprop="description" class="login-type">
+                <h3 itemprop="headline">Don't have an account yet?</h3>
+                <p itemprop="description">If you don't have an account yet, don't worry! Just click on "get started" 
+                    and create your account. Also if you want to just share your code 
+                    without an account, then you should consider that your paste are available only
+                    for 30 days and you can only post public pastes. So, discover the best of this site by creating
+                    your own account!
+                </p>
+            </div>
         </div>
-    </div> <!--div from source!!-->
+        
+        <div class="account">
+            <div itemprop="description" class="login-type">
+                <h3 itemprop="headline">Why would you choose our platform?</h3>
+                <p>Our product is still in a incipient state and we consider that it has much potential.
+                    The application dispose by ambiental animations, intuitive charts related to the activity
+                    of the users and a plesant user interface.
+                </p>
+            </div>
+
+            <div itemprop="description" class="login-type">
+                <h3 itemprop="headline">Constraints?!</h3>
+                <p>
+                    With Paste It you can share your code without any limitations. There are no constraints about how many 
+                    pastes you can post. In fact, we have a future named "Burn after read" which make your paste to be seen only once.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!--third section about the site -->
+    <section class = "about"> 
+        <h1 itemprop="headline"> 
+             Paste It Statistics
+        </h1>
+        <p itemprop="description">If you're still thinking whether to use Paste It or not, then you should consider this:
+             These are some statistics related to the activity of our users. We are convinced that this data would persuade you to come and join us</p>
+        <div itemprop="interactionStatistic" class="statistics">
+            <canvas  width="500" height="500" id="myCanvas"></canvas> 
+        </div>
+
+
+    </section>
+  
     <div class="footer">   
         <p>Copyright &copy; Paste IT</p>
         <p>Scholarly HTML <a href="./scholarly.html">HERE</a></p>
     </div>
+    
 </body>
+
 </html>
