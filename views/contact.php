@@ -1,35 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PasteIt</title>
-        <link rel="stylesheet" href="./css/style_contact.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-        <script src="./js/nav.js"></script>
-    </head>
-    
-    <body itemscope itemtype="https://schema.org/ContactPage">
-        <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
-            <div class="content">
-                <div class="logo">
-                    <a href="/home.html">Paste It</a>
-                </div>
-                <ul class="menu-list">
-                    <li><div class="icon cancel-btn"><i class="fas fa-times"></i></div></li>
-                    <li><a href="/faq.html">FAQ</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                    <li><a href="/signin.html">Sign in</a></li>
-                    <li><a href="/signup.html">Sign up</a></li>
-                </ul>
-                <div class="icon menu-btn">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </nav>
-        <div class="banner"></div>
+<?php
 
-        <div class="card-container"> 
+?>
+
+<div class="card-container"> 
             <div class="card">  
                 <img src="./resources/card_picture_iustin.jpg" alt="Iustin"> 
                 <h1 itemprop = "author" >Iustinian Petrariu</h1> 
@@ -52,38 +25,3 @@
                 </div>   
             </div>
         </div> 
-        <div class="footer">   
-            <p>Copyright &copy; Paste IT</p>
-            <p>Scholarly HTML <a href="./scholarly.html">HERE</a></p>
-        </div>
-    
-     </body>
-
-   
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

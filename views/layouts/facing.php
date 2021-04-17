@@ -4,8 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PasteIT</title>
-    <link rel="stylesheet" href="./css/style_index.css">
-    <script src="./js/chart.js"></script>
+    <link rel="stylesheet" href="./styles/facing.css">
+    <script src="./scripts/chart.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" >
@@ -13,7 +13,7 @@
         <div class="main-text">
             <h1>Paste It</h1>
             <p> Share your code now.</p>
-            <a href="home.html" class="get-started">Get Started</a>
+            <a href="/home" class="get-started">Get Started</a>
         </div>
     </section>
 
