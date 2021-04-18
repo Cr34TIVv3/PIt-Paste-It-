@@ -32,18 +32,17 @@ class Router
             $this->response->setStatusCode(404);
             return $this->renderView("_404");
         }
-        if(is_string($callback)) 
-        { 
+        if(is_string($callback)) {
             return $this->renderView($callback);          
         }
-        // if(is_array($callback)) {
-        //     //  return $this->renderView
-         
-        // }
-        return call_user_func($callback);  
+        if(is_array($callback)) {
+            Application::$app->controller = new $callback[0]();
+            $callback[0]= Application::$app->controller;
+        }
+        return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view)
+    public function renderView($view, $styles="", $params= []) 
     {
         $layoutContent = $this->layoutContent($view);
         $viewContent = $this->renderOnlyView($view); 
@@ -54,22 +53,20 @@ class Router
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
+    //good
     protected function layoutContent($view) {
+        $layout = Application::$app->controller->layout;
         ob_start();
-        if (strcmp ($view, "facing") == 0) 
-        {
-            include_once Application::$ROOT_DIR."/views/layouts/facing.php"; 
-        }
-        else 
-        {
-            include_once Application::$ROOT_DIR."/views/layouts/general.php"; 
-        }
-        
+        include_once Application::$ROOT_DIR."/views/layouts/$layout.php"; 
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view)
+    protected function renderOnlyView($view,$params = [])
     {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php"; 
         return ob_get_clean();
