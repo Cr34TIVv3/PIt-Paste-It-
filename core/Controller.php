@@ -13,12 +13,9 @@ class Controller
         if (strcmp ($view, "facing") == 0) 
         {
             $layout = 'facing';
-            // include_once Application::$ROOT_DIR."/views/layouts/facing.php"; 
         }
-
 
         return Application::$app->router->renderView($view, $params);
 
-        
     }
 }

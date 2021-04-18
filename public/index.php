@@ -12,27 +12,25 @@ error_reporting(E_ALL);
 $root_dirname = dirname(__DIR__);
 $app = new Application($root_dirname);
 
-$app->router->get('/', 'facing');
+///           require only get method
 
-$app->router->get('/home', 'home');
+$app->router->get('/', [FacingController::class, 'handleFacing']);
+$app->router->get('/contact', [ContactController::class, 'handleContact']); 
+$app->router->get('/faq', [FaqController::class, 'handleFaq']); 
 
-$app->router->get('/contact', 'contact'); 
-
-$app->router->get('/signin','signin');
-
-
+///          require get and post
 
 $app->router->get('/signin', [AuthController::class, 'handleLogin']); 
 $app->router->post('/signin', [AuthController::class, 'handleLogin']);
 
-
 $app->router->get('/signup', [RegisterController::class, 'handleRegistration']); 
 $app->router->post('/signup', [RegisterController::class, 'handleRegistration']);
 
+$app->router->get('/account', [ContactController::class,'handleAccount']); 
+$app->router->post('/account', [ContactController::class,'handleAccount']); 
 
-$app->router->get('/faq', 'faq'); 
-
-$app->router->get('/account', 'account'); 
+$app->router->get('/home', [HomeController::class, 'handleHome']);
+$app->router->post('/home', [HomeController::class, 'handleHome']);
 
 
 

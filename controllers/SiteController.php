@@ -14,7 +14,7 @@ class SiteController extends Controller{
         return Application::$app->router->renderView('signup');
     }
 
-    public function signup() {
+    public function signup() { 
         return $this->render('signup');
     }
 
