@@ -8,26 +8,27 @@ use models\RegisterModel;
 
 
 class RegisterController extends Controller{
-
+   
 
     public function handleRegistration(Request $request) {
+        $registerModel = new RegisterModel();
         $erros = [] ; 
         if( $request->getMethod() === "post")
         {
-            $registerModel = new RegisterModel();
+            
             $registerModel->loadData($request->getBody()); 
-
 
             if($registerModel->validate() && $registerModel->register())
             {
                 return 'Succes'; 
             }
-            $body = $request->getBody();
-            // var_dump( $body );
+
+            return $this->render('signup', ['model' => $registerModel]);
         }
         else 
         {
-            return $this->render('signup');
+            // echo "pas 1: ";
+            return $this->render('signup', ['model' => $registerModel]);
         }
     }
 

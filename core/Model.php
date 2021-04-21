@@ -53,9 +53,9 @@ abstract class Model
                 }
             }
         }
-        echo '<pre>';
-        var_dump($this->errors);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($this->errors);
+        // echo '</pre>';
         
         return empty($this->errors);
     }
@@ -79,6 +79,20 @@ abstract class Model
             self::RULE_MATCH => 'This field must be the same as {match}'
         ];
     }
+
+    public function hasErrors($attribute)
+    {
+
+        return $this->errors[$attribute] ?? false ;
+
+
+    }
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? false;
+    }
+
+
 }
 
 

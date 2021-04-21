@@ -11,13 +11,19 @@ class Application
     public Response $response;
     public static Application $app;
     public Controller $controller;
+    public Database $db;
     public function __construct($rootPath)
-    {
+    { 
         self::$ROOT_DIR = $rootPath; 
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response(); 
         $this->router = new Router($this->request, $this->response);
+
+        $dns = " ";
+        $name = "PIT";
+        $password = "PIT";
+        $this->db = new Database($dns, $name, $password);
     }
 
     public function run() {

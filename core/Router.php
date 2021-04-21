@@ -42,10 +42,11 @@ class Router
         return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view, $styles="", $params= []) 
+    public function renderView($view, $params= [], $styles="") 
     {
+      
         $layoutContent = $this->layoutContent($view);
-        $viewContent = $this->renderOnlyView($view); 
+        $viewContent = $this->renderOnlyView($view, $params); 
         $viewStyle = $this->renderOnlyStyle($view);
         $viewJs = $this->renderOnlyScript($view);
         $layoutContent = str_replace('{{style}}', $viewStyle,  $layoutContent);
@@ -65,6 +66,7 @@ class Router
     {
         foreach ($params as $key => $value) {
             $$key = $value;
+            // var_dump($$key);
         }
 
         ob_start();

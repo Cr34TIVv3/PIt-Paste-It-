@@ -13,12 +13,10 @@ class AuthController extends Controller {
 
         if ( $request->getMethod() === "post" ) {
             $body = $request->getBody();
-            // var_dump( $body );
         }
         else 
         {
             return $this->render('signin');
         }
     }
-
 }

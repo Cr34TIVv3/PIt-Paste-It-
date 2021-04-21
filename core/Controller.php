@@ -10,11 +10,12 @@ class Controller
 
     public function render($view,$params = [])
     {
+       
         if (strcmp ($view, "facing") == 0) 
         {
             $layout = 'facing';
         }
-
+        // echo "pas 2";
         return Application::$app->router->renderView($view, $params);
 
     }

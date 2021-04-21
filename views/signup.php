@@ -1,9 +1,31 @@
-<div class="center"> 
+<!-- <div class="center"> 
     <div class="wrapper">
         <div itemprop="headline"  class="title">
-            Register Form
-        </div>
-        <form action = " " method = "post">
+            Register Form -->
+
+<?php
+
+use core\form\Form;
+
+
+$form = new Form();
+?>
+
+        <!-- </div> -->
+
+            <?php $form = core\form\Form::begin('', "post") ?>
+            <?php echo $form->field($model, 'username') ?> 
+            <?php echo $form->field($model, 'email') ?> 
+            <?php echo $form->field($model, 'password') ?> 
+            <?php echo $form->field($model, 'repeat') ?> 
+
+
+            <div class="field">
+                <input type="submit" value="Login">
+            </div>
+            <?php core\form\Form::end() ?>
+
+            <!-- <form action = " " method = "post">
             <div class="field">
                 <input type="text" required  name="username">
                 <label>Username</label>
@@ -25,4 +47,4 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
