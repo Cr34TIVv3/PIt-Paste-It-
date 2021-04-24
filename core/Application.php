@@ -20,9 +20,9 @@ class Application
         $this->response = new Response(); 
         $this->router = new Router($this->request, $this->response);
 
-        $dns = " ";
-        $name = "PIT";
-        $password = "PIT";
+        $dns = "mysql:host=localhost;dbname=pasteit";
+        $name = "rafa";
+        $password = "rafa";
         $this->db = new Database($dns, $name, $password);
     }
 

@@ -4,31 +4,30 @@ namespace controllers;
 
 use core\Controller;
 use core\Request;
-use models\RegisterModel;
+use models\User;
 
 
 class RegisterController extends Controller{
    
 
     public function handleRegistration(Request $request) {
-        $registerModel = new RegisterModel();
-        $erros = [] ; 
+        $user = new User();
         if( $request->getMethod() === "post")
         {
             
-            $registerModel->loadData($request->getBody()); 
+            $user->loadData($request->getBody()); 
 
-            if($registerModel->validate() && $registerModel->register())
+            if($user->validate() && $user->save())
             {
                 return 'Succes'; 
             }
 
-            return $this->render('signup', ['model' => $registerModel]);
+            return $this->render('signup', ['model' => $user]);
         }
         else 
         {
             // echo "pas 1: ";
-            return $this->render('signup', ['model' => $registerModel]);
+            return $this->render('signup', ['model' => $user]);
         }
     }
 

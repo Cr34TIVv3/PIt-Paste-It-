@@ -33,8 +33,6 @@ $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);
 
 
-
-
 $app->run();
 
 
