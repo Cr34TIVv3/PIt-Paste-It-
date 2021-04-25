@@ -13,9 +13,9 @@ class Controller
        
         if (strcmp ($view, "facing") == 0) 
         {
-            $layout = 'facing';
+            $this->layout = 'facing';
         }
-        // echo "pas 2";
+
         return Application::$app->router->renderView($view, $params);
 
     }

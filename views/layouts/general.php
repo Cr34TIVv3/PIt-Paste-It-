@@ -1,3 +1,7 @@
+<?php 
+  use core\Application;
+ ?> 
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +44,17 @@
     </nav>
     <div class="banner"></div>
 
+
+    <?php if(Application::$app->session->getFlash('success')): ?>
+
+        <div class="alert"> 
+            <?php echo Application::$app->session->getFlash('success') ?>
+        </div>
+
+    <?php endif; ?>
+
+
+     
     {{content}}
 
     <div class="footer">   
@@ -48,3 +63,36 @@
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

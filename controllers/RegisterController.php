@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use core\Application;
 use core\Controller;
 use core\Request;
 use models\User;
@@ -19,14 +20,15 @@ class RegisterController extends Controller{
 
             if($user->validate() && $user->save())
             {
-                return 'Succes'; 
+                //display message 
+                Application::$app->session->setFlash('success', 'Thanks for registering');
+                Application::$app->response->redirect('/home');
             }
 
             return $this->render('signup', ['model' => $user]);
         }
         else 
         {
-            // echo "pas 1: ";
             return $this->render('signup', ['model' => $user]);
         }
     }

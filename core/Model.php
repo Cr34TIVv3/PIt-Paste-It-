@@ -40,17 +40,17 @@ abstract class Model
                 }
 
                 if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                    $this->addError($attribute, self::RULE_EMAIL, $rule);
+                    $this->addErrorForRule($attribute, self::RULE_EMAIL, $rule);
                 }
                 if ($ruleName === self::RULE_MIN &&  strlen($value) < $rule['min']) {
-                    $this->addError($attribute, self::RULE_MIN, $rule);
+                    $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
                 }
                 if ($ruleName === self::RULE_MAX &&  strlen($value) > $rule['max']) {
-                    $this->addError($attribute, self::RULE_MAX, $rule);
+                    $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
                
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
-                    $this->addError($attribute, self::RULE_MATCH, $rule);
+                    $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
                 }
                 if ($ruleName === self::RULE_UNIQUE){
                     $className= $rule['class']; 
@@ -62,7 +62,7 @@ abstract class Model
                     $record = $statement -> fetchObject();
                     if($record)
                     {
-                        $this->addError($attribute,self::RULE_UNIQUE, ['field' => $attribute]);
+                        $this->addErrorForRule($attribute,self::RULE_UNIQUE, ['field' => $attribute]);
                     }
                     
                     // $this->addError($attribute, self::RULE_MATCH, ['field' => $attribute]);
@@ -74,13 +74,17 @@ abstract class Model
     }
  
     
-    public function addError(string $attibute, string $rule, $params = []) {
+    private function addErrorForRule(string $attibute, string $rule, $params = []) {
         $message = $this->errorMessages()[$rule] ?? '' ; 
         foreach ($params as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message) ; 
         }
         $this->errors[$attibute] [] = $message; 
 
+    }
+    public function addError(string $attribute, string $message)
+    {
+        $this->errors[$attribute][] = $message;
     }
 
 

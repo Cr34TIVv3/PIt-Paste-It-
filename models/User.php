@@ -19,9 +19,14 @@ class User extends DbModel
     }
 
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'users';
+    }
+
+    public function primaryKey(): string
+    {
+        return 'id';
     }
 
     public function rules() : array

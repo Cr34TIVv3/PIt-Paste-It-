@@ -1,20 +1,19 @@
-<div class="center"> 
-            <div class="wrapper">
-                <div itemprop="headline" class="title">
-                    Login Form
-                </div>
-                <form action="#">
-                    <div class="field">
-                        <input type="text" required>
-                        <label>Email Address</label>
-                    </div>
-                    <div class="field">
-                        <input type="password" required>
-                        <label>Password</label>
-                    </div>
-                    <div class="field">
-                        <input type="submit" value="Login">
-                    </div>
-                </form>
+<?php
+
+use core\form\Form;
+
+$form = new Form();
+
+?>
+
+        <!-- </div> -->
+
+            <?php $form = core\form\Form::begin('', "post") ?>
+            <?php echo $form->field($model, 'email') ?> 
+            <?php echo $form->field($model, 'password')->passwordField() ?> 
+
+
+            <div class="field">
+                <input type="submit" value="Login">
             </div>
-        </div>
+            <?php core\form\Form::end() ?>
