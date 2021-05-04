@@ -7,8 +7,10 @@ use core\Request;
 use core\Application;
 use core\Response;
 use models\Login;
-
 class AuthController extends Controller {
+
+  
+
 
     public function handleLogin(Request $request, Response $respone) 
     {
@@ -18,11 +20,11 @@ class AuthController extends Controller {
         {
             
             $login->loadData($request->getBody()); 
-
+           
             if($login->validate() && $login->login())
             {
                 //display message 
-                // echo "here";
+              
                 // Application::$app->session->setFlash('success', 'Welcome');
                 Application::$app->response->redirect('/home');
                 exit;
@@ -35,4 +37,7 @@ class AuthController extends Controller {
             return $this->render('signin', ['model' => $login]);
         }
     }
+
+    
+
 }

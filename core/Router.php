@@ -2,6 +2,9 @@
 
 namespace core;
 
+use core\exception\ForbiddenException;
+use core\exception\NotFoundException;
+
 class Router
 {    
     public Request $request;
@@ -30,22 +33,28 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if($callback === false) {
             $this->response->setStatusCode(404);
-            return $this->renderView("_404");
+            // return $this->renderView("_404");
+            throw new NotFoundException();
         }
         if(is_string($callback)) {
             return $this->renderView($callback);          
         }
         if(is_array($callback)) {
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller;
             
-            Application::$app->controller = new $callback[0]();
-            $callback[0]= Application::$app->controller;
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
+
         return call_user_func($callback, $this->request, $this->response);
     }
 
     public function renderView($view, $params= [], $styles="") 
     {
-      
         $layoutContent = $this->layoutContent($view);
         $viewContent = $this->renderOnlyView($view, $params); 
         $viewStyle = $this->renderOnlyStyle($view);
@@ -57,7 +66,17 @@ class Router
 
     //good
     protected function layoutContent($view) {
-        $layout = Application::$app->controller->layout;
+        if(!is_null(Application::$app->controller))
+        {
+            $layout = Application::$app->controller->layout;
+
+        }else 
+        {
+            $layout='general';
+        }
+
+
+        
         ob_start();
         include_once Application::$ROOT_DIR."/views/layouts/$layout.php"; 
         return ob_get_clean();

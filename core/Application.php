@@ -2,6 +2,7 @@
 
 namespace core;
 
+use Exception;
 use models\User;
 
 class Application
@@ -13,12 +14,11 @@ class Application
     public Request $request;
     public Response $response;
     public static Application $app;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public Database $db;
     public Session $session;
     public ?DbModel $user;
     public function __construct($rootPath)
-    //dbmodel
     { 
         $this->userClass = User::class;
         self::$ROOT_DIR = $rootPath; 
@@ -47,12 +47,20 @@ class Application
     }
 
     public function run() {
-        echo $this->router->resolve();        
+        try {
+            echo $this->router->resolve(); 
+        }
+        catch(Exception $e) {
+            echo $this->router->renderView('_error' , [
+                'exception' => $e
+            ]);
+        }
+               
     }
 
     public function login(DbModel $user)
     {
-        echo "sunt in login";
+        
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->{$primaryKey};
@@ -67,7 +75,6 @@ class Application
     }
 
     public static function isGuest() {
-//        var_dump(self::$app->user);
         return !self::$app->user;
     }
 }

@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoloader.php';
 
+use controllers\AccountController;
 use controllers\AuthController;
 use controllers\RegisterController;
 use controllers\FacingController;
@@ -21,6 +22,7 @@ $app = new Application($root_dirname);
 $app->router->get('/', [FacingController::class, 'handleFacing']);
 $app->router->get('/contact', [ContactController::class, 'handleContact']); 
 $app->router->get('/faq', [FaqController::class, 'handleFaq']); 
+$app->router->get('/logout', [AccountController::class, 'logout']); 
 
 ///          require get and post
 
@@ -30,8 +32,8 @@ $app->router->post('/signin', [AuthController::class, 'handleLogin']);
 $app->router->get('/signup', [RegisterController::class, 'handleRegistration']); 
 $app->router->post('/signup', [RegisterController::class, 'handleRegistration']);
 
-$app->router->get('/account', [ContactController::class,'handleAccount']); 
-$app->router->post('/account', [ContactController::class,'handleAccount']); 
+$app->router->get('/account', [AccountController::class,'handleAccount']); 
+$app->router->post('/account', [AccountController::class,'handleAccount']); 
 
 $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);

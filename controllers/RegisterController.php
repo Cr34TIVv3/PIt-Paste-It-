@@ -20,7 +20,6 @@ class RegisterController extends Controller{
 
             if($user->validate() && $user->save())
             {
-                //display message 
                 Application::$app->session->setFlash('success', 'Thanks for registering');
                 Application::$app->response->redirect('/home');
             }
