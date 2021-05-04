@@ -67,7 +67,7 @@ class Application
     }
 
     public static function isGuest() {
-        var_dump(self::$app->user);
+//        var_dump(self::$app->user);
         return !self::$app->user;
     }
 }

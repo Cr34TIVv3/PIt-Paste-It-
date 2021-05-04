@@ -8,7 +8,7 @@ abstract class DbModel extends Model
 {
     abstract public static function tableName(): string ; 
     abstract public function attributes(): array; 
-    abstract public function primaryKey(): string;
+    abstract public static function primaryKey(): string;
     
     public static function prepare($sql)
     {
@@ -41,7 +41,7 @@ abstract class DbModel extends Model
         $tableName = static::tableName();
         $attributes = array_keys($where); 
         $sql =  implode("AND", array_map(fn($attr) => "$attr = :$attr" , $attributes));
-        var_dump($sql);
+//        var_dump($sql);
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
         

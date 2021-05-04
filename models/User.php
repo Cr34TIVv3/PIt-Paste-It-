@@ -23,7 +23,7 @@ class User extends UserModel
         return 'users';
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
         return 'id';
     }
