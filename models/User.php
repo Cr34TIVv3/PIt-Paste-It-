@@ -2,11 +2,10 @@
 
 namespace models;
 
-use core\DbModel;
+use core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
-   
     public String $username = ' ';
     public String $email = ' ';
     public String $password= ' ';
@@ -38,7 +37,6 @@ class User extends DbModel
                 'password' => [ [self::RULE_MIN, 'min' => 8] , [self::RULE_MAX, 'max' => 20] ] , 
                 'repeat' => [ [self::RULE_MATCH, 'match' => 'password'] ] 
             ];
-//self::class
     }
 
     public function attributes() :array 
@@ -47,7 +45,10 @@ class User extends DbModel
     }
 
     
-
+    public function getDisplayName(): string
+    {
+        return $this->username; 
+    }
      
 
 

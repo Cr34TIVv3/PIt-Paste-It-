@@ -34,8 +34,14 @@
                 <li><div class="icon cancel-btn"><i class="fas fa-times"></i></div></li>
                 <li><a href="/faq">FAQ</a></li>
                 <li><a href="/contact">Contact</a></li>
+
+                <?php if (Application::isGuest()): ?>
                 <li><a href="/signin">Sign in</a></li>
                 <li><a href="/signup">Sign up</a></li>
+
+                <?php else:?>
+                <li><a href="/account"><?php echo Application::$app->user->getDisplayName() ?></a></li>
+                <?php endif; ?>
             </ul>
             <div class="icon menu-btn">
                 <i class="fas fa-bars"></i>

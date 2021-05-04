@@ -24,6 +24,7 @@ class Login extends Model
         $user = User::findOne(['email' => $this->email]) ;
         if(!$user)
         {
+        
             $this->addError('email', 'User does not exist with this email'); 
             return false;
         }
@@ -33,11 +34,7 @@ class Login extends Model
             return false;
         }
 
-      
-
-
-        // Application::$app->login();
-
+        Application::$app->login($user);
 
     }
     

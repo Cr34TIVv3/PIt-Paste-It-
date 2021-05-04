@@ -2,7 +2,7 @@
 
 namespace core;
 
-
+use models\User;
 
 class Application
 { 
@@ -18,8 +18,9 @@ class Application
     public Session $session;
     public ?DbModel $user;
     public function __construct($rootPath)
+    //dbmodel
     { 
-        $this->userClass = 
+        $this->userClass = User::class;
         self::$ROOT_DIR = $rootPath; 
         self::$app = $this;
         $this->request = new Request();
@@ -36,7 +37,11 @@ class Application
         if($primaryValue)
         {
              $primaryKey = $this->userClass::primaryKey();
-             $this->user =  $this->userClass::findOne([$primaryKey => $primaryValue])
+             $this->user =  $this->userClass::findOne([$primaryKey => $primaryValue]);
+        } 
+        else 
+        {
+            $this->user = null;
         }
       
     }
@@ -47,9 +52,70 @@ class Application
 
     public function login(DbModel $user)
     {
+        echo "sunt in login";
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->{$primaryKey};
         $this->session->set('user', $primaryValue);
+        return true;
+    }
+
+    public function logout()
+    {
+        $this->user = null;
+        $this->session->remove('user');
+    }
+
+    public static function isGuest() {
+        var_dump(self::$app->user);
+        return !self::$app->user;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

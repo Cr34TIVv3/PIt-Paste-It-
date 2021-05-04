@@ -22,7 +22,8 @@ class AuthController extends Controller {
             if($login->validate() && $login->login())
             {
                 //display message 
-                Application::$app->session->setFlash('success', 'Thanks for registering');
+                // echo "here";
+                // Application::$app->session->setFlash('success', 'Welcome');
                 Application::$app->response->redirect('/home');
                 exit;
             }
