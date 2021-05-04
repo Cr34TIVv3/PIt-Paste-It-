@@ -1,10 +1,9 @@
 <div class="source">
         <div class="main-container">
+        <form action="/" method="GET" enctype="multipart/form-data">
             <h1 itemprop="name">New paste</h1>
             <div class="form">
-               <form>
-                   <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
-                 </form>
+                <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
              </div>
         
             <h1 itemprop="name">Optional settings</h1>
@@ -46,7 +45,7 @@
                 <input id="submit" type="button" value="Create New Paste">
             
             </div>
-
+        </form>
                 
         
 
