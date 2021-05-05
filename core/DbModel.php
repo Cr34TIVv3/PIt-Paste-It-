@@ -18,19 +18,26 @@ abstract class DbModel extends Model
     
      public function save()
      {
+       
         $tableName  = $this->tableName();
         $attributes = $this->attributes();
-        $params =array_map(fn($attr) => ":$attr", $attributes); 
-
+        // var_dump($attributes);
+        $params = array_map(fn($attr) => ":$attr", $attributes); 
+      
 
         $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
                VALUES(".implode(',' , $params) .")"); 
+        // var_dump($statement);
+        var_dump(get_object_vars($this));
+         echo $this->slag;
         foreach($attributes as $attribute)
         {
-            $statement->bindValue(":$attribute", $this->{$attribute});
+            echo $attribute;
+             $statement->bindValue(":$attribute", $this->{$attribute});
         }
-
         $statement->execute();
+
+        echo"am ajuns aici";
         return true;
 
 
@@ -41,7 +48,6 @@ abstract class DbModel extends Model
         $tableName = static::tableName();
         $attributes = array_keys($where); 
         $sql =  implode("AND", array_map(fn($attr) => "$attr = :$attr" , $attributes));
-//        var_dump($sql);
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
         

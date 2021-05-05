@@ -5,7 +5,7 @@ namespace models;
 use core\Application;
 use core\Model;
 
-class Login extends Model 
+class Login extends Model
 {
 
     public string $email = ' ';
@@ -33,7 +33,6 @@ class Login extends Model
             $this->addError('password', 'Password is incorrect');
             return false;
         }
-
         return Application::$app->login($user);
 
     }

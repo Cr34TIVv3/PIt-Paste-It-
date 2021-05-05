@@ -9,6 +9,7 @@ use controllers\FacingController;
 use controllers\FaqController;
 use controllers\ContactController;
 use controllers\HomeController;
+use controllers\PreviewController;
 use core\Application;
 
 ini_set('display_errors', 1);
@@ -37,6 +38,9 @@ $app->router->post('/account', [AccountController::class,'handleAccount']);
 
 $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);
+
+
+$app->router->get('/home/{slug}', [HomeController::class, 'handlePasteRequest']);
 
 
 $app->run();

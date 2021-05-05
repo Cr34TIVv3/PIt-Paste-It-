@@ -2,7 +2,7 @@
 
 use core\Application;
 
-class m0001_initial {
+class m0001_create_table_users {
   
     public function up()
     {
@@ -23,7 +23,5 @@ class m0001_initial {
     {
         echo "aha";
     }
-
-
 
 }

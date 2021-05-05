@@ -1,6 +1,6 @@
 <div class="source">
         <div class="main-container">
-        <form action="/" method="GET" enctype="multipart/form-data">
+        <form action="/home" method="POST" enctype="multipart/form-data">
             <h1 itemprop="name">New paste</h1>
             <div class="form">
                 <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
@@ -25,24 +25,24 @@
                 </select>
 
                 <label itemprop="name" id="Past-Exposure">Paste Exposure:</label>
-                <select id="paste-exposure" name="exposure">
+                <select id="paste-exposure" name="access_modifier">
                     <option value="Public" selected >Public</option>
                     <option value="Private">Private</option>
                 </select> 
 
                 <label itemprop="name" id="Password">Password (optional):</label>
-                <input type="password" id="fname" name="fname">
+                <input type="password" id="fname" name="password">
 
                 <label itemprop="name" id="Burn">Burn after read:</label>
-                <input type="checkbox" name="Burn after read" id="burn">
+                <input type="checkbox" name="burn_after_read" id="burn">
 
                 <label itemprop="name">Paste Name/Title:</label>
-                <input type="text" required>
+                <input type="text" name="title" required>
             
 
 
                 <label itemprop="name" id="submit-l"></label>
-                <input id="submit" type="button" value="Create New Paste">
+                <input id="submit" type="submit" value="Create New Paste">
             
             </div>
         </form>

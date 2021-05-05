@@ -10,23 +10,19 @@ use models\Login;
 class AuthController extends Controller {
 
   
-
-
     public function handleLogin(Request $request, Response $respone) 
     {
-
+       
         $login = new Login();
         if( $request->getMethod() === "post")
         {
-            
-            $login->loadData($request->getBody()); 
            
+            $login->loadData($request->getBody()); 
+         
             if($login->validate() && $login->login())
             {
-                //display message 
-              
-                // Application::$app->session->setFlash('success', 'Welcome');
-                Application::$app->response->redirect('/home');
+                 Application::$app->session->setFlash('success', 'Welcome');
+                 Application::$app->response->redirect('/home');
                 exit;
             }
 

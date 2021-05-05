@@ -20,7 +20,7 @@ abstract class Model
         {
             if (property_exists($this, $key)) 
             {
-                $this-> {$key} = $value ; 
+                $this-> {$key} = $value; 
             }
         }
     }

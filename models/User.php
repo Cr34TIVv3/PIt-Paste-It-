@@ -10,7 +10,6 @@ class User extends UserModel
     public String $email = ' ';
     public String $password= ' ';
     public String $repeat= ' ';
- 
     public function save()
     {
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
