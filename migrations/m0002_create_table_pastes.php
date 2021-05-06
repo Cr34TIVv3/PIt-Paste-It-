@@ -2,7 +2,7 @@
 
 use core\Application;
 
-class m0001_create_table_pastes {
+class m0002_create_table_pastes {
   
     public function up()
     {
@@ -10,7 +10,7 @@ class m0001_create_table_pastes {
         $SQL = "CREATE TABLE pastes (
             id INT AUTO_INCREMENT PRIMARY KEY,
             id_user INT,
-            slug VARCHAR(10),
+            slug VARCHAR(50),
             expiration INT,
             content VARCHAR(1000) NOT NULL,
             password VARCHAR(255) NOT NULL, 

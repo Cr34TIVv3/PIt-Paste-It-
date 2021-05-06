@@ -2,8 +2,6 @@
 
 require_once __DIR__ . '/vendor/autoloader.php';
 
-use controllers\AuthController;
-use controllers\RegisterController;
 use core\Application;
 
 ini_set('display_errors', 1);

@@ -51,6 +51,8 @@ abstract class Model
                
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
+                    echo "captcha nu coincide".'<br>';
+                    exit;
                 }
                 if ($ruleName === self::RULE_UNIQUE){
                     $className= $rule['class']; 
@@ -100,10 +102,7 @@ abstract class Model
 
     public function hasErrors($attribute)
     {
-
         return $this->errors[$attribute] ?? false ;
-
-
     }
     public function getFirstError($attribute)
     {

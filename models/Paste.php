@@ -4,11 +4,10 @@ namespace models;
 
 use core\Application;
 use core\DbModel;
-use core\Model;
 
 class Paste extends DbModel 
 {
-    public int    $id_user;
+    public ?int    $id_user;
     public string $slug;
     public string $expiration;
     public string $content ;
@@ -17,6 +16,9 @@ class Paste extends DbModel
     public bool   $burn_after_read=false;
     public string $highlight;
     public string $access_modifier='public';
+    public string $captcha_challenge='';
+    public string $captcha_answer;
+   
 
     public function submit()
     {
@@ -24,7 +26,7 @@ class Paste extends DbModel
         ///fill id_user 
         if(Application::$app->isGuest()) 
         {
-            $this->id_user=null;
+            $this->id_user = null;
         }
         else 
         {
@@ -49,6 +51,11 @@ class Paste extends DbModel
         return parent::save(); 
     }
 
+
+    public function setCaptchaAnswer(string $value) {
+        $this->captcha_answer = $value;
+    }
+
     public static function tableName(): string
     {
         return 'pastes';
@@ -62,7 +69,7 @@ class Paste extends DbModel
     public function rules() : array
     {
             return [
-                
+                'captcha_challenge' => [ [self::RULE_MATCH, 'match' => 'captcha_answer'] ]  
             ];
     }
 

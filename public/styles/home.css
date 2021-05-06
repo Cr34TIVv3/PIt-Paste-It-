@@ -27,7 +27,9 @@
     grid-template-columns: 20% 28%;
     grid-row-gap: 10px;
   }
+
   
+
   #submit {
     grid-column: span 1;
   }
@@ -96,3 +98,6 @@
     display: inline-block;
     margin-bottom: 5px;
   }
+
+
+ 

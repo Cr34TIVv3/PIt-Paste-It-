@@ -1,7 +1,7 @@
 <div class="source">
     <div class="main-container">
 
-        <h1><?php echo $record->TITLE; ?></h1>
+        <h1><?php echo $record->title; ?></h1>
 
 
         <div class="content">

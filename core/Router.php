@@ -40,24 +40,20 @@ class Router
 
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-
-            // echo $path;
             if (PathValidator::validate($path)) {
-                $pos = strrpos($path, "/");
-                $path = substr($path, $pos + 1, strlen($path));
+                // $pos = strrpos($path, "/");
+                // $path = substr($path, $pos + 1, strlen($path));
+                $path = substr($path, 1);
                 $record = Paste::findOne(['slug' => $path]);
-                // var_dump($record);
                 if (!is_null($record->content)) {
                     $preview = new PreviewController();
                     return $preview->handlePreview($record);
                 } else {
                     $this->response->setStatusCode(404);
-                    // return $this->renderView("_404");
                     throw new NotFoundException();
                 }
             } else {
                 $this->response->setStatusCode(404);
-                // return $this->renderView("_404");
                 throw new NotFoundException();
             }
         }
@@ -74,7 +70,6 @@ class Router
                 $middleware->execute();
             }
         }
-
         return call_user_func($callback, $this->request, $this->response);
     }
 
@@ -97,7 +92,6 @@ class Router
         } else {
             $layout = 'general';
         }
-
 
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
