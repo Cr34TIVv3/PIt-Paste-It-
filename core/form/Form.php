@@ -2,9 +2,7 @@
 
 namespace core\form;
 use core\Model;
-// use Field;
 use core\form\Field;
-// use Field;
 
 class Form
 {
@@ -28,7 +26,6 @@ class Form
     }
     public function field(Model $model, $attribute)
     {
-        // echo "hai ";
         return new Field($model,$attribute); 
     }
 

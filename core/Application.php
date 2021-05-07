@@ -6,9 +6,9 @@ use Exception;
 use models\User;
 
 class Application
-{ 
+{
     public static string $ROOT_DIR;
-  
+
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -19,12 +19,12 @@ class Application
     public Session $session;
     public ?DbModel $user;
     public function __construct($rootPath)
-    { 
+    {
         $this->userClass = User::class;
-        self::$ROOT_DIR = $rootPath; 
+        self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
-        $this->response = new Response(); 
+        $this->response = new Response();
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
 
@@ -33,40 +33,35 @@ class Application
         $password = "cosmin";
         $this->db = new Database($dns, $name, $password);
 
-        $primaryValue = $this->session->get('user');    
-        if($primaryValue)
-        {
-             $primaryKey = $this->userClass::primaryKey();
-             $this->user =  $this->userClass::findOne([$primaryKey => $primaryValue]);
-        } 
-        else 
-        {
+        $primaryValue = $this->session->get('user');
+        if ($primaryValue) {
+            $primaryKey = $this->userClass::primaryKey();
+            $this->user =  $this->userClass::findOne([$primaryKey => $primaryValue]);
+        } else {
             $this->user = null;
         }
-      
     }
 
-    public function run() {
+    public function run()
+    {
         try {
-            echo $this->router->resolve(); 
-        }
-        catch(Exception $e) {
+            echo $this->router->resolve();
+        } catch (Exception $e) {
             $this->response->setStatusCode($e->getCode());
-            echo $this->router->renderView('_error' , [
+            echo $this->router->renderView('_error', [
                 'exception' => $e
             ]);
         }
-               
     }
 
     public function login(DbModel $user)
     {
-        
+
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         ///de intrebat !!!!!!!
         $primaryValue = $user->{$primaryKey};
-    
+
         $this->session->set('user', $primaryValue);
         return true;
     }
@@ -77,55 +72,8 @@ class Application
         $this->session->remove('user');
     }
 
-    public static function isGuest() {
+    public static function isGuest()
+    {
         return !self::$app->user;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,6 +10,7 @@ use controllers\FaqController;
 use controllers\ContactController;
 use controllers\HomeController;
 use controllers\PreviewController;
+use controllers\UpdateController;
 use core\Application;
 
 ini_set('display_errors', 1);
@@ -17,6 +18,10 @@ error_reporting(E_ALL);
 
 $root_dirname = dirname(__DIR__);
 $app = new Application($root_dirname);
+
+///           require only post method
+
+$app->router->post('/update', [UpdateController::class, 'handleUpdate']);
 
 ///           require only get method
 
@@ -40,7 +45,6 @@ $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);
 
 
-$app->router->get('/home/{slug}', [HomeController::class, 'handlePasteRequest']);
 
 
 $app->run();

@@ -27,9 +27,10 @@ abstract class DbModel extends Model
 
         $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
                VALUES(".implode(',' , $params) .")"); 
-        // var_dump($statement);
+       
         var_dump(get_object_vars($this));
-         echo $this->slag;
+        
+         
         foreach($attributes as $attribute)
         {
             echo $attribute;

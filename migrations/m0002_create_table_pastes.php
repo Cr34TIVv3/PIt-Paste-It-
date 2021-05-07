@@ -11,7 +11,7 @@ class m0002_create_table_pastes {
             id INT AUTO_INCREMENT PRIMARY KEY,
             id_user INT,
             slug VARCHAR(50),
-            expiration INT,
+            expiration TIMESTAMP,
             content VARCHAR(1000) NOT NULL,
             password VARCHAR(255) NOT NULL, 
             title VARCHAR(100),

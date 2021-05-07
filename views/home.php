@@ -4,126 +4,64 @@ use core\Application;
 use core\Captcha;
 ?>
 
+
 <div class="source">
     <div class="main-container">
-        <form action="/home" method="POST" enctype="multipart/form-data">
-            <h1 itemprop="name">New paste</h1>
-            <div class="form">
-                <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
-            </div>
 
-            <h1 itemprop="name">Optional settings</h1>
-            <div class="line"></div>
-            <div class="settings">
-                <label itemprop="name" id="Highlight">Syntax highlight:</label>
-                <select id="syntax-highlight" name="highlight">
-                    <option value="None" selected>None</option>
-                    <option value="C++">C++</option>
-                    <option value="Haskell">Haskell</option>
-                    <option value="Java">Java</option>
-                </select>
-
-                <label itemprop="name" id="Expiration">Paste expiration:</label>
-                <select itemscope itemtype="https://schema.org/Date" id="paste-expiration" name="expiration">
-                    <option itemprop="expires" value="1day">1 day</option>
-                    <option itemprop="expires" value="7days">7 days</option>
-                    <option itemprop="expires" value="14days">14 days</option>
-                </select>
-
-                <label itemprop="name" id="Past-Exposure">Paste Exposure:</label>
-                <select id="paste-exposure" name="access_modifier">
-                    <option value="Public" selected>Public</option>
-                    <option value="Private">Private</option>
-                </select>
-
-                <label itemprop="name" id="Password">Password (optional):</label>
-                <input type="password" id="fname" name="password">
-
-                <label itemprop="name" id="Burn">Burn after read:</label>
-                <input type="checkbox" name="burn_after_read" id="burn">
-
-                <label itemprop="name">Paste Name/Title:</label>
-                <input type="text" name="title" required>
-
-                <?php if (Application::isGuest()) : ?>
-                        <label for="captcha">Please Enter the Captcha Text</label>
-                        <img src="captcha.php" alt="CAPTCHA" class="captcha-image">
-                        <input type="button" id="refresh" name="captcha_challenge" value="refresh">
-                        <input type="text" id="captcha" name="captcha_challenge" pattern="[A-Z]{6}">
-
-                        <script src="./scripts/captcha.js" ></script>
-              
-                <?php endif; ?>
+        <?php $form = core\form\FormHome::begin('/home', "post") ?>
+        <?php echo $form->field($model, '', '')->getTextArea() ?>
 
 
+        <?php echo $form->field($model, 'highlight', 'Syntax highlight:')->getSelector(["None", "C++", "Haskell", "Java "]) ?>
 
-                <label itemprop="name" id="submit-l"></label>
-                <input id="submit" type="submit" value="Create New Paste">
+        <?php echo $form->field($model, 'title', 'Paste Name/Title:')->getInput(True) ?>
 
-            </div>
-        </form>
+        <?php if (Application::isGuest()) : ?>
+
+            <?php echo $form->field($model, 'captcha_challenge', '')->getCaptcha() ?>
+
+        <?php else : ?>
+
+            <?php echo $form->field($model, 'expiration', 'Paste expiration:')->getSelector(["1 days", "7 days", "14 days"]) ?>
+
+            <?php echo $form->field($model, 'access_modifier', 'Paste Exposure:')->getSelector(["Public", "Private"]) ?>
+
+            <?php echo $form->field($model, 'password', 'Password (optional):')->passwordField()->getInput() ?>
+
+        <?php endif; ?>
 
 
-
-        <h1 itemprop="name">My pastes</h1>
-        <div class="line"></div>
-
-        <div class="my-pastes">
-            <table itemscope itemtype="https://schema.org/Table">
-                <tr>
-                    <th>Titlu</th>
-                    <th>Date</th>
-                    <th>Expires</th>
-                    <th>Syntax</th>
-                    <th>Visibility</th>
-                </tr>
-                <tr>
-                    <td>Tuxy</td>
-                    <td>21.02.2019</td>
-                    <td>Never</td>
-                    <td>Java</td>
-                    <td>Private</td>
-                </tr>
-                <tr>
-                    <td>Pinguinescu</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                </tr>
-                <tr>
-                    <td>Pinguin</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                </tr>
-            </table>
+        <div class="field">
+            <input type="submit" value="Create New Paste">
         </div>
+        <?php core\form\FormHome::end() ?>
 
-
-        <h1 itemprop="name">Public posts</h1>
-        <div class="line"></div>
-        <div class="public-pastes">
-            <div class="paste-obj">
-                <h3>Tuxi</h3>
-                <p>some description</p>
-            </div>
-            <div class="paste-obj">
-                <h3>my latest paste1</h3>
-                <p>some description1</p>
-            </div>
-            <div class="paste-obj">
-                <h3>my latest paste2</h3>
-                <p>some description2</p>
-            </div>
         </div>
+        <!-- show personal user posts  -->
+
+
+        <?php if (!Application::isGuest()) : ?>
+
+            <?php core\content\InternalPastesContent::begin() ?>
+            <?php echo core\content\InternalPastesContent::generateContent() ?>
+            <?php core\content\InternalPastesContent::end() ?>
+
+
+        <?php endif; ?>
+
+
+
+
+        <!-- show public posts -->
+
+        <?php core\content\PublicPastesContent::begin() ?>
+        <?php echo core\content\PublicPastesContent::generateContent() ?>
+        <?php core\content\PublicPastesContent::end() ?>
+
+
+
+
+
+
     </div>
 </div>
-
-
-
-
-
-
-

@@ -48,11 +48,8 @@ abstract class Model
                 if ($ruleName === self::RULE_MAX &&  strlen($value) > $rule['max']) {
                     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
-               
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
-                    echo "captcha nu coincide".'<br>';
-                    exit;
                 }
                 if ($ruleName === self::RULE_UNIQUE){
                     $className= $rule['class']; 
@@ -76,14 +73,15 @@ abstract class Model
     }
  
     
-    private function addErrorForRule(string $attibute, string $rule, $params = []) {
+    private function addErrorForRule(string $attribute, string $rule, $params = []) {
         $message = $this->errorMessages()[$rule] ?? '' ; 
         foreach ($params as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message) ; 
         }
-        $this->errors[$attibute] [] = $message; 
-
+        
+        $this->errors[$attribute] [] = $message; 
     }
+
     public function addError(string $attribute, string $message)
     {
         $this->errors[$attribute][] = $message;
@@ -106,6 +104,7 @@ abstract class Model
     }
     public function getFirstError($attribute)
     {
+        
         return $this->errors[$attribute][0] ?? false;
     }
 

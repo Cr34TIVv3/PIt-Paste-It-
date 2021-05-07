@@ -14,18 +14,26 @@ class HomeController extends Controller
     $paste = new Paste();
     if ($request->getMethod() === "post") {
       $paste->loadData($request->getBody());
-      $paste->setCaptchaAnswer($_SESSION['captcha_text']);
-      // var_dump(get_object_vars($paste));
+
+      $paste->setCaptchaAnswer(Application::$app->session->get('captcha_text'));
+
+      /// calculate the expiration date ! 
+
+      $sqltime = date('Y-m-d H:i:s');
+
+      $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $paste->expiration));
+      $paste->expiration = $sqltime;
+
 
       if ($paste->validate() && $paste->submit()) {
         // Application::$app->session->setFlash('success', 'Welcome');
         Application::$app->response->redirect('/' . $paste->slug);
         exit;
       }
-
-      return $this->render('home');
+      return $this->render('home', ['model' => $paste]);
     } else {
-      return $this->render('home');
+
+      return $this->render('home', ['model' => $paste]);
     }
   }
 }

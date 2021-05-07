@@ -1,3 +1,7 @@
+<?php
+
+use core\Application;
+?>
 <div class="source">
     <div class="main-container">
 
@@ -15,66 +19,65 @@
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script>
+        <script>
+            hljs.highlightAll();
+        </script>
 
-
-
-        <h1 itemprop="name">My pastes</h1>
-        <div class="line"></div>
-
-        <div class="my-pastes">
-            <table itemscope itemtype="https://schema.org/Table">
-                <tr>
-                    <th>Titlu</th>
-                    <th>Date</th>
-                    <th>Expires</th>
-                    <th>Syntax</th>
-                    <th>Visibility</th>
-                </tr>
-                <tr>
-                    <td>Tuxy</td>
-                    <td>21.02.2019</td>
-                    <td>Never</td>
-                    <td>Java</td>
-                    <td>Private</td>
-                </tr>
-                <tr>
-                    <td>Pinguinescu</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                </tr>
-                <tr>
-                    <td>Pinguin</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                </tr>
-            </table>
+        <div class="form">
+            <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
         </div>
-        <!--div for my-pastes!-->
 
 
-        <h1 itemprop="name">Public posts</h1>
-        <div class="line"></div>
-        <div class="public-pastes">
-            <div class="paste-obj">
-                <h3>Tuxi</h3>
-                <p>some description</p>
-            </div>
-            <div class="paste-obj">
-                <h3>my latest paste1</h3>
-                <p>some description1</p>
-            </div>
-            <div class="paste-obj">
-                <h3>my latest paste2</h3>
-                <p>some description2</p>
-            </div>
+
+        <!-- show some option in order to update a post-->
+
+        <?php $form = core\form\FormHome::begin('/'.$record->slug, "post") ?>
+        <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
+
+        <div class="field">
+            <input type="submit" value="Update The Paste">
         </div>
-        <!--div for public-pastes!-->
+
+
+        <?php core\form\FormHome::end() ?>
+
+
+        <!-- update formular -->
+
+
+
+
+
+
+        <!-- show some other version of the pastes-->
+
+
+
+
+
+
+
+
+        <!-- show internal posts -logged in users-->
+
+        <?php if (!Application::isGuest()) : ?>
+
+            <?php core\content\InternalPastesContent::begin() ?>
+            <?php echo core\content\InternalPastesContent::generateContent() ?>
+            <?php core\content\InternalPastesContent::end() ?>
+
+
+        <?php endif; ?>
+
+
+
+
+        <!-- show public posts -->
+
+        <?php core\content\PublicPastesContent::begin() ?>
+        <?php echo core\content\PublicPastesContent::generateContent() ?>
+        <?php core\content\PublicPastesContent::end() ?>
+
 
     </div>
 </div>
-<!--div from source!!-->

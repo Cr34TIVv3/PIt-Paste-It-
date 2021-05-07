@@ -47,7 +47,7 @@ class Router
                 $record = Paste::findOne(['slug' => $path]);
                 if (!is_null($record->content)) {
                     $preview = new PreviewController();
-                    return $preview->handlePreview($record);
+                    return $preview->handlePreview($this->request, $record);
                 } else {
                     $this->response->setStatusCode(404);
                     throw new NotFoundException();
