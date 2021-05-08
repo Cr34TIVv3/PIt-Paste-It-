@@ -3,6 +3,7 @@
 namespace models;
 
 use core\UserModel;
+use core\Application;
 
 class User extends UserModel
 {
@@ -14,6 +15,34 @@ class User extends UserModel
     {
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
         return parent::save(); 
+    }
+
+
+    public function addMembership($record)
+    {
+        ///find the id  
+        $sql = sprintf("SELECT id FROM users WHERE email = '%s'", $this->email);
+        $statement =  Application::$app->db->pdo->prepare($sql);
+        $statement->execute();
+
+        $object = $statement->fetchObject();
+
+        if ($object == false) {
+            return false;
+        }
+        ///insert the membership 
+
+        $sql = sprintf('INSERT INTO members (id_paste, id_user) 
+        VALUES (\'%s\',\'%s\')', $record->id,  $object->id);
+
+        
+
+        $statement =  Application::$app->db->pdo->prepare($sql);
+        $statement->execute();
+
+        return true;
+
+        
     }
 
 

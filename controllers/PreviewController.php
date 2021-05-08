@@ -13,17 +13,25 @@ class PreviewController extends Controller
     {
         if ($request->getMethod() === 'post') {
 
-
-            $updatedPaste = new Paste();
-            $updatedPaste->loadData($request->getBody());
-
-            ///make some validations 
+            if (!Application::$app->isVersion) {
+                $updatedPaste = new Paste();
+                $updatedPaste->loadData($request->getBody());
             
-            if ($updatedPaste->update($record)) {
-                Application::$app->response->redirect('/' . $record->slug);
+                ///make some validations 
+                
+                if ($updatedPaste->update($record)) {
+                    Application::$app->response->redirect('/'.$record->slug);
+                    exit;
+                }
+                return $this->render('preview', ['record' => $record]);
+            }
+        else {
+            if (Paste::promote($record)) {
+                Application::$app->response->redirect('/'.Paste::findOne(["id" => $record->id])->slug);
                 exit;
             }
             return $this->render('preview', ['record' => $record]);
+        }
         } else {
             return $this->render('preview', ['record' => $record]);
         }

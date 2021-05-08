@@ -2,10 +2,13 @@
 
 namespace core;
 
+use controllers\DeleteController;
 use controllers\HomeController;
 use controllers\PreviewController;
+use controllers\UpdateController;
 use core\exception\ForbiddenException;
 use core\exception\NotFoundException;
+use core\exception\BadRequest;
 use core\PathValidator;
 
 use models\Paste;
@@ -40,15 +43,52 @@ class Router
 
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            if (PathValidator::validate($path)) {
-                // $pos = strrpos($path, "/");
-                // $path = substr($path, $pos + 1, strlen($path));
-                $path = substr($path, 1);
-                $record = Paste::findOne(['slug' => $path]);
-                if (!is_null($record->content)) {
-                    $preview = new PreviewController();
-                    return $preview->handlePreview($this->request, $record);
+            if (PathValidator::validateAddUserRequest($path)) {
+                $path = substr($path, 1, -8);
+                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
+                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                if (!$recordPastes === false && !is_null($recordPastes->content)) {
+                    Application::$app->isVersion = false;
+                    $update = new UpdateController();
+                    return $update->handleUpdate($this->request, $recordPastes);
+                } else if (!is_null($recordVersions->content)) {
+                    $this->response->setStatusCode(400);
+                    throw new BadRequest();
                 } else {
+                    $this->response->setStatusCode(404);
+                    throw new NotFoundException();
+                }
+            } else if (PathValidator::validateDeleteRequest($path)) {
+                $path = substr($path, 1, -7);
+                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
+                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                if (!$recordPastes === false && !is_null($recordPastes->content)) {
+                    Application::$app->isVersion = false;
+                    $delete = new DeleteController();
+                    return $delete->handleDelete($recordPastes);
+                } else if (!is_null($recordVersions->content)) {
+                    $delete = new DeleteController();
+                    Application::$app->isVersion = true;
+                    return $delete->handleDelete($recordVersions);
+                } else {
+
+                    $this->response->setStatusCode(404);
+                    throw new NotFoundException();
+                }
+            } else if (PathValidator::validatePasteGetRequest($path)) {
+                $path = substr($path, 1);
+                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
+                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                if (!$recordPastes === false && !is_null($recordPastes->content)) {
+                    Application::$app->isVersion = false;
+                    $preview = new PreviewController();
+                    return $preview->handlePreview($this->request, $recordPastes);
+                } else if (!is_null($recordVersions->content)) {
+                    $preview = new PreviewController();
+                    Application::$app->isVersion = true;
+                    return $preview->handlePreview($this->request, $recordVersions);
+                } else {
+
                     $this->response->setStatusCode(404);
                     throw new NotFoundException();
                 }

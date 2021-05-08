@@ -11,13 +11,17 @@ class VersionPastesContent
     public static function begin()
     {
         echo '
-        <h1 itemprop="name">My recent pastes:</h1>
+        <h1 itemprop="name">See other versions:</h1>
         <div class="line"></div>
         <div class="my-pastes">
         <table itemscope itemtype="https://schema.org/Table">
                 <tr>
-                    <th> Title </th>
-                    <th> Date </th>
+                    <th> Made by </th>
+                    <th> Having email </th>
+                    <th> Title   </th>
+                    <th> Date    </th>
+                    <th> Click to preview    </th>
+                    <th> Click to delete    </th>
                 </tr> ';
     }
 
@@ -27,7 +31,7 @@ class VersionPastesContent
             </div> ';
     }
 
-    public static function generateContent()
+    public static function generateContent($record)
     {
         //TODO
         $output = '';
@@ -35,7 +39,7 @@ class VersionPastesContent
         $user_id = Application::$app->session->get('user');
 
 
-        $sql = 'SELECT * FROM PASTES where id_user =' . $user_id . ' ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+        $sql = 'SELECT * FROM pastes p JOIN versions v ON p.id=v.id JOIN users u ON v.id_user=u.id WHERE p.id =' . $record->id;
 
         $statement = Application::$app->db->pdo->prepare($sql);
 
@@ -60,28 +64,28 @@ class VersionPastesContent
                 if ($key == 'CREATED_AT') {
                     $date = $value;
                 }
-                if ($key == 'EXPIRATION') {
-                    $expiration_date = $value;
-                    
+                if ($key == 'username') {
+                    $user = $value;
                 }
-                if ($key == 'highlight') {
-                    $syntax = $value;
+                if ($key == 'email') {
+                    $email = $value;
                 }
-                if ($key == 'access_modifier') {
-                    $access_modifier = $value;
+                if ($key == 'slug') {
+                    $slug = $value;
                 }
             }
 
             $output .= sprintf(' 
                     <tr>
-                           <td> %s </td>         
+                           <td> %s </td>
+                           <td> %s </td>     
                            <td> %s </td>
                            <td> %s </td>
-                           <td> %s </td>
-                           <td> %s </td>
+                           <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
+                           <td><a href="'.$slug."/delete".'"><i class="fas fa-backspace"></i></a></td>
                     </tr>
                 
-            ', $title, $date, $expiration_date, $syntax,  $access_modifier);
+            ', $user, $email, $title, $date, $slug);
         }
 
 

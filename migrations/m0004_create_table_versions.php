@@ -8,10 +8,10 @@ class m0004_create_table_versions
     {
         $db = Application::$app->db;
         $SQL = "CREATE TABLE versions (
-            id_paste INT NOT NULL,
+            id INT NOT NULL,
             id_user INT NOT NULL,
             title VARCHAR(50),
-            slug VARCHAR(50),
+            slug VARCHAR(50) PRIMARY KEY,
             content VARCHAR(1000) NOT NULL,
             CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )ENGINE=INNODB;";

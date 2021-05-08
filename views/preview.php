@@ -1,6 +1,7 @@
 <?php
 
 use core\Application;
+use models\Paste;
 ?>
 <div class="source">
     <div class="main-container">
@@ -23,24 +24,33 @@ use core\Application;
             hljs.highlightAll();
         </script>
 
-        <div class="form">
-            <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
-        </div>
 
 
 
         <!-- show some option in order to update a post-->
+        <?php if (!Application::$app->isVersion) : ?>
+            <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
+            <div class="form">
+                <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
+            </div>
+            <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
 
-        <?php $form = core\form\FormHome::begin('/'.$record->slug, "post") ?>
-        <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
+            <div class="field">
+                <input type="submit" value="Update The Paste">
+            </div>
+            <?php core\form\FormHome::end() ?>
 
-        <div class="field">
-            <input type="submit" value="Update The Paste">
-        </div>
+            <!-- -- -->
 
+            <?php $form = core\form\FormHome::begin('/'.$record->slug.'/addUser', "get") ?>
+            <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True) ?>
 
-        <?php core\form\FormHome::end() ?>
+            <div class="field">
+                <input type="submit" value="Add user">
+            </div>
+            <?php core\form\FormHome::end() ?>
 
+        <?php endif; ?>
 
         <!-- update formular -->
 
@@ -48,27 +58,29 @@ use core\Application;
 
 
 
-
         <!-- show some other version of the pastes-->
 
-
-
-
-
-
-
-
-        <!-- show internal posts -logged in users-->
-
-        <?php if (!Application::isGuest()) : ?>
-
-            <?php core\content\InternalPastesContent::begin() ?>
-            <?php echo core\content\InternalPastesContent::generateContent() ?>
-            <?php core\content\InternalPastesContent::end() ?>
-
-
+        <?php if (!Application::$app->isVersion) : ?>
+            <?php core\content\VersionPastesContent::begin() ?>
+            <?php echo core\content\VersionPastesContent::generateContent($record) ?>
+            <?php core\content\VersionPastesContent::end() ?>
         <?php endif; ?>
 
+
+
+
+
+        <?php if (Application::$app->isVersion) : ?>
+        
+            <h6 style="color:beige;">Note: this is an older version: click <a style="color: chartreuse;" href="<?php echo '/'.Paste::findOne(["id" => $record->id])->slug ?>"> here </a> to preview the original version</h6>
+
+            <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
+            <div class="field">
+                <input type="submit" value="Promote to Official Post">
+            </div>
+            <?php core\form\FormHome::end() ?>
+
+        <?php endif; ?>
 
 
 

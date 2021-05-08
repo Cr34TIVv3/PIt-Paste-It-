@@ -8,7 +8,7 @@ use models\User;
 class Application
 {
     public static string $ROOT_DIR;
-
+    public bool $isVersion;
     public string $userClass;
     public Router $router;
     public Request $request;

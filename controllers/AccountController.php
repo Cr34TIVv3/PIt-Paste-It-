@@ -2,6 +2,7 @@
 
 
 namespace controllers;
+
 use core\Controller;
 use core\Request;
 use core\Response;
@@ -16,12 +17,12 @@ class AccountController extends Controller
     }
     public function handleAccount(Request $request, Response $respone)
     {
-            return $this->render('account');
+        return $this->render('account');
     }
 
-    public function logout(Request $request, Response $respone) {
+    public function logout(Request $request, Response $respone)
+    {
         Application::$app->logout();
         $respone->redirect('/home');
     }
-
 }
