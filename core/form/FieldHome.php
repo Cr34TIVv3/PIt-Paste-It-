@@ -26,6 +26,15 @@ class FieldHome
 
         $this->name = $name;
     }
+    public function getCheckBox()
+    {
+        $output = sprintf('     
+        <label for="">Burn after read</label>
+        <input type="checkbox" name=" %s" id="burn">
+        ', $this->attribute);
+
+        return $output;
+    }
 
     public function getTextArea()
     {
@@ -55,39 +64,34 @@ class FieldHome
     }
     public function getInput($required = false)  ///for password and title 
     {
-              
-        $output= sprintf('
+
+        $output = sprintf('
         <label itemprop="name" > %s </label>
         ', $this->name);
 
-        if ($required == true) 
-        {
-            $output .=  sprintf('<input type="%s" name="%s" required>', $this -> type, $this->attribute);
-        }
-        else 
-        {
-            $output .= sprintf('<input type="%s" name="%s">', $this -> type, $this->attribute );
+        if ($required == true) {
+            $output .=  sprintf('<input type="%s" name="%s" required>', $this->type, $this->attribute);
+        } else {
+            $output .= sprintf('<input type="%s" name="%s">', $this->type, $this->attribute);
         }
 
         return $output;
-         
     }
 
-    public function getCaptcha() {
+    public function getCaptcha()
+    {
         $error_message = '';
         if ($this->model->getFirstError($this->attribute) != false) {
             $error_message = 'Captcha invalid!';
         }
 
-        
+
         return sprintf('<label for="captcha">Please Enter the Captcha Text</label>
         <img src="captcha.php" alt="CAPTCHA" class="captcha-image">
         <input type="button" id="refresh" name="captcha_challenge" value="refresh">
         <input type="text" id="captcha" name="captcha_challenge" pattern="[A-Z]{6}">
         <script src="./scripts/captcha.js" ></script>
         <div class="invalid-feedback">%s</div>', $error_message);
-
-        
     }
 
 

@@ -13,7 +13,7 @@ class m0002_create_table_pastes {
             slug VARCHAR(50),
             expiration TIMESTAMP,
             content VARCHAR(1000) NOT NULL,
-            password VARCHAR(255) NOT NULL, 
+            password VARCHAR(255), 
             title VARCHAR(100),
             burn_after_read boolean,
             highlight VARCHAR(20) NOT NULL,

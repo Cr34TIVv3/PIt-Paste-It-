@@ -8,6 +8,7 @@ use core\Request;
 use core\Response;
 use core\middlewares\AuthMiddleware;
 use core\Application;
+use models\User;
 
 class AccountController extends Controller
 {
@@ -17,7 +18,31 @@ class AccountController extends Controller
     }
     public function handleAccount(Request $request, Response $respone)
     {
-        return $this->render('account');
+        $user = new User();
+        if( $request->getMethod() === "post")
+        {
+            $user->loadData($request->getBody()); 
+            // var_dump($user);
+            // exit;
+
+            if($user->validate() && $user->update())
+            {
+                Application::$app->session->setFlash('success', 'Your credential has been updated');
+                Application::$app->response->redirect('/account');
+                exit;
+            }
+            else 
+            {
+                Application::$app->session->setFlash('error', 'Invalid fields format');
+            }
+
+            return $this->render('account', ['model' => $user ]);
+        }
+        else 
+        {
+            return $this->render('account', ['model' => $user ]);
+        }
+        
     }
 
     public function logout(Request $request, Response $respone)

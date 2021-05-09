@@ -24,11 +24,12 @@ class PublicPastesContent
 
     public static function generateContent()
     {
-
         $output = '';
+ 
+        /// show public posts from logged in users 
 
 
-        $sql = 'SELECT * FROM PASTES JOIN users ON users.id = pastes.id_user ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+        $sql = 'SELECT * FROM PASTES  JOIN users ON users.id = pastes.id_user WHERE PASTES.access_modifier=\'public\' ORDER BY pastes.CREATED_AT DESC LIMIT 10';
 
         $statement = Application::$app->db->pdo->prepare($sql);
 
@@ -58,6 +59,36 @@ class PublicPastesContent
                 </div>
                 </a>
             ', $slug, $username, $title);
+        }
+
+
+        $sql = 'SELECT * FROM PASTES  WHERE PASTES.id_user is NULL ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+
+        $statement = Application::$app->db->pdo->prepare($sql);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        foreach ($result as $record) {
+            //loop over each $result (row), setting $key to the column name and $value to the value in the column.
+            foreach ($record as $key => $value) {
+                 
+                if($key == 'slug')
+                { 
+                    $slug = $value;
+                }
+                if ($key == 'title') {
+                    $title = $value;
+                }
+            }
+            $output .= sprintf(' 
+                <a href="/%s">
+                <div class="paste-obj">
+                    <h3>(UNNAMED)</h3>
+                    <p>%s</p>
+                </div>
+                </a>
+            ', $slug, $title);
         }
 
 

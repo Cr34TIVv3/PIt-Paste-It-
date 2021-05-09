@@ -11,7 +11,7 @@ class Paste extends DbModel
     public string $slug;
     public string $expiration = "14 days";
     public string $content = '';
-    public string $password = '';
+    public ?string $password = '';
     public string $title;
     public bool   $burn_after_read = false;
     public string $highlight;
@@ -22,7 +22,13 @@ class Paste extends DbModel
 
     public function submit()
     {
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
+        if (strlen($this->password) == 0) {
+            $this->password = null;
+        } else {
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        }
+
         ///fill id_user 
         if (Application::$app->isGuest()) {
             $this->id_user = null;
@@ -31,7 +37,6 @@ class Paste extends DbModel
         }
         //fill slug 
         //get max id from pastes 
-
 
         $sql = 'SELECT MAX(ID) FROM PASTES';
         $statement = self::prepare("SELECT MAX(ID) AS MAX FROM PASTES");
@@ -149,16 +154,18 @@ class Paste extends DbModel
                 $record->slug
             );
         }
-    
+
 
         $statement =  Application::$app->db->pdo->prepare($sql);
         $statement->execute();
 
-        if (Application::$app->isVersion) {
-            Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);
-        } else {
-            Application::$app->response->redirect('/account');
-        }
+
+
+        // if (Application::$app->isVersion) {
+        //     Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);
+        // } else {
+        //     Application::$app->response->redirect('/account');
+        // }
     }
 
 

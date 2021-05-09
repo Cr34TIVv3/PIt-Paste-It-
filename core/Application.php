@@ -76,4 +76,39 @@ class Application
     {
         return !self::$app->user;
     }
+
+    public static function isOwner($user_id)
+    {
+        if (self::isGuest()) {
+            return false;
+        } else if ($user_id != Application::$app->session->get('user')) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function isMember($id_paste)
+    {
+
+        if (self::isGuest()) {
+            return false;
+        }
+        $user_id = Application::$app->session->get('user');
+
+        $sql = 'SELECT COUNT(*) AS val FROM members m WHERE m.id_paste =' . $id_paste . ' AND   m.id_user=' . $user_id . ';';
+
+        $statement = Application::$app->db->pdo->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchObject();
+
+
+        if (strcmp($result->val, '1') == 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -28,34 +28,54 @@ use models\Paste;
 
 
         <!-- show some option in order to update a post-->
+
+          <!-- SHOW THIS FOR MEMBERS ONLY-->
+          
+
+
         <?php if (!Application::$app->isVersion) : ?>
-            <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
-            <div class="form">
-                <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
-            </div>
-            <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
+           
+          <?php if (Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id) ) : ?>
+                
+                
+                <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
+                <div class="form">
+                    <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
+                </div>
+                <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
 
-            <div class="field">
-                <input type="submit" value="Update The Paste">
-            </div>
-            <?php core\form\FormHome::end() ?>
+            
+                <div class="field">
+                    <input type="submit" value="Update The Paste">
+                </div>
+                <?php core\form\FormHome::end() ?>            
 
-            <!-- -- -->
+            <?php endif; ?>
 
-            <?php $form = core\form\FormHome::begin('/'.$record->slug.'/addUser', "get") ?>
-            <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True) ?>
+        
+            
 
-            <div class="field">
-                <input type="submit" value="Add user">
-            </div>
-            <?php core\form\FormHome::end() ?>
+            <!-- SHOW THIS FOR OWNERS ONLY-->
+
+            <?php if (Application::$app->isOwner($record->id_user)) : ?>
+                    <?php $form = core\form\FormHome::begin('/'.$record->slug.'/addUser', "get") ?>
+                    <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True) ?>
+
+                    <div class="field">
+                        <input type="submit" value="Add user">
+                    </div>
+                    <?php core\form\FormHome::end() ?>
+            <?php endif; ?>
+
+
+            
 
         <?php endif; ?>
 
         <!-- update formular -->
 
 
-
+        
 
 
         <!-- show some other version of the pastes-->
@@ -68,7 +88,7 @@ use models\Paste;
 
 
 
-
+        
 
         <?php if (Application::$app->isVersion) : ?>
         
@@ -83,6 +103,7 @@ use models\Paste;
         <?php endif; ?>
 
 
+        
 
         <!-- show public posts -->
 

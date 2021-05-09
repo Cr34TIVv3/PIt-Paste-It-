@@ -7,15 +7,44 @@ use core\Application;
 
 class User extends UserModel
 {
-    public String $username = ' ';
-    public String $email = ' ';
-    public String $password= ' ';
-    public String $repeat= ' ';
+    public String $username = '';
+    public String $email = '';
+    public String $password= '';
+    public String $repeat= '';
     public function save()
     {
         $this->password = password_hash($this->password,PASSWORD_DEFAULT);
         return parent::save(); 
     }
+    public function update()
+    {
+        
+        $sql = 'UPDATE users SET';
+
+        if(strlen($this->username) > 0)
+        {
+            $sql .= ' username= \'' .$this->username.'\'';
+        }
+        if(strlen($this->email) > 0)
+        {
+            $sql .= ' email= = \'' .$this->email.'\'';
+        }
+        if(strlen($this->password) > 0)
+        {
+            $sql .= ' password = \''.$this->password.'\'';
+        }
+        $sql .= ' WHERE id ='.Application::$app->user->id ;
+
+    
+
+        $statement =  Application::$app->db->pdo->prepare($sql);
+        $statement->execute();
+
+        return true;
+
+    }
+
+
 
 
     public function addMembership($record)

@@ -4,6 +4,7 @@ namespace core;
 
 use controllers\DeleteController;
 use controllers\HomeController;
+use controllers\PasswordController;
 use controllers\PreviewController;
 use controllers\UpdateController;
 use core\exception\ForbiddenException;
@@ -43,7 +44,33 @@ class Router
 
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            if (PathValidator::validateAddUserRequest($path)) {
+
+            if (PathValidator::validatePasswordRequest($path)) {
+ 
+
+                $path = substr($path, 1, -9);
+                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
+                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                if (!$recordPastes === false && !is_null($recordPastes->content)) {
+                    Application::$app->isVersion = false;
+
+                    $passwordController = new PasswordController();
+
+                    return $passwordController->handlePassword($this->request, $recordPastes);
+                    
+                } else if (!is_null($recordVersions->content)) {
+                    $this->response->setStatusCode(400);
+                    throw new BadRequest();
+                } else {
+                    $this->response->setStatusCode(404);
+                    throw new NotFoundException();
+                }
+
+
+
+
+            }
+            else if (PathValidator::validateAddUserRequest($path)) {
                 $path = substr($path, 1, -8);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
                 $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);

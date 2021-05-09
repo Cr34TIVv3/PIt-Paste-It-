@@ -28,6 +28,8 @@ use core\Captcha;
 
             <?php echo $form->field($model, 'password', 'Password (optional):')->passwordField()->getInput() ?>
 
+            <?php echo $form->field($model, 'burn_after_read', 'Burn After Read (Optional):')->getCheckBox() ?>
+
         <?php endif; ?>
 
 

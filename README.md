@@ -8,6 +8,8 @@ TODO
 
  DONE linking of some informations (global public pastes, user's pastes) with database
 
+
+
   BURN AFTER READ
   PASSWORD PROTECTION
 
@@ -18,3 +20,16 @@ further research -> js for expiration (24h script)
 
 
 - changing credentials about user account
+
+
+today -> 
+
+  
+  -> trebuie sa rezolvam partea cu middlware cand facem partea de ruta ex -> slug/password
+
+
+
+  BURN AFTER READ
+  PASSWORD PROTECTION
+
+  

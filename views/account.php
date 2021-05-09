@@ -29,84 +29,39 @@ use core\Application;
         <?php core\content\PastesInvolvementContent::end() ?>
 
 
-        <!-- <div class="my-pastes">
-            <table itemscope itemtype="https://schema.org/Table">
-                <tr>
-                    <th>Titlu</th>
-                    <th>Date</th>
-                    <th>Expires</th>
-                    <th>Syntax</th>
-                    <th>Visibility</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Tuxy</td>
-                    <td>21.02.2019</td>
-                    <td>Never</td>
-                    <td>Java</td>
-                    <td>Private</td>
-                    <td title="Edit paste"><i class="fas fa-pen"></i></td>
-                    <td title="Delete paste"><i class="fas fa-times"></i></td>
-                </tr>
-                <tr>
-                    <td>Pinguinescu</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                    <td title="Edit paste"><i class="fas fa-pen"></i></td>
-                    <td title="Delete paste"><i class="fas fa-times"></i></td>
-                </tr>
-                <tr>
-                    <td>Pinguin</td>
-                    <td>21.01.2020</td>
-                    <td>Never</td>
-                    <td>C++</td>
-                    <td>Public</td>
-                    <td title="Edit paste"><i class="fas fa-pen"></i></td>
-                    <td title="Delete paste"><i class="fas fa-times"></i></td>
-                </tr>
-            </table>
-        </div> -->
-        <!--div for my-pastes!-->
-
-
 
         <h1 itemprop="headline">My profile</h1>
         <div class="line"></div>
 
-        <div class="yourProfile">
-            <table class="informationAccount" itemscope itemtype="https://schema.org/Table">
-                <tr>
-                    <th><label id="username">Change username:</label></th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th><label id="email">Change email:</label></th>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <th><label id="password">Change password:</label></th>
-                    <td><input type="password"></td>
-                </tr>
-                <tr>
-                    <th><label id="conf-password">Confirm password:</label></th>
-                    <td><input type="password"></td>
-                </tr>
-                <tr>
-                    <td> &nbsp; </td>
-                    <td><input type="submit" value="Save changes"></td>
-                </tr>
-            </table>
 
 
-            <div class="card">
-                <img itemprop="image" src="./resources/fantoma.png" alt="avatar">
-                <p itemprop="alternateName">iustin2000</p>
-                <p>iustinian.petrariu@gmail.com</p>
-            </div>
+        <?php $form = core\form\FormAccount::begin('/account', "post") ?>
+
+        <?php echo $form->field($model, 'username') ?>
+        <?php echo $form->field($model, 'email') ?>
+        <?php echo $form->field($model, 'password')->passwordField() ?>
+        <?php echo $form->field($model, 'repeat')->passwordField() ?>
+
+
+
+        <tr>
+            <td> &nbsp; </td>
+            <td><input type="submit" value="Save changes"></td>
+        </tr>
+
+
+        <div class="card">
+            <img itemprop="image" src="./resources/fantoma.png" alt="avatar">
+            <p itemprop="alternateName"> <?php echo Application::$app->user->getDisplayName() ?> </p>
+            <p><?php echo Application::$app->user->email ?></p>
         </div>
+
+
+        <?php core\form\FormAccount::end() ?>
+
+
+
+
 
 
         <h1 itemprop="headline">Statistics</h1>
@@ -123,4 +78,3 @@ use core\Application;
     </div>
 </div>
 
-</div>

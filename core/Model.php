@@ -38,20 +38,19 @@ abstract class Model
                 {
                     $ruleName = $rule[0];
                 }
-
-                if ($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                if (strlen($value) > 0 && $ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addErrorForRule($attribute, self::RULE_EMAIL, $rule);
                 }
-                if ($ruleName === self::RULE_MIN &&  strlen($value) < $rule['min']) {
+                if (strlen($value) > 0 && $ruleName === self::RULE_MIN &&  strlen($value) < $rule['min']) {
                     $this->addErrorForRule($attribute, self::RULE_MIN, $rule);
                 }
-                if ($ruleName === self::RULE_MAX &&  strlen($value) > $rule['max']) {
+                if (strlen($value) > 0 && $ruleName === self::RULE_MAX &&  strlen($value) > $rule['max']) {
                     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
-                if ($ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
+                if (strlen($value) > 0  && $ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
                 }
-                if ($ruleName === self::RULE_UNIQUE){
+                if (strlen($value) > 0 && $ruleName === self::RULE_UNIQUE){
                     $className= $rule['class']; 
                     $uniqueAttr = $rule['attribute'] ?? $attribute ; 
                     $tableName = $className::tableName(); 
