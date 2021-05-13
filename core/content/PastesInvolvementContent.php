@@ -20,8 +20,8 @@ class PastesInvolvementContent
                     <th>Expires</th>
                     <th>Syntax</th>
                     <th>Visibility</th>
-                    <th> Click to preview    </th>
-                    <th> Click to delete    </th>
+                    <th> </th>
+                    <th> </th>
                 </tr>';
     }
 

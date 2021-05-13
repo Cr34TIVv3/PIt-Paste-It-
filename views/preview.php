@@ -42,7 +42,7 @@ use models\Paste;
                 <div class="form">
                     <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
                 </div>
-                <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True) ?>
+                <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True, True) ?>
 
             
                 <div class="field">
@@ -59,7 +59,7 @@ use models\Paste;
 
             <?php if (Application::$app->isOwner($record->id_user)) : ?>
                     <?php $form = core\form\FormHome::begin('/'.$record->slug.'/addUser', "get") ?>
-                    <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True) ?>
+                    <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True, True) ?>
 
                     <div class="field">
                         <input type="submit" value="Add user">
@@ -91,7 +91,7 @@ use models\Paste;
         
 
         <?php if (Application::$app->isVersion) : ?>
-        
+            <i style="color: yellow;" class="fas fa-exclamation-triangle"></i>
             <h6 style="color:beige;">Note: this is an older version: click <a style="color: chartreuse;" href="<?php echo '/'.Paste::findOne(["id" => $record->id])->slug ?>"> here </a> to preview the original version</h6>
 
             <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>

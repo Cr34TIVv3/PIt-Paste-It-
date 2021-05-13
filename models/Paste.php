@@ -68,6 +68,13 @@ class Paste extends DbModel
         $new_content = $record->content;
         $new_title = $record->title;
 
+        // echo $old_content."<br>";
+        // echo $old_title."<br>";
+        // echo $new_content."<br>";
+        // echo $new_title."<br>";
+        // exit;
+
+
         /// swap the content and title between pastes and versions 
 
         $sqltime = date('Y-m-d H:i:s');
@@ -90,7 +97,7 @@ class Paste extends DbModel
         $sql = sprintf(
             'UPDATE versions SET content = \'%s\' , title = \'%s\', CREATED_AT = \'%s\' WHERE slug= \'%s\' ',
             $old_content,
-            $old_content,
+            $old_title,
             $object->UPDATED_AT,
             $record->slug
         );

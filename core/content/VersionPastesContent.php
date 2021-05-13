@@ -20,8 +20,8 @@ class VersionPastesContent
                     <th> Having email </th>
                     <th> Title   </th>
                     <th> Date    </th>
-                    <th> Click to preview    </th>
-                    <th> Click to delete    </th>
+                    <th></th>
+                    <th></th>
                 </tr> ';
     }
 

@@ -14,7 +14,7 @@ class Login extends Model
     public function rules(): array
     {
         return [
-              'email' => [self::RULE_EMAIL]
+              'email' => [[self::RULE_EMAIL]]
         ];
     }
 

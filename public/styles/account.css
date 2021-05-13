@@ -121,7 +121,7 @@ body > nav > div > ul > li:nth-child(1):hover::after {
 }
 
 
-@media (max-width: 868px) {
+@media (max-width: 1000px) {
 
   .yourProfile {
     display: block;
@@ -178,6 +178,7 @@ body > nav > div > ul > li:nth-child(1):hover::after {
 }
 
 .main-container {
+  min-height: 100vh;
   min-width: 500px;
   margin-left: 8%; 
   margin-right: 8%;
@@ -205,6 +206,7 @@ body > nav > div > ul > li:nth-child(1):hover::after {
 }
 
 .my-pastes table {
+  min-width: 100%;
   width: 100%;
   border-collapse: collapse ;
 }

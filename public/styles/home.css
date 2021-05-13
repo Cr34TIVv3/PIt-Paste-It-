@@ -4,6 +4,7 @@
   }
   
   .main-container {
+    min-height: 100vh;
     min-width: 500px;
     margin-left: 8%; 
     margin-right: 8%;

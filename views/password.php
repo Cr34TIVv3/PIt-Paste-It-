@@ -1,6 +1,4 @@
 
-
-
 <?php $form = core\form\FormHome::begin('/'.$record->slug, "get") ?>
 
         <h5>This post is protected, you have to input the password in order to have access</h5>

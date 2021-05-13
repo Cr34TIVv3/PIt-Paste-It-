@@ -62,12 +62,19 @@ class FieldHome
 
         return $output;
     }
-    public function getInput($required = false)  ///for password and title 
+    public function getInput($required = false, $break = false)  ///for password and title 
     {
 
         $output = sprintf('
         <label itemprop="name" > %s </label>
         ', $this->name);
+
+        // echo $break;
+        // exit;
+
+        if ($break == true) {
+            $output .= "<br>";
+        }
 
         if ($required == true) {
             $output .=  sprintf('<input type="%s" name="%s" required>', $this->type, $this->attribute);

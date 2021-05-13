@@ -1,9 +1,15 @@
 
+h1{
+  padding-top: 10px;
+  text-align: center;
+}
+
 .source{
     background: linear-gradient(0deg, rgba(22,27,55,1) 0%, rgba(0,0,0,1) 100%);
   }
   
   .main-container {
+    min-height: 100vh;
     min-width: 500px;
     margin-left: 8%; 
     margin-right: 8%;
@@ -95,4 +101,18 @@
     width: 400px;
     display: inline-block;
     margin-bottom: 5px;
+  }
+
+
+  .field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  .field input {
+    width: 50%;
+    margin-left: 50%;
+    margin: 0 auto;
+    padding: 10px;
   }

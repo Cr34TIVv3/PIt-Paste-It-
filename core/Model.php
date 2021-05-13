@@ -74,6 +74,7 @@ abstract class Model
     
     private function addErrorForRule(string $attribute, string $rule, $params = []) {
         $message = $this->errorMessages()[$rule] ?? '' ; 
+
         foreach ($params as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message) ; 
         }

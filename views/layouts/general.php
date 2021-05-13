@@ -57,15 +57,14 @@ use core\Application;
 
     <?php if (Application::$app->session->getFlash('success')) : ?>
 
-        <div class="alert">
+        <div class="alert-succes">
             <?php echo Application::$app->session->getFlash('success') ?>
         </div>
-
     <?php endif; ?>
 
     <?php if (Application::$app->session->getFlash('error')) : ?>
 
-        <div class="alert">
+        <div class="alert-error">
             <?php echo Application::$app->session->getFlash('error') ?>
         </div>
 
@@ -75,6 +74,8 @@ use core\Application;
 
 
     {{content}}
+
+    <span>&nbsp;</span>
 
     <div class="footer">
         <p>Copyright &copy; Paste IT</p>
