@@ -3,6 +3,7 @@ body{
   background-image: url("/resources/background.jpg");
 }
 
+
 .card-container{
   margin-top: 5vh;
   display: flex;

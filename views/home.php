@@ -50,7 +50,7 @@ use core\Captcha;
 
 
         <?php endif; ?>
-
+        <i class="far fa-fire"></i>
 
 
 

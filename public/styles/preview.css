@@ -88,22 +88,6 @@ h1{
     height: 0px;
   }
   
-  .my-pastes {
-    margin-top: 10px;
-  }
-  .public-pastes {
-    margin-top: 10px;
-  }
-  
-  .paste-obj {
-    background-color: rgb(114, 111, 117);
-    border: 5px solid burlywood;
-    width: 400px;
-    display: inline-block;
-    margin-bottom: 5px;
-  }
-
-
   .field {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -115,4 +99,63 @@ h1{
     margin-left: 50%;
     margin: 0 auto;
     padding: 10px;
+  }
+
+  /* --------------------------- */
+
+  .my-pastes {
+    margin-top: 10px;
+  }
+  .public-pastes {
+    margin-top: 10px;
+    /* display: block; */
+  }
+  
+  .div-block {
+    display: inline-block;
+  }
+  
+  .paste-obj {
+    display: flex;
+    justify-content: space-between;
+    background-color: #404358;
+    border: 5px solid rgb(148, 147, 146);
+    width: 400px;
+    margin-bottom: 5px;
+  }
+  /* <i class="fas fa-fire-alt"></i>
+    <i class="fas fa-lock"></i> */
+  
+  .paste-obj .features i {
+    display: block;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  
+  .fa-fire-alt {
+    background: -webkit-linear-gradient(#ffec05, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: linear-gradient(
+      0deg,
+      rgba(255, 0, 0, 1) 0%,
+      rgba(255, 236, 5, 1) 100%
+    );
+  }
+  
+  .fa-lock {
+    color: #020024;
+  }
+  
+  .features {
+    padding-top: 7px;
+  }
+  
+  .public-pastes span {
+    color: black;
+  }
+  .public-pastes a {
+    color: rgb(148, 146, 146);
   }

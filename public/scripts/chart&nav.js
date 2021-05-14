@@ -5,18 +5,6 @@ function start() {
 
 window.onload = start;
 
-
-function chartGenerator() {
-    e1 = new Element(" Public Pastes", "#417333", "75");
-    e2 = new Element(" Private Pastes", "#569944", "100");
-    e3 = new Element(" Visitors", "#3B692E", "40");
-    elementList = Array();
-    elementList.push(e1);
-    elementList.push(e2);
-    elementList.push(e3);
-    createChart(40,40,elementList,80,68);
-}
-
 function createChart(marginBot, marginTop, listElements, rectWidth, spacing) {
     var canvas = document.getElementById("myCanvas");
     var can = canvas.getContext("2d");

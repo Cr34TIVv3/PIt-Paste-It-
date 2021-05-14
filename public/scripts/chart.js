@@ -1,14 +1,4 @@
-window.onload = function() {
-    console.log("Asd")
-    e1 = new Element(" Users", "#417333", "75");
-    e2 = new Element(" Pastes", "#569944", "100");
-    e3 = new Element(" Visitors", "#3B692E", "40");
-    elementList = Array();
-    elementList.push(e1);
-    elementList.push(e2);
-    elementList.push(e3);
-    createChart(40,40,elementList,80,68);
-}
+
 
 function createChart(marginBot, marginTop, listElements, rectWidth, spacing) {
     var canvas = document.getElementById("myCanvas");
@@ -22,7 +12,6 @@ function createChart(marginBot, marginTop, listElements, rectWidth, spacing) {
 
     var x = 0 + spacing;
     var y = 0 + marginTop;
-
 
     var maxHeight = height - marginTop - marginBot; 
 

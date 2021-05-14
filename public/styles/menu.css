@@ -90,11 +90,14 @@ body > nav > div > ul > li:nth-child(1):hover::after {
   transition: all 0.3s ease;
 }
 .banner {
+  /* background: black; */
   background: url("/resources/background.jpg") no-repeat;
   height: 15vh;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  /* padding-right: 0px; */
+  /* position: fixed; */
 }
 
 .about .title {

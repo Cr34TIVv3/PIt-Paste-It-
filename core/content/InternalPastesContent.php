@@ -61,7 +61,7 @@ class InternalPastesContent
                     $title = $value;
                 }
                 if ($key == 'CREATED_AT') {
-                    $date = $value;
+                    $date = $value; 
                 }
                 if ($key == 'expiration') {
                     $expiration_date = $value;

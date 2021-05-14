@@ -4,6 +4,7 @@
 namespace core\content;
 
 use core\Application;
+use DivisionByZeroError;
 
 class PublicPastesContent
 {
@@ -36,11 +37,17 @@ class PublicPastesContent
         $statement->execute();
 
         $result = $statement->fetchAll();
+
+        // echo "<pre>";
+        // var_dump($result);
+        // echo "</pre>";
+        // exit;
+
         foreach ($result as $record) {
             //loop over each $result (row), setting $key to the column name and $value to the value in the column.
             foreach ($record as $key => $value) {
                  
-                if($key == 'slug')
+                if ($key == 'slug')
                 { 
                     $slug = $value;
                 }
@@ -50,15 +57,52 @@ class PublicPastesContent
                 if ($key == 'title') {
                     $title = $value;
                 }
+                if ($key == 10)
+                {
+                    $date = $value;
+                }
+                if ($key == 'burn_after_read') {
+                    $burn = $value;
+                }
+                if ($key == 5)
+                {
+                    $password = $value;
+                }
             }
+
+            // echo $password.'<br>';
+
+
+            $icons = '<div class = "features" >';
+            if($burn != null && $burn == true)
+            {
+                $icons .= ' <i class="fas fa-fire-alt"></i>';
+            }
+            if($password != null)
+            {
+                $icons .= '<i class="fas fa-lock"></i>';
+            }
+
+            $icons .= ' </div>';
+
+// <div class = "features" >
+//                             <i class="fas fa-fire-alt"></i>
+//                             <i class="fas fa-lock"></i>
+//                         </div>
             $output .= sprintf(' 
                 <a href="/%s">
-                <div class="paste-obj">
-                    <h3>%s</h3>
-                    <p>%s</p>
+                <div class="div-block">
+                    <div class="paste-obj">
+                        <div class="information" >
+                            <h3> <span>Author:</span> %s</h3>
+                            <p> <span>Title: </span> %s</p>
+                            <p> <span>Date: </span> %s </p>
+                        </div>
+                        %s
+                    </div>
                 </div>
                 </a>
-            ', $slug, $username, $title);
+            ', $slug, $username, $title,$date, $icons);
         }
 
 
@@ -80,15 +124,29 @@ class PublicPastesContent
                 if ($key == 'title') {
                     $title = $value;
                 }
+                if ($key == 10)
+                {
+                    $date = $value;
+                }
             }
             $output .= sprintf(' 
                 <a href="/%s">
-                <div class="paste-obj">
-                    <h3>(UNNAMED)</h3>
-                    <p>%s</p>
-                </div>
+                    <div class="div-block">
+                        <div class="paste-obj">
+                           <div class="information" >
+                                <h3><span>Author:</span> (UNNAMED)</h3>
+                                <p><span>Title:</span> %s </p>
+                                <p><span>Date:</span> %s <p>
+                            </div>
+                        </div>
+
+
+                        <div class="features">
+
+                        </div>
+                    </div>
                 </a>
-            ', $slug, $title);
+            ', $slug, $title,$date);
         }
 
 

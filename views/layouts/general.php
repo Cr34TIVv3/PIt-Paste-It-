@@ -21,7 +21,25 @@ use core\Application;
     <link rel="stylesheet" href="/styles/footer.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
     <script src="./scripts/{{script}}.js"></script>
+
+    <script>
+        function chartGenerator() {
+            
+            e1 = new Element(" Public Pastes", "#417333", "75");
+            e2 = new Element(" Private Pastes", "#569944", "100");
+            e3 = new Element(" Visitors", "#3B692E", "40");
+            elementList = Array();
+            elementList.push(e1);
+            elementList.push(e2);
+            elementList.push(e3);
+            createChart(40, 40, elementList, 80, 68);
+        }
+    </script>
+
+
 
 
 </head>
