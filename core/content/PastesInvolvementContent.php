@@ -76,7 +76,8 @@ class PastesInvolvementContent
                         $slug = $value;
                     }
                 }
-    
+                // <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
+                // <td><a href="'.$slug."/delete".'"><i class="fas fa-backspace"></i></a></td>
                 $output .= sprintf(' 
                         <tr>
                                <td> %s </td>         
@@ -86,7 +87,7 @@ class PastesInvolvementContent
                                <td> %s </td>         
                                <td> %s </td>
                                <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
-                               <td><a href="'.$slug."/delete".'"><i class="fas fa-backspace"></i></a></td>
+                               <td><p class="deleteBtn" id="'.$slug."/delete".'"><i class="fas fa-backspace"></i></p></td>
                         </tr>
                     
                 ', $title, $owner, $date, $date_expiration, $highlight,  $access_modifier);
@@ -141,7 +142,7 @@ class PastesInvolvementContent
                         <td> %s </td>         
                         <td> %s </td>
                         <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
-                        <td><a href="'.$slug."/delete".'"><i class="fas fa-backspace"></i></a></td>
+                        <td><p class="deleteBtn" id="'.$slug."/delete".'"><i class="fas fa-backspace"></i></p></td>
                     </tr>
                 
             ', $title, $owner, $date,  $date_expiration,  $highlight,  $access_modifier);

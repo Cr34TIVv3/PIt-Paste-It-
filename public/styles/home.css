@@ -142,3 +142,44 @@ tr:nth-child(even) {
 .public-pastes a {
   color: rgb(148, 146, 146);
 }
+
+code{
+  background-color: white;
+}
+
+.code-str{
+
+}
+.code-elem{
+
+}
+.code-comment{
+
+}
+.code-operator{
+  color: red;
+}
+.code-keyword{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

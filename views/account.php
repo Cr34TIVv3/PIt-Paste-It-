@@ -28,7 +28,7 @@ use core\Application;
         <?php echo core\content\PastesInvolvementContent::generateContent() ?>
         <?php core\content\PastesInvolvementContent::end() ?>
 
-
+        <script src="/scripts/deleteAJAX.js"> </script>
 
         <h1 itemprop="headline">My profile</h1>
         <div class="line"></div>

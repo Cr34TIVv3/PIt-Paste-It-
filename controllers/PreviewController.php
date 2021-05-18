@@ -11,6 +11,10 @@ class PreviewController extends Controller
 {
     public function handlePreview(Request $request, $record)
     {
+        // echo '<pre>';
+        // var_dump($record);
+        // echo '</pre>';
+        // exit;
         if ($request->getMethod() === 'post') {
 
             if (!Application::$app->isVersion) {

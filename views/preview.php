@@ -9,21 +9,34 @@ use models\Paste;
         <h1><?php echo $record->title; ?></h1>
 
 
-        <div class="content">
+       <h4> This is your post:</h4>
+        <div class="pasteContent">
             <pre>
-                <code>
-                    <?php echo $record->content; ?>
+                <code id="toHighlight">
+                    <?php echo $record->content;  ?>
                 </code>
             </pre>
         </div>
 
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+        <?php if (!Application::$app->isVersion) : ?>
+
+            <script src="scripts/highlither.js"></script>
+            <script>
+                highlight_code("<?php echo $record->highlight?>");
+            </script>
+        <?php else:?>
+            <script src="scripts/highlither.js"></script>
+            <script>
+                highlight_code("<?php echo Paste::findOne(["id" => $record->id])->highlight?>");
+            </script>
+        <?php endif; ?> 
+
+        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
         <script>
             hljs.highlightAll();
-        </script>
-
+        </script> -->
 
 
 
@@ -39,6 +52,7 @@ use models\Paste;
                 
                 
                 <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
+                <h4> Make some changes?</h4>
                 <div class="form">
                     <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
                 </div>

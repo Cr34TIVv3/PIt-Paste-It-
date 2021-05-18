@@ -12,7 +12,7 @@ use core\Captcha;
         <?php echo $form->field($model, '', '')->getTextArea() ?>
 
 
-        <?php echo $form->field($model, 'highlight', 'Syntax highlight:')->getSelector(["None", "C++", "Haskell", "Java "]) ?>
+        <?php echo $form->field($model, 'highlight', 'Syntax highlight:')->getSelector(["None", "C++", "SQL", "XML"]) ?>
 
         <?php echo $form->field($model, 'title', 'Paste Name/Title:')->getInput(True) ?>
 

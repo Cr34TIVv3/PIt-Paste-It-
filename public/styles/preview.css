@@ -2,6 +2,7 @@
 h1{
   padding-top: 10px;
   text-align: center;
+  text-decoration: underline;
 }
 
 .source{
@@ -159,3 +160,31 @@ h1{
   .public-pastes a {
     color: rgb(148, 146, 146);
   }
+
+  
+  .pasteContent{
+    background-color: white;
+  }
+  /* code{
+    background-color: white;
+  } */
+  
+.code-str{
+
+}
+.code-elem{
+  color: orange;
+
+}
+.code-comment{
+  color: grey;
+}
+.code-operator{
+  color: red;
+}
+.code-keyword{
+  color: blue;
+  font-weight: bold;
+
+}
+

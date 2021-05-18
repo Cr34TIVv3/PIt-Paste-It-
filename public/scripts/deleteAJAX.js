@@ -4,6 +4,7 @@ deleteButtons.forEach((button) => {
         event.preventDefault();
       
         // console.log(button);
+        // return;
 
         let request = new XMLHttpRequest();
         request.open('GET', button.id ,true);
@@ -14,13 +15,8 @@ deleteButtons.forEach((button) => {
                 let response = request.response;
                 // console.log(response);
                 let redirect = response.redirect;
-                if (redirect == "/account") {
-                    window.location.replace(redirect);
-                }
-                else {
-                    var row = button.parentElement.parentElement
-                    row.remove();
-                }
+                var row = button.parentElement.parentElement
+                row.remove();
                 console.log(redirect);
             }
         }
