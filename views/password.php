@@ -11,3 +11,7 @@
         </div>
         
 <?php core\form\FormHome::end() ?>
+
+
+
+<script src="/scripts/deleteAJAX.js"> </script>

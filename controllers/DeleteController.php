@@ -13,9 +13,13 @@ class DeleteController extends Controller
         $updatedPaste->delete($record);
         
         if (Application::$app->isVersion) {
-            Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);
+            echo json_encode(array("redirect" => '/' . Paste::findOne(["id" => $record->id])->slug));
+            exit;
+            // Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);
         } else {
-            Application::$app->response->redirect('/account');
+            echo json_encode(array("redirect" => '/account'));
+            exit;
+            // Application::$app->response->redirect('/account');
         }
 
         

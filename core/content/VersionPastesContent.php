@@ -82,7 +82,7 @@ class VersionPastesContent
                            <td> %s </td>
                            <td> %s </td>
                            <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
-                           <td><a href="'.$slug."/delete".'"><i class="fas fa-backspace"></i></a></td>
+                           <td><p class="deleteBtn" id="'.$slug."/delete".'"><i class="fas fa-backspace"></i></p></td>
                     </tr>
                 
             ', $user, $email, $title, $date, $slug);

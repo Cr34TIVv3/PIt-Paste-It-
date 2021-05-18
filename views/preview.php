@@ -114,3 +114,5 @@ use models\Paste;
 
     </div>
 </div>
+
+<script src="/scripts/deleteAJAX.js"> </script>
