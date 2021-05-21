@@ -10,8 +10,9 @@ use core\Captcha;
 
         <?php $form = core\form\FormHome::begin('/home', "post") ?>
         <?php echo $form->field($model, '', '')->getTextArea() ?>
-
-
+            
+        
+ 
         <?php echo $form->field($model, 'highlight', 'Syntax highlight:')->getSelector(["None", "C++", "SQL", "XML"]) ?>
 
         <?php echo $form->field($model, 'title', 'Paste Name/Title:')->getInput(True) ?>
@@ -50,7 +51,7 @@ use core\Captcha;
 
 
         <?php endif; ?>
-        <i class="far fa-fire"></i>
+
 
 
 
@@ -59,8 +60,6 @@ use core\Captcha;
         <?php core\content\PublicPastesContent::begin() ?>
         <?php echo core\content\PublicPastesContent::generateContent() ?>
         <?php core\content\PublicPastesContent::end() ?>
-
-
 
 
 

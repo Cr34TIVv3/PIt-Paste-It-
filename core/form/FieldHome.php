@@ -38,13 +38,14 @@ class FieldHome
 
     public function getTextArea()
     {
-        return '<h1 itemprop="name">New paste</h1>
+
+        return sprintf('<h1 itemprop="name">New paste</h1>
         <div class="form">
-            <textarea name="content" id="text-area" cols="30" rows="10"></textarea>
+            <textarea name="content" id="text-area" cols="30" rows="10"> %s </textarea>
         </div>
         <h1 itemprop="name">Optional settings</h1>
         <div class="line"></div>
-        <div class="settings">';
+        <div class="settings">', $this->model->content); 
     }
 
     public function getSelector($params = [])  /// for every selector
@@ -68,9 +69,6 @@ class FieldHome
         $output = sprintf('
         <label itemprop="name" > %s </label>
         ', $this->name);
-
-        // echo $break;
-        // exit;
 
         if ($break == true) {
             $output .= "<br>";

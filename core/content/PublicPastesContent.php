@@ -30,7 +30,7 @@ class PublicPastesContent
         /// show public posts from logged in users 
 
 
-        $sql = 'SELECT * FROM pastes  JOIN users ON users.id = pastes.id_user WHERE PASTES.access_modifier=\'public\' AND pastes.expiration < CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+        $sql = 'SELECT * FROM pastes  JOIN users ON users.id = pastes.id_user WHERE PASTES.access_modifier=\'public\' AND pastes.expiration > CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
 
         $statement = Application::$app->db->pdo->prepare($sql);
 

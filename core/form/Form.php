@@ -24,9 +24,9 @@ class Form
             </div>
         </div>';
     }
-    public function field(Model $model, $attribute)
+    public function field(Model $model, $attribute, $flag=false)
     {
-        return new Field($model,$attribute); 
+        return new Field($model,$attribute, $flag); 
     }
 
 
