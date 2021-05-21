@@ -38,8 +38,7 @@ class PastesInvolvementContent
 
         $user_id = Application::$app->session->get('user');
 
-        $sql = 'SELECT * FROM (SELECT pastes.id_user, pastes.slug, pastes.title, pastes.expiration, pastes.highlight, pastes.access_modifier FROM members JOIN pastes ON members.id_paste = pastes.id WHERE members.id_user = '.$user_id.') t JOIN users ON t.id_user = users.id;';
-
+        $sql = 'SELECT * FROM (SELECT pastes.id_user, pastes.slug, pastes.title, pastes.expiration, pastes.highlight, pastes.access_modifier FROM members JOIN pastes ON members.id_paste = pastes.id WHERE members.id_user = '.$user_id.' AND pastes.expiration < CURRENT_TIMESTAMP) t JOIN users ON t.id_user = users.id;';
         $statement = Application::$app->db->pdo->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -99,7 +98,7 @@ class PastesInvolvementContent
          
 
         ///why join
-        $sql = 'SELECT * FROM pastes JOIN users ON pastes.id_user = users.id WHERE pastes.id_user = '.$user_id.';';
+        $sql = 'SELECT * FROM pastes JOIN users ON pastes.id_user = users.id WHERE pastes.id_user = '.$user_id.' AND pastes.expiration < CURRENT_TIMESTAMP;';
 
         $statement = Application::$app->db->pdo->prepare($sql);
         $statement->execute();

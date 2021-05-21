@@ -44,12 +44,23 @@ abstract class DbModel extends Model
 
     }
 
+    public static function findVersionDetalied($where) {
+
+        $statement = self::prepare("SELECT * FROM versions v JOIN pastes p ON v.id=p.id WHERE v.slug = '$where' AND expiration > CURRENT_TIMESTAMP;");
+        $statement->execute();
+        return $statement->fetchObject(static::class);
+    }
+
+
     public static function findOneImproved($tableName, $where)
     {
         $attributes = array_keys($where); 
         $sql =  implode("AND", array_map(fn($attr) => "$attr = :$attr" , $attributes));
 
-        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
+
+        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql AND expiration > CURRENT_TIMESTAMP");
+        // AND expiration < CURRENT_TIMESTAMP
+        //  AND expiration > CURRENT_TIMESTAMP
         
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);

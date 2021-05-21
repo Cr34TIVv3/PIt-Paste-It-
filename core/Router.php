@@ -49,7 +49,7 @@ class Router
  
                 $path = substr($path, 1, -9);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                $recordVersions = Paste::findVersionDetalied($path);
                 if (!$recordPastes === false && !is_null($recordPastes->content)) {
                     Application::$app->isVersion = false;
                     $passwordController = new PasswordController();
@@ -66,7 +66,7 @@ class Router
             else if (PathValidator::validateAddUserRequest($path)) {
                 $path = substr($path, 1, -8);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                $recordVersions = Paste::findVersionDetalied($path);
                 if (!$recordPastes === false && !is_null($recordPastes->content)) {
                     Application::$app->isVersion = false;
                     $update = new UpdateController();
@@ -81,7 +81,7 @@ class Router
             } else if (PathValidator::validateDeleteRequest($path)) {
                 $path = substr($path, 1, -7);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                $recordVersions = Paste::findVersionDetalied($path);
                 if (!$recordPastes === false && !is_null($recordPastes->content)) {
                     Application::$app->isVersion = false;
                     $delete = new DeleteController();
@@ -98,7 +98,13 @@ class Router
             } else if (PathValidator::validatePasteGetRequest($path)) {
                 $path = substr($path, 1);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findOneImproved('versions', ['slug' => $path]);
+                $recordVersions = Paste::findVersionDetalied($path);
+
+                // echo "<pre>";
+                // var_dump($recordVersions);
+                // var_dump($recordPastes);
+                // echo "</pre>";
+
                 if (!$recordPastes === false && !is_null($recordPastes->content)) {
                     Application::$app->isVersion = false;
                     $preview = new PreviewController();
@@ -108,7 +114,6 @@ class Router
                     Application::$app->isVersion = true;
                     return $preview->handlePreview($this->request, $recordVersions);
                 } else {
-
                     $this->response->setStatusCode(404);
                     throw new NotFoundException();
                 }
