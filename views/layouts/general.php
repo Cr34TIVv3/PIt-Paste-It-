@@ -1,6 +1,6 @@
 <?php
-
 use core\Application;
+use core\DataProvider;
 ?>
 
 <!DOCTYPE html>
@@ -14,23 +14,22 @@ use core\Application;
     <meta name="description" content="Paste It. Provide a simple way to share your code">
     <meta name="keywords" content="share code, paste code, copy code, share, code" />
     <meta name="author" content=" Petrariu Iustin, Burca Rafael">
-
-
     <link rel="stylesheet" href="/styles/{{style}}.css">
     <link rel="stylesheet" href="/styles/menu.css">
     <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/window.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-
+    
     <script src="./scripts/{{script}}.js"></script>
-
+    <script src="./scripts/window.js" ></script>
     <script>
         function chartGenerator() {
-            
-            e1 = new Element(" Public Pastes", "#417333", "75");
-            e2 = new Element(" Private Pastes", "#569944", "100");
-            e3 = new Element(" Visitors", "#3B692E", "40");
+
+            e1 = new Element(" Protected pastes", "#569944", "<?php echo DataProvider::numberOfProtectedPastes(Application::$app->user->id) ?>");
+            e2 = new Element(" Public pastes", "#569944", "<?php echo DataProvider::numberOfPublicPastes(Application::$app->user->id) ?>");
+            e3 = new Element(" Private pastes", "#569944", "<?php echo DataProvider::numberOfPrivatePastes(Application::$app->user->id) ?>");
+
             elementList = Array();
             elementList.push(e1);
             elementList.push(e2);
@@ -39,10 +38,8 @@ use core\Application;
         }
     </script>
 
-
-
-
 </head>
+
 
 <body itemscope itemtype="http://schema.org/WebPage">
     <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
@@ -88,11 +85,8 @@ use core\Application;
 
     <?php endif; ?>
 
-
-
-
     {{content}}
-
+    
     <span>&nbsp;</span>
 
     <div class="footer">
@@ -102,3 +96,18 @@ use core\Application;
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

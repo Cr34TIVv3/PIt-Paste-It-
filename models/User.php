@@ -9,39 +9,41 @@ class User extends UserModel
 {
     public String $username = '';
     public String $email = '';
-    public String $password= '';
-    public String $repeat= '';
+    public String $password = '';
+    public String $repeat = '';
     public function save()
     {
-        $this->password = password_hash($this->password,PASSWORD_DEFAULT);
-        return parent::save(); 
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        return parent::save();
     }
     public function update()
     {
-        
         $sql = 'UPDATE users SET';
 
-        if(strlen($this->username) > 0)
-        {
-            $sql .= ' username= \'' .$this->username.'\'';
+        if (strlen($this->username) > 0) {
+            $sql .= ' username= \'' . $this->username . '\'';
         }
-        if(strlen($this->email) > 0)
-        {
-            $sql .= ' email= = \'' .$this->email.'\'';
+        if (strlen($this->email) > 0) {
+            $sql .= ' email= = \'' . $this->email . '\'';
         }
-        if(strlen($this->password) > 0)
-        {
-            $sql .= ' password = \''.$this->password.'\'';
+        if (strlen($this->password) > 0) {
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+            $sql .= ' password = \'' . $this->password . '\'';
         }
-        $sql .= ' WHERE id ='.Application::$app->user->id ;
 
-    
+        if (strcmp($sql, 'UPDATE users SET') == 0) {
+            return false;
+        } else {
+            $sql .= ' WHERE id =' . Application::$app->user->id;
+        }
+
+
+
 
         $statement =  Application::$app->db->pdo->prepare($sql);
         $statement->execute();
 
         return true;
-
     }
 
 
@@ -64,14 +66,12 @@ class User extends UserModel
         $sql = sprintf('INSERT INTO members (id_paste, id_user) 
         VALUES (\'%s\',\'%s\')', $record->id,  $object->id);
 
-        
+
 
         $statement =  Application::$app->db->pdo->prepare($sql);
         $statement->execute();
 
         return true;
-
-        
     }
 
 
@@ -85,60 +85,25 @@ class User extends UserModel
         return 'id';
     }
 
-    public function rules() : array
+    public function rules(): array
     {
-            return [
+        return [
 
-                'username' => [ [self::RULE_MIN, 'min' => 8] , [self::RULE_MAX, 'max' => 20] ],
-                'email' => [ [self::RULE_EMAIL], [self::RULE_UNIQUE,'class' => $this ] ],
-                'password' => [ [self::RULE_MIN, 'min' => 8] , [self::RULE_MAX, 'max' => 20] ] , 
-                'repeat' => [ [self::RULE_MATCH, 'match' => 'password'] ] 
-            ];
+            'username' => [[self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 20]],
+            'email' => [[self::RULE_EMAIL], [self::RULE_UNIQUE, 'class' => $this]],
+            'password' => [[self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 20]],
+            'repeat' => [[self::RULE_MATCH, 'match' => 'password']]
+        ];
     }
 
-    public function attributes() :array 
+    public function attributes(): array
     {
-         return ['username', 'email', 'password'] ; 
+        return ['username', 'email', 'password'];
     }
 
-    
+
     public function getDisplayName(): string
     {
-        return $this->username; 
+        return $this->username;
     }
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

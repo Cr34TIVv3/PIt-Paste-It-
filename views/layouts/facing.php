@@ -17,8 +17,9 @@ use core\DataProvider;
         window.onload = function() {
             
             e1 = new Element(" Users", "#417333", "<?php echo DataProvider::numberOfUsers() ?>");
-            e2 = new Element(" Pastes", "#569944", "<?php echo DataProvider::numberOfPastes() ?>");
-            e3 = new Element(" Visitors", "#3B692E", "20");
+            e2 = new Element(" Public pastes", "#569944", "<?php echo DataProvider::numberOfPublicPastes() ?>");
+            e3 = new Element(" Private pastes", "#569944", "<?php echo DataProvider::numberOfPrivatePastes() ?>");
+            // e3 = new Element(" Visitors", "#3B692E", "20");
             elementList = Array();
             elementList.push(e1);
             elementList.push(e2);

@@ -2,14 +2,27 @@
 
 use core\Application;
 use models\Paste;
+use core\DataProvider;
 ?>
 <div class="source">
     <div class="main-container">
 
         <h1><?php echo $record->title; ?></h1>
 
+        <div class="members">
+            <h2> This is your post:</h2> 
+            <h2 id="seeOtherMembers"> See other members <i class="fas fa-users"></i></h2> 
+        </div>
 
-       <h4> This is your post:</h4>
+        <script>   
+                document.getElementById("seeOtherMembers").addEventListener("click", () => {
+                    ModalWindow.openModal({ title: "Members", content : "<?php echo DataProvider::getMembers($record->id); ?>"});
+
+                    document.getElementById("modal__close").addEventListener("click", e => ModalWindow.closeModal(e.target));
+                });
+
+       </script>
+
         <div class="pasteContent">
             <pre>
                 <code id="toHighlight">
@@ -32,27 +45,18 @@ use models\Paste;
             </script>
         <?php endif; ?> 
 
-        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-        <script>
-            hljs.highlightAll();
-        </script> -->
-
-
-
         <!-- show some option in order to update a post-->
+
 
           <!-- SHOW THIS FOR MEMBERS ONLY-->
           
-
-
         <?php if (!Application::$app->isVersion) : ?>
            
           <?php if (Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id) ) : ?>
                 
                 
                 <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
-                <h4> Make some changes?</h4>
+                <h3> Make some changes?</h3>
                 <div class="form">
                     <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
                 </div>
@@ -66,8 +70,6 @@ use models\Paste;
 
             <?php endif; ?>
 
-        
-            
 
             <!-- SHOW THIS FOR OWNERS ONLY-->
 
@@ -80,17 +82,9 @@ use models\Paste;
                     </div>
                     <?php core\form\FormHome::end() ?>
             <?php endif; ?>
-
-
-            
-
         <?php endif; ?>
 
         <!-- update formular -->
-
-
-        
-
 
         <!-- show some other version of the pastes-->
 
@@ -100,9 +94,6 @@ use models\Paste;
             <?php core\content\VersionPastesContent::end() ?>
         <?php endif; ?>
 
-
-
-        
 
         <?php if (Application::$app->isVersion) : ?>
             <i style="color: yellow;" class="fas fa-exclamation-triangle"></i>
@@ -116,17 +107,16 @@ use models\Paste;
 
         <?php endif; ?>
 
-
-        
-
         <!-- show public posts -->
 
         <?php core\content\PublicPastesContent::begin() ?>
         <?php echo core\content\PublicPastesContent::generateContent() ?>
         <?php core\content\PublicPastesContent::end() ?>
 
-
     </div>
 </div>
 
+
 <script src="/scripts/deleteAJAX.js"> </script>
+
+

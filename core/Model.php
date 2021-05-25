@@ -47,7 +47,7 @@ abstract class Model
                 if (strlen($value) > 0 && $ruleName === self::RULE_MAX &&  strlen($value) > $rule['max']) {
                     $this->addErrorForRule($attribute, self::RULE_MAX, $rule);
                 }
-                if (strlen($value) > 0  && $ruleName === self::RULE_MATCH && $value !== $this->{ $rule['match'] } ) {
+                if ( $ruleName === self::RULE_MATCH && isset($this->{ $rule['match'] })    && $value !== $this->{ $rule['match'] } ) {
                     $this->addErrorForRule($attribute, self::RULE_MATCH, $rule);
                 }
                 if (strlen($value) > 0 && $ruleName === self::RULE_UNIQUE){

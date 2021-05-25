@@ -9,15 +9,14 @@ use core\Application;
             <h1 itemprop="headline">Welcome</h1>
             <div class="line"></div>
             <p itemprop="description">
-                Hi <?php echo Application::$app->user->getDisplayName() ?>, this is your personal Pastebin.
+                Hi <?php echo Application::$app->user->getDisplayName() ?>, this is your personal PasteIt.
                 Feel free to share this page with anyone you like.
             </p>
             <p itemprop="description">
                 There are some sections that would help you to manage your profile
             </p>
             <p itemprop="description">
-                Only you (when logged in) can see your folders,
-                unlisted and private pastes, and only you see the options to edit and delete.
+                Only you (when logged in) can see your protected, public and private pastes, and only you see the options to edit and delete.
             </p>
         </div>
 
@@ -58,9 +57,6 @@ use core\Application;
 
 
         <?php core\form\FormAccount::end() ?>
-
-
-
 
 
 

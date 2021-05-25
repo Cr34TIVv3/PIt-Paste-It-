@@ -38,7 +38,7 @@ class InternalPastesContent
         $user_id = Application::$app->session->get('user');
 
 
-        $sql = 'SELECT * FROM PASTES WHERE id_user =' . $user_id . ' AND pastes.expiration < CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+        $sql = 'SELECT * FROM PASTES WHERE id_user =' . $user_id . ' AND pastes.expiration > CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
 
         $statement = Application::$app->db->pdo->prepare($sql);
 
