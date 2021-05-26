@@ -44,86 +44,8 @@ class Router
 
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-
-            if (PathValidator::validatePasswordRequest($path)) {
- 
-                $path = substr($path, 1, -9);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $passwordController = new PasswordController();
-                    return $passwordController->handlePassword($this->request, $recordPastes);
-                    
-                } else if (!is_null($recordVersions->content)) {
-                    $this->response->setStatusCode(400);
-                    throw new BadRequest();
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            }
-            else if (PathValidator::validateAddUserRequest($path)) {
-                $path = substr($path, 1, -8);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $update = new UpdateController();
-                    return $update->handleUpdate($this->request, $recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $this->response->setStatusCode(400);
-                    throw new BadRequest();
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else if (PathValidator::validateDeleteRequest($path)) {
-                $path = substr($path, 1, -7);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $delete = new DeleteController();
-                    return $delete->handleDelete($recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $delete = new DeleteController();
-                    Application::$app->isVersion = true;
-                    //
-                    $recordVersions->slug = $path;
-                    //
-                    return $delete->handleDelete($recordVersions);
-                } else {
-
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else if (PathValidator::validatePasteGetRequest($path)) {
-                $path = substr($path, 1);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-
-                // echo "<pre>";
-                // var_dump($recordVersions);
-                // var_dump($recordPastes);
-                // echo "</pre>";
-
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $preview = new PreviewController();
-                    return $preview->handlePreview($this->request, $recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $preview = new PreviewController();
-                    Application::$app->isVersion = true;
-                    return $preview->handlePreview($this->request, $recordVersions);
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else {
-                $this->response->setStatusCode(404);
-                throw new NotFoundException();
-            }
+            $this->response->setStatusCode(404);
+            throw new NotFoundException();
         }
         if (is_string($callback)) {
             return $this->renderView($callback);

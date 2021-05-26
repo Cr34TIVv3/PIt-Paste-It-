@@ -21,7 +21,7 @@ abstract class DbModel extends Model
        
         $tableName  = $this->tableName();
         $attributes = $this->attributes();
-        // var_dump($attributes);
+
         $params = array_map(fn($attr) => ":$attr", $attributes); 
       
 
@@ -33,15 +33,11 @@ abstract class DbModel extends Model
          
         foreach($attributes as $attribute)
         {
-            echo $attribute;
-             $statement->bindValue(":$attribute", $this->{$attribute});
+            $statement->bindValue(":$attribute", $this->{$attribute});
         }
         $statement->execute();
 
-        echo"am ajuns aici";
         return true;
-
-
     }
 
     public static function findVersionDetalied($where) {
@@ -59,9 +55,7 @@ abstract class DbModel extends Model
 
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql AND expiration > CURRENT_TIMESTAMP");
-        // AND expiration < CURRENT_TIMESTAMP
-        //  AND expiration > CURRENT_TIMESTAMP
-        
+
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);
         }
