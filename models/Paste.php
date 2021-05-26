@@ -162,11 +162,8 @@ class Paste extends DbModel
             );
         }
 
-
         $statement =  Application::$app->db->pdo->prepare($sql);
         $statement->execute();
-
-
 
         // if (Application::$app->isVersion) {
         //     Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);

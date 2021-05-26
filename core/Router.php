@@ -89,6 +89,9 @@ class Router
                 } else if (!is_null($recordVersions->content)) {
                     $delete = new DeleteController();
                     Application::$app->isVersion = true;
+                    //
+                    $recordVersions->slug = $path;
+                    //
                     return $delete->handleDelete($recordVersions);
                 } else {
 
