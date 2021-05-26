@@ -4,9 +4,15 @@ use core\Application;
 use models\Paste;
 use core\DataProvider;
 ?>
+
+<script src="./scripts/window.js" ></script>
+
+
+
 <div class="source">
     <div class="main-container">
 
+       
         <h1><?php echo $record->title; ?></h1>
 
         <div class="members">
@@ -95,7 +101,9 @@ use core\DataProvider;
         <?php endif; ?>
 
 
-        <?php if (Application::$app->isVersion) : ?>
+  
+
+        <?php if (Application::$app->isVersion && (Application::$app->isMember($record->id) || Application::$app->isOwner($record->id_user))) : ?>
             <i style="color: yellow;" class="fas fa-exclamation-triangle"></i>
             <h6 style="color:beige;">Note: this is an older version: click <a style="color: chartreuse;" href="<?php echo '/'.Paste::findOne(["id" => $record->id])->slug ?>"> here </a> to preview the original version</h6>
 

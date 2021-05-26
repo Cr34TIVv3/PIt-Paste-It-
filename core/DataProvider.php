@@ -77,7 +77,7 @@ class DataProvider{
         $result = $statement->fetchObject();
 
 
-            $output .= sprintf('<li>%s</li>', $result->email);
+        $output .= sprintf('<li>%s</li>', $result->email);
 
         /// then take the colaborators 
 

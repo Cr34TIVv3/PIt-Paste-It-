@@ -77,9 +77,12 @@ class Paste extends DbModel
 
         /// swap the content and title between pastes and versions 
 
-        $sqltime = date('Y-m-d H:i:s');
-        $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $record->expiration));
-        $record->expiration = $sqltime;
+        // echo $record->expiration;
+
+        // $sqltime = date('Y-m-d H:i:s');
+        // echo $sqltime;
+        // $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $record->expiration));
+        // $record->expiration = $sqltime;
 
 
         $sql = sprintf(
@@ -90,6 +93,10 @@ class Paste extends DbModel
             date('Y-m-d H:i:s'),
             $record->id
         );
+
+        // echo $sql;
+        // exit;
+
 
         $statement =  Application::$app->db->pdo->prepare($sql);
         $statement->execute();

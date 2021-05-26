@@ -33,7 +33,7 @@ class VersionPastesContent
 
     public static function generateContent($record)
     {
-        //TODO
+        
         $output = '';
 
         $user_id = Application::$app->session->get('user');
@@ -48,20 +48,16 @@ class VersionPastesContent
         $result = $statement->fetchAll();
 
 
-
+        // var_dump($result);
+        
         foreach ($result as $record) {
-            //loop over each $result (row), setting $key to the column name and $value to the value in the column.
-            // echo "<pre>";
-            // var_dump($record);
-            // echo "</pre>";
-            // exit;
 
             foreach ($record as $key => $value) {
 
                 if ($key == 'title') {
                     $title = $value;
                 }
-                if ($key == 'CREATED_AT') {
+                if ($key == 10) {
                     $date = $value;
                 }
                 if ($key == 'username') {
@@ -81,14 +77,23 @@ class VersionPastesContent
                            <td> %s </td>     
                            <td> %s </td>
                            <td> %s </td>
-                           <td><a href="'.$slug.'"><i class="fas fa-search"></i></a></td>
-                           <td><p class="deleteBtn" id="'.$slug."/delete".'"><i class="fas fa-backspace"></i></p></td>
-                    </tr>
-                
+                           <td><a href="%s"><i class="fas fa-search"></i></a></td>
             ', $user, $email, $title, $date, $slug);
+            
+           
+            if(Application::$app->isMember($record[0] ) || Application::$app->isOwner($record['id_user']) )
+            {
+                $output .= '
+                           <td><p class="delteBtn" id="'.$slug.'/delete"><i class="fas fa-backspace"></i></p></td>
+                             </tr>  ' ; 
+            }
+            else 
+            {
+                $output .= '</tr>';
+            
+            }
         }
-
-
+        
 
         return $output;
     }

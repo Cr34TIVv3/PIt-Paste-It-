@@ -1,7 +1,24 @@
 <?php
 
 use core\Application;
+use core\DataProvider;
 ?>
+
+<script>
+        function chartGenerator() {
+
+            e1 = new Element(" Protected pastes", "#569944", "<?php echo DataProvider::numberOfProtectedPastes(Application::$app->user->id) ?>");
+            e2 = new Element(" Public pastes", "#569944", "<?php echo DataProvider::numberOfPublicPastes(Application::$app->user->id) ?>");
+            e3 = new Element(" Private pastes", "#569944", "<?php echo DataProvider::numberOfPrivatePastes(Application::$app->user->id) ?>");
+
+            elementList = Array();
+            elementList.push(e1);
+            elementList.push(e2);
+            elementList.push(e3);
+            createChart(40, 40, elementList, 80, 68);
+        }
+    </script>
+
 <div class="source">
     <div class="main-container">
 

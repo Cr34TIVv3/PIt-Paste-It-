@@ -38,7 +38,7 @@ abstract class DbModel extends Model
         }
         $statement->execute();
 
-        echo"am ajuns aici";
+       
         return true;
 
 
@@ -46,9 +46,9 @@ abstract class DbModel extends Model
 
     public static function findVersionDetalied($where) {
 
-        $statement = self::prepare("SELECT * FROM versions v JOIN pastes p ON v.id=p.id WHERE v.slug = '$where' AND expiration > CURRENT_TIMESTAMP;");
+        $statement = self::prepare("SELECT * FROM  pastes p  JOIN versions v ON v.id=p.id WHERE v.slug = '$where' AND expiration > CURRENT_TIMESTAMP;");
         $statement->execute();
-        return $statement->fetchObject(static::class);
+        return $statement->fetchObject();
     }
 
 
@@ -59,8 +59,6 @@ abstract class DbModel extends Model
 
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql AND expiration > CURRENT_TIMESTAMP");
-        // AND expiration < CURRENT_TIMESTAMP
-        //  AND expiration > CURRENT_TIMESTAMP
         
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);

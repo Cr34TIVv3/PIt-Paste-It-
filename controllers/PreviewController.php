@@ -63,8 +63,6 @@ class PreviewController extends Controller
                 }
             }
 
-
-
             if ($record->password == null) {
                 return $this->render('preview', ['record' => $record]);
             }

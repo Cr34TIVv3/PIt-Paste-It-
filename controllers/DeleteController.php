@@ -3,12 +3,15 @@ namespace controllers;
 use core\Controller;
 use models\Paste;
 use core\Application;
-
+use core\exception\ForbiddenException;
 
 class DeleteController extends Controller
 {
     public function handleDelete($record)
     {   
+        if (!(Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id))) {
+            throw new ForbiddenException();
+        }
         $updatedPaste = new Paste();
         $updatedPaste->delete($record);
         
@@ -21,7 +24,6 @@ class DeleteController extends Controller
             exit;
             // Application::$app->response->redirect('/account');
         }
-
-        
+   
     }
 }
