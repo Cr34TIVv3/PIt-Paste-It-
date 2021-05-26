@@ -6,19 +6,19 @@ use core\Application;
 use core\DbModel;
 
 
-class Paste extends DbModel {
-    private $id;
-    private $id_user;
-    private $slug;
-    private $expiration;
-    private $content;
-    private $password;
-    private $title;
-    private $burn_after_read;
-    private $highlight;
-    private $access_modifier;
-    private $CREATED_AT;
-    private $UPDATED_AT;
+class Paste extends DbModel { 
+    public $id;
+    public $id_user;
+    public $slug;
+    public $expiration;
+    public $content;
+    public $password;
+    public $title;
+    public $burn_after_read;
+    public $highlight;
+    public $access_modifier;
+    public $CREATED_AT;
+    public $UPDATED_AT;
 
     public static function tableName() : string {
         return 'paste';

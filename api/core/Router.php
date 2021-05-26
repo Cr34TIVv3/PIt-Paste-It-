@@ -2,17 +2,7 @@
 
 namespace core;
 
-use controllers\DeleteController;
-use controllers\HomeController;
-use controllers\PasswordController;
-use controllers\PreviewController;
-use controllers\UpdateController;
-use core\exception\ForbiddenException;
 use core\exception\NotFoundException;
-use core\exception\BadRequest;
-use core\PathValidator;
-
-use models\Paste;
 
 class Router
 {
@@ -43,13 +33,15 @@ class Router
         $method = $this->request->getMethod();
 
         $callback = $this->routes[$method][$path] ?? false;
+
+        // var_dump($callback);
+        // exit;
+
         if ($callback === false) {
             $this->response->setStatusCode(404);
             throw new NotFoundException();
         }
-        if (is_string($callback)) {
-            return $this->renderView($callback);
-        }
+
         if (is_array($callback)) {
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
@@ -61,60 +53,5 @@ class Router
             }
         }
         return call_user_func($callback, $this->request, $this->response);
-    }
-
-    public function renderView($view, $params = [], $styles = "")
-    {
-        $layoutContent = $this->layoutContent($view);
-        $viewContent = $this->renderOnlyView($view, $params);
-        $viewStyle = $this->renderOnlyStyle($view);
-        $viewJs = $this->renderOnlyScript($view);
-        $layoutContent = str_replace('{{style}}', $viewStyle,  $layoutContent);
-        $layoutContent = str_replace('{{script}}', $viewJs,  $layoutContent);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    //good
-    protected function layoutContent($view)
-    {
-        if (!is_null(Application::$app->controller)) {
-            $layout = Application::$app->controller->layout;
-        } else {
-            $layout = 'general';
-        }
-
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
-        return ob_get_clean();
-    }
-
-    protected function renderOnlyView($view, $params = [])
-    {
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
-
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-        return ob_get_clean();
-    }
-
-    protected function renderOnlyStyle($view)
-    {
-        if (strcmp("/", $view) == 0) {
-            return "facing";
-        }
-        return $view;
-    }
-
-    protected function renderOnlyScript($view)
-    {
-        if (strcmp($view, "facing") == 0) {
-            return "chart";
-        } else if (strcmp($view, "account") == 0) {
-            return "chart&nav";
-        } else {
-            return "nav";
-        }
     }
 }

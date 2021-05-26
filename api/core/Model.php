@@ -16,6 +16,7 @@ abstract class Model
 
     public function loadData($data) 
     {
+        // $data = json_decode($data);
         foreach ($data as $key => $value)
         {
             if (property_exists($this, $key)) 
@@ -24,6 +25,7 @@ abstract class Model
             }
         }
     }
+    
     abstract public function rules() : array;
     public array $errors = [];
 
