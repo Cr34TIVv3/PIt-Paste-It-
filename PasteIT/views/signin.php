@@ -11,7 +11,6 @@ $form = new Form();
 <?php echo $form->field($model, 'email') ?>
 <?php echo $form->field($model, 'password')->passwordField() ?>
 
-
 <div class="field">
     <input type="submit" value="Login">
 </div>

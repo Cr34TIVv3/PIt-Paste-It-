@@ -1,30 +1,17 @@
-<?php 
+<?php
 
-namespace core; 
+namespace core;
 
 
-class Response 
+class Response
 {
-    public function setStatusCode(int $code) 
+    public function setStatusCode(int $code)
     {
-        http_response_code($code); 
-    }    
+        http_response_code($code);
+    }
 
     public function redirect(string $url)
     {
-        header('Location: '.$url);
+        header('Location: ' . $url);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

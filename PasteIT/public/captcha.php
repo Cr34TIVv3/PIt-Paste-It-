@@ -57,7 +57,3 @@ for($i = 0; $i < $string_length; $i++) {
 header('Content-type: image/png');
 imagepng($image);
 imagedestroy($image);
-
-?>
-
-

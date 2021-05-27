@@ -101,10 +101,6 @@ class Router
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
                 $recordVersions = Paste::findVersionDetalied($path);
 
-                // echo "<pre>";
-                // var_dump($recordVersions);
-                // var_dump($recordPastes);
-                // echo "</pre>";
 
                 if (!$recordPastes === false && !is_null($recordPastes->content)) {
                     Application::$app->isVersion = false;

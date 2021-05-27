@@ -184,9 +184,7 @@ class Paste extends DbModel
             // echo 'Status code: ' . $codHTTP;
 
         }
-
     }
-
 
     public function setCaptchaAnswer(string $value)
     {

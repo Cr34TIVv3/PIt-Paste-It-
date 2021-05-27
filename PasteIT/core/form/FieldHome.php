@@ -26,7 +26,7 @@ class FieldHome
 
         $this->name = $name;
     }
-    
+
     public function getCheckBox()
     {
         $output = sprintf('     

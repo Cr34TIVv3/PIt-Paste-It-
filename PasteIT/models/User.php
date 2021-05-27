@@ -47,7 +47,7 @@ class User extends UserModel
 
         return true;
     }
-  
+
 
     public function addMembership($record)
     {
