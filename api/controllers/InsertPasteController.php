@@ -15,14 +15,15 @@ class InsertPasteController extends Controller
         $paste = new Paste(); 
         $data = json_decode(file_get_contents("php://input"));
         $paste->loadData($data); 
-
         try {
             $paste->save();
         }
         catch (Exception $e) {
             echo json_encode(["response" => "Something went wrong!"]);
+            $respone->setStatusCode(400);
+            exit;
         }
 
-        echo json_encode(["response" => "Done"]);
+        echo json_encode(["response" => "Paste added!"]);
     }
 }

@@ -18,9 +18,9 @@ abstract class DbModel extends Model
     
      public function save()
      {
-       
         $tableName  = $this->tableName();
         $attributes = $this->attributes();
+
 
         $params = array_map(fn($attr) => ":$attr", $attributes); 
       
@@ -29,8 +29,6 @@ abstract class DbModel extends Model
 
         $statement = self::prepare($query); 
        
-        // echo $query;
-        // exit;
 
         foreach($attributes as $attribute)
         {
@@ -39,8 +37,29 @@ abstract class DbModel extends Model
 
         $statement->execute();
 
+
         return true;
     }
+
+    
+    public function delete()
+    {
+        $tableName  = $this->tableName();
+        $attributes = $this->attributes();
+
+
+        $conditions =  implode("AND", array_map(fn($attr) => "$attr = :$attr" , $attributes));
+
+        $statement = self::prepare("DELETE FROM $tableName WHERE $conditions");
+        
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+
+        $statement->execute();
+
+    }
+
 
     public static function findVersionDetalied($where) {
 

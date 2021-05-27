@@ -25,7 +25,17 @@ class Paste extends DbModel {
     }
 
     public function attributes(): array {
-        return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+        $output = [];
+        $array = ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+        foreach($array as $element)
+        {
+            if(property_exists($this, $element) && isset($this->{$element}) )
+            {
+                array_push($output, $element);
+            }
+        }
+        return $output;
+        // return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
     } 
 
     public static function primaryKey(): string {

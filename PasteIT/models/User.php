@@ -11,6 +11,14 @@ class User extends UserModel
     public String $email = '';
     public String $password = '';
     public String $repeat = '';
+
+    
+    public static function getUrlService(): string
+    {
+        return " ";
+    }
+
+
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -31,13 +39,12 @@ class User extends UserModel
             $sql .= ' password = \'' . $this->password . '\'';
         }
 
+
         if (strcmp($sql, 'UPDATE users SET') == 0) {
             return false;
         } else {
             $sql .= ' WHERE id =' . Application::$app->user->id;
         }
-
-
 
 
         $statement =  Application::$app->db->pdo->prepare($sql);
@@ -62,6 +69,7 @@ class User extends UserModel
             return false;
         }
         ///insert the membership 
+
 
         $sql = sprintf('INSERT INTO members (id_paste, id_user) 
         VALUES (\'%s\',\'%s\')', $record->id,  $object->id);

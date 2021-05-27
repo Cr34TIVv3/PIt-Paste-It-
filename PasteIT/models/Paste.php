@@ -19,6 +19,11 @@ class Paste extends DbModel
     public string $captcha_challenge = '';
     public string $captcha_answer;
 
+    public static function getUrlService(): string
+    {
+        return "localhost:8081/insertPaste";
+    }
+   
 
     public function submit()
     {
@@ -72,14 +77,14 @@ class Paste extends DbModel
         // echo $old_title."<br>";
         // echo $new_content."<br>";
         // echo $new_title."<br>";
-        // exit;
+        // // exit;
 
 
-        /// swap the content and title between pastes and versions 
+        // /// swap the content and title between pastes and versions 
 
-        $sqltime = date('Y-m-d H:i:s');
-        $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $record->expiration));
-        $record->expiration = $sqltime;
+        // $sqltime = date('Y-m-d H:i:s');
+        // $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $record->expiration));
+        // $record->expiration = $sqltime;
 
 
         $sql = sprintf(

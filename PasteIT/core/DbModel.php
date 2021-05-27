@@ -9,39 +9,73 @@ abstract class DbModel extends Model
     abstract public static function tableName(): string ; 
     abstract public function attributes(): array; 
     abstract public static function primaryKey(): string;
+    abstract public static function getUrlService(): string;
     
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql); 
 
     } 
-    
+
+
+    public function prepareJson() 
+    {
+        $jsonObject = [];
+        $attributes = $this->attributes();
+        foreach($attributes as $attribute) {
+            $jsonObject[$attribute] = $this->{$attribute};
+        }
+        return json_encode($jsonObject,JSON_PRETTY_PRINT);
+    }
+
      public function save()
      {
        
-        $tableName  = $this->tableName();
-        $attributes = $this->attributes();
-        // var_dump($attributes);
-        $params = array_map(fn($attr) => ":$attr", $attributes); 
-      
+        $payload = $this->prepareJson();
 
-        $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
-               VALUES(".implode(',' , $params) .")"); 
-       
-        var_dump(get_object_vars($this));
+        // print_r($payload);
+        // exit;
+
+        // $url = 'localhost:8081/insertPaste';
+        $url = self::getUrlService();
+
+        $ch = curl_init($url);
+
+        // Attach encoded JSON string to the POST fields
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+        // Set the content type to application/json
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+        // Return response instead of outputting
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the POST request
+        $res = curl_exec ($ch);
+
+        $codHTTP = curl_getinfo ($ch, CURLINFO_RESPONSE_CODE);
+        $tip = curl_getinfo ($ch, CURLINFO_CONTENT_TYPE);     
+
+        curl_close ($ch);
+
+        if ($codHTTP == 200 && $tip == 'application/json; charset=UTF-8') {
+            // header ('Content-Type: ' . $tip); // trimitem tipul MIME corespunzator (adica image/jpeg in acest caz)
+            // echo $res; // afisam reprezentarea resursei obtinute (aici, imaginea in format JPEG)
+            return true;
+          } else {
+              return false;
+            // http_response_code ($codHTTP); // s-a obtinut altceva, trimitem codul de stare intors de serviciu
+            // header ('Content-Type: text/plain');
+            // echo 'Status code: ' . $codHTTP;
+            
+          }
+
+        // $arr = json_decode($res,true);
+        // echo '<pre>';
+        // print_r($arr);
+        // echo '</pre>';
+
         
-         
-        foreach($attributes as $attribute)
-        {
-            echo $attribute;
-             $statement->bindValue(":$attribute", $this->{$attribute});
-        }
-        $statement->execute();
-
-        echo"am ajuns aici";
-        return true;
-
-
     }
 
     public static function findVersionDetalied($where) {
@@ -59,8 +93,6 @@ abstract class DbModel extends Model
 
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql AND expiration > CURRENT_TIMESTAMP");
-        // AND expiration < CURRENT_TIMESTAMP
-        //  AND expiration > CURRENT_TIMESTAMP
         
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);
