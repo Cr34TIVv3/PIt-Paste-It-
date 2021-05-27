@@ -7,7 +7,7 @@ use core\DbModel;
 
 
 class Paste extends DbModel { 
-    public $id;
+    // public $id;
     public $id_user;
     public $slug;
     public $expiration;
@@ -21,11 +21,11 @@ class Paste extends DbModel {
     public $UPDATED_AT;
 
     public static function tableName() : string {
-        return 'paste';
+        return 'pastes';
     }
 
     public function attributes(): array {
-        return ['id', 'id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+        return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
     } 
 
     public static function primaryKey(): string {

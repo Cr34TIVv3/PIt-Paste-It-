@@ -4,6 +4,8 @@
 require_once __DIR__ . '/vendor/autoloader.php';
 
 use controllers\InsertPasteController;
+use controllers\DeletePasteController;
+use controllers\AddMembershipPasteController;
 use core\Application;
 
 
@@ -19,6 +21,8 @@ $app = new Application($root_dirname);
 
 
 $app->router->post('/insertPaste', [InsertPasteController::class, 'handleInsert']);
+$app->router->post('/deletePaste', [DeletePasteController::class, 'handleDelete']);
+$app->router->post('/insertPaste', [AddMembershipPasteController::class, 'handleInsert']);
 
 
 

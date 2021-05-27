@@ -25,16 +25,18 @@ abstract class DbModel extends Model
         $params = array_map(fn($attr) => ":$attr", $attributes); 
       
 
-        $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
-               VALUES(".implode(',' , $params) .")"); 
+        $query = "INSERT INTO $tableName ( ".implode(',' , $attributes).")  VALUES(".implode(',' , $params) .")";
+
+        $statement = self::prepare($query); 
        
-        var_dump(get_object_vars($this));
-        
-         
+        // echo $query;
+        // exit;
+
         foreach($attributes as $attribute)
         {
             $statement->bindValue(":$attribute", $this->{$attribute});
         }
+
         $statement->execute();
 
         return true;
