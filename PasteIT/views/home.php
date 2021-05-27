@@ -9,10 +9,9 @@ use core\Captcha;
     <div class="main-container">
 
         <?php $form = core\form\FormHome::begin('/home', "post") ?>
+
         <?php echo $form->field($model, '', '')->getTextArea() ?>
-            
-        
- 
+
         <?php echo $form->field($model, 'highlight', 'Syntax highlight:')->getSelector(["None", "C++", "SQL", "XML"]) ?>
 
         <?php echo $form->field($model, 'title', 'Paste Name/Title:')->getInput(True) ?>
@@ -39,30 +38,24 @@ use core\Captcha;
         </div>
         <?php core\form\FormHome::end() ?>
 
-        </div>
-        <!-- show personal user posts  -->
-
-
-        <?php if (!Application::isGuest()) : ?>
-
-            <?php core\content\InternalPastesContent::begin() ?>
-            <?php echo core\content\InternalPastesContent::generateContent() ?>
-            <?php core\content\InternalPastesContent::end() ?>
-
-
-        <?php endif; ?>
-
-
-
-
-        <!-- show public posts -->
-
-        <?php core\content\PublicPastesContent::begin() ?>
-        <?php echo core\content\PublicPastesContent::generateContent() ?>
-        <?php core\content\PublicPastesContent::end() ?>
-
-
-
-
     </div>
+    <!-- show personal user posts  -->
+
+    <?php if (!Application::isGuest()) : ?>
+
+        <?php core\content\InternalPastesContent::begin() ?>
+        <?php echo core\content\InternalPastesContent::generateContent() ?>
+        <?php core\content\InternalPastesContent::end() ?>
+
+
+    <?php endif; ?>
+
+    <!-- show public posts -->
+
+    <?php core\content\PublicPastesContent::begin() ?>
+    <?php echo core\content\PublicPastesContent::generateContent() ?>
+    <?php core\content\PublicPastesContent::end() ?>
+
+
+</div>
 </div>

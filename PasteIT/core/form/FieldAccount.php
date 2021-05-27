@@ -16,15 +16,12 @@ class FieldAccount
     public function __construct(Model $model, string $attribute)
     {
         $this->type = 'text';
-
         $this->model = $model;
-
         $this->attribute = $attribute;
     }
 
     public function __toString()
     {
-        //  echo $this->model->{$this->attribute}; 
         return  sprintf('
         <tr>
             <th><label>%s</label></th>
@@ -41,7 +38,6 @@ class FieldAccount
         
         ', $this->attribute, $this->type, $this->attribute, $this->model->getFirstError($this->attribute));
     }
-    // <div class = "invalid-feedback">     %s    </div> 
 
     public function passwordField()
     {

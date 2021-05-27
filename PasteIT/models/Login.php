@@ -14,41 +14,24 @@ class Login extends Model
     public function rules(): array
     {
         return [
-              'email' => [[self::RULE_EMAIL]]
+            'email' => [[self::RULE_EMAIL]]
         ];
     }
 
     public function login()
     {
 
-        $user = User::findOne(['email' => $this->email]) ;
-        if(!$user)
-        {
-        
-            $this->addError('email', 'User does not exist with this email'); 
+        $user = User::findOne(['email' => $this->email]);
+        if (!$user) {
+
+            $this->addError('email', 'User does not exist with this email');
             return false;
         }
 
-
-        // echo '<pre>';
-        // echo $this->password;
-        // echo '<br>';
-        // echo password_hash($this->password, PASSWORD_DEFAULT);
-        // echo '<br>';
-        // echo password_hash($this->password, PASSWORD_DEFAULT);
-        // echo '<br>';
-        // echo $user->password;
-        // echo '</pre>';
-
-        // exit;
-
-        if(!password_verify($this->password, $user->password))
-        {
+        if (!password_verify($this->password, $user->password)) {
             $this->addError('password', 'Password is incorrect');
             return false;
         }
         return Application::$app->login($user);
-
     }
-    
 }

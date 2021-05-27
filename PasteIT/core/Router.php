@@ -46,7 +46,7 @@ class Router
         if ($callback === false) {
 
             if (PathValidator::validatePasswordRequest($path)) {
- 
+
                 $path = substr($path, 1, -9);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
                 $recordVersions = Paste::findVersionDetalied($path);
@@ -54,7 +54,6 @@ class Router
                     Application::$app->isVersion = false;
                     $passwordController = new PasswordController();
                     return $passwordController->handlePassword($this->request, $recordPastes);
-                    
                 } else if (!is_null($recordVersions->content)) {
                     $this->response->setStatusCode(400);
                     throw new BadRequest();
@@ -62,8 +61,7 @@ class Router
                     $this->response->setStatusCode(404);
                     throw new NotFoundException();
                 }
-            }
-            else if (PathValidator::validateAddUserRequest($path)) {
+            } else if (PathValidator::validateAddUserRequest($path)) {
                 $path = substr($path, 1, -8);
                 $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
                 $recordVersions = Paste::findVersionDetalied($path);
@@ -129,7 +127,7 @@ class Router
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            
+
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
             $controller->action = $callback[1];
@@ -153,7 +151,6 @@ class Router
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    //good
     protected function layoutContent($view)
     {
         if (!is_null(Application::$app->controller)) {

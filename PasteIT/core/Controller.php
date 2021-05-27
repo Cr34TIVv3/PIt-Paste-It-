@@ -12,30 +12,28 @@ class Controller
     public string $action = '';
     protected array $middlewares = [];
 
-    public function render($view,$params = [])
+    public function render($view, $params = [])
     {
-       
-        if (strcmp ($view, "facing") == 0) 
-        {
+
+        if (strcmp($view, "facing") == 0) {
             $this->layout = 'facing';
         }
 
         return Application::$app->router->renderView($view, $params);
-
     }
 
-
-    public function registerMiddleware(BaseMiddleware $middleware) {
+    public function registerMiddleware(BaseMiddleware $middleware)
+    {
         $this->middlewares[] = $middleware;
     }
 
     public function getMiddlewares(): array
     {
-         return $this->middlewares;
+        return $this->middlewares;
     }
 
-
-    public function setMiddlewares(array $middlewares) {
+    public function setMiddlewares(array $middlewares)
+    {
         $this->middlewares = $middlewares;
     }
 }

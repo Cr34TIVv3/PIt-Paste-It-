@@ -6,7 +6,8 @@ use core\Application;
 use core\DbModel;
 
 
-class Paste extends DbModel { 
+class Paste extends DbModel
+{
     // public $id;
     public $id_user;
     public $slug;
@@ -20,25 +21,25 @@ class Paste extends DbModel {
     public $CREATED_AT;
     public $UPDATED_AT;
 
-    public static function tableName() : string {
+    public static function tableName(): string
+    {
         return 'pastes';
     }
 
-    public function attributes(): array {
+    public function attributes(): array
+    {
         $output = [];
         $array = ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
-        foreach($array as $element)
-        {
-            if(property_exists($this, $element) && isset($this->{$element}) )
-            {
+        foreach ($array as $element) {
+            if (property_exists($this, $element) && isset($this->{$element})) {
                 array_push($output, $element);
             }
         }
         return $output;
-        // return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
-    } 
+    }
 
-    public static function primaryKey(): string {
+    public static function primaryKey(): string
+    {
         return "id";
     }
 
@@ -48,21 +49,16 @@ class Paste extends DbModel {
     }
 
 
-    public function getData($attributes = []) {
-        
+    public function getData($attributes = [])
+    {
         $tableName  = $this->tableName();
-        // var_dump($attributes);
-        $params = array_map(fn($attr) => ":$attr", $attributes); 
-      
+        $params = array_map(fn ($attr) => ":$attr", $attributes);
 
-        $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
-               VALUES(".implode(',' , $params) .")"); 
-       
-        // var_dump(get_object_vars($this));
-        
-         
-        foreach($attributes as $attribute)
-        {
+
+        $statement = self::prepare("INSERT INTO $tableName ( " . implode(',', $attributes) . ") 
+               VALUES(" . implode(',', $params) . ")");
+
+        foreach ($attributes as $attribute) {
             $statement->bindValue(":$attribute", $this->{$attribute});
         }
         $statement->execute();

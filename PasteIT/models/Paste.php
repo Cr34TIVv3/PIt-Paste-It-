@@ -69,22 +69,6 @@ class Paste extends DbModel
         $new_content = $record->content;
         $new_title = $record->title;
 
-        // echo $old_content."<br>";
-        // echo $old_title."<br>";
-        // echo $new_content."<br>";
-        // echo $new_title."<br>";
-        // exit;
-
-
-        /// swap the content and title between pastes and versions 
-
-        // echo $record->expiration;
-
-        // $sqltime = date('Y-m-d H:i:s');
-        // echo $sqltime;
-        // $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $record->expiration));
-        // $record->expiration = $sqltime;
-
 
         $sql = sprintf(
             'UPDATE pastes SET expiration = \'%s\', content = \'%s\' , title = \'%s\', UPDATED_AT = \'%s\' WHERE id= \'%s\' ',
@@ -156,28 +140,51 @@ class Paste extends DbModel
 
     public function delete($record)
     {
-        $sql = "";
 
-        if (Application::$app->isVersion) {
-            $sql = sprintf(
-                'DELETE FROM versions WHERE slug= \'%s\' ',
-                $record->slug
-            );
+        $payload = [];
+        $payload['slug'] = $record->slug;
+        $payload = json_encode($payload);
+
+
+        // print_r($payload);
+        // exit;
+
+        $url = 'localhost:8081/deletePaste';
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+
+        // Attach encoded JSON string to the POST fields
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+        // Set the content type to application/json
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+        // Return response instead of outputting
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the POST request
+        $res = curl_exec($ch);
+
+        $codHTTP = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        $tip = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+        curl_close($ch);
+
+        if ($codHTTP == 200 && $tip == 'application/json; charset=UTF-8') {
+            // header ('Content-Type: ' . $tip); // trimitem tipul MIME corespunzator (adica image/jpeg in acest caz)
+            // echo $res; // afisam reprezentarea resursei obtinute (aici, imaginea in format JPEG)
+            return true;
         } else {
-            $sql = sprintf(
-                'DELETE FROM pastes WHERE slug= \'%s\' ',
-                $record->slug
-            );
+            return false;
+            // http_response_code ($codHTTP); // s-a obtinut altceva, trimitem codul de stare intors de serviciu
+            // header ('Content-Type: text/plain');
+            // echo 'Status code: ' . $codHTTP;
+
         }
 
-        $statement =  Application::$app->db->pdo->prepare($sql);
-        $statement->execute();
-
-        // if (Application::$app->isVersion) {
-        //     Application::$app->response->redirect('/' . Paste::findOne(["id" => $record->id])->slug);
-        // } else {
-        //     Application::$app->response->redirect('/account');
-        // }
     }
 
 
@@ -209,8 +216,16 @@ class Paste extends DbModel
 
     public function attributes(): array
     {
-        return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+        $output = [];
+        $array = ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+        foreach ($array as $element) {
+            if (property_exists($this, $element) && isset($this->{$element})) {
+                array_push($output, $element);
+            }
+        }
+        return $output;
     }
+
     public static function getUrlService(): string
     {
         return "localhost:8081/insertPaste";

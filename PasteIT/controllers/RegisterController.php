@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace controllers;
 
@@ -8,32 +8,22 @@ use core\Request;
 use models\User;
 
 
-class RegisterController extends Controller{
-   
-
-    public function handleRegistration(Request $request) {
+class RegisterController extends Controller
+{
+    public function handleRegistration(Request $request)
+    {
         $user = new User();
-        if( $request->getMethod() === "post")
-        {
-            
-            $user->loadData($request->getBody()); 
+        if ($request->getMethod() === "post") {
 
-            if($user->validate() && $user->save())
-            {
+            $user->loadData($request->getBody());
+
+            if ($user->validate() && $user->save()) {
                 Application::$app->session->setFlash('success', 'Thanks for registering');
                 Application::$app->response->redirect('/home');
             }
-
             return $this->render('signup', ['model' => $user]);
-        }
-        else 
-        {
+        } else {
             return $this->render('signup', ['model' => $user]);
         }
     }
-
-
-
-
 }
-                

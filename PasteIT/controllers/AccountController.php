@@ -16,14 +16,13 @@ class AccountController extends Controller
     {
         $this->registerMiddleware(new AuthMiddleware(['handleAccount']));
     }
+
     public function handleAccount(Request $request, Response $respone)
     {
         $user = new User();
         if( $request->getMethod() === "post")
         {
             $user->loadData($request->getBody()); 
-            // var_dump($user);
-            // exit;
 
             if($user->validate() && $user->update())
             {
@@ -42,7 +41,6 @@ class AccountController extends Controller
         {
             return $this->render('account', ['model' => $user ]);
         }
-        
     }
 
     public function logout(Request $request, Response $respone)

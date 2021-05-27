@@ -26,7 +26,7 @@ class PublicPastesContent
     public static function generateContent()
     {
         $output = '';
- 
+
         /// show public posts from logged in users 
 
 
@@ -38,17 +38,12 @@ class PublicPastesContent
 
         $result = $statement->fetchAll();
 
-        // echo "<pre>";
-        // var_dump($result);
-        // echo "</pre>";
-        // exit;
 
         foreach ($result as $record) {
             //loop over each $result (row), setting $key to the column name and $value to the value in the column.
             foreach ($record as $key => $value) {
-                 
-                if ($key == 'slug')
-                { 
+
+                if ($key == 'slug') {
                     $slug = $value;
                 }
                 if ($key == 'username') {
@@ -57,38 +52,27 @@ class PublicPastesContent
                 if ($key == 'title') {
                     $title = $value;
                 }
-                if ($key == 10)
-                {
+                if ($key == 10) {
                     $date = $value;
                 }
                 if ($key == 'burn_after_read') {
                     $burn = $value;
                 }
-                if ($key == 5)
-                {
+                if ($key == 5) {
                     $password = $value;
                 }
             }
 
-            // echo $password.'<br>';
-
 
             $icons = '<div class = "features" >';
-            if($burn != null && $burn == true)
-            {
+            if ($burn != null && $burn == true) {
                 $icons .= ' <i class="fas fa-fire-alt"></i>';
             }
-            if($password != null)
-            {
+            if ($password != null) {
                 $icons .= '<i class="fas fa-lock"></i>';
             }
 
             $icons .= ' </div>';
-
-// <div class = "features" >
-//                             <i class="fas fa-fire-alt"></i>
-//                             <i class="fas fa-lock"></i>
-//                         </div>
             $output .= sprintf(' 
                 <a href="/%s">
                 <div class="div-block">
@@ -102,7 +86,7 @@ class PublicPastesContent
                     </div>
                 </div>
                 </a>
-            ', $slug, $username, $title,$date, $icons);
+            ', $slug, $username, $title, $date, $icons);
         }
 
 
@@ -116,16 +100,14 @@ class PublicPastesContent
         foreach ($result as $record) {
             //loop over each $result (row), setting $key to the column name and $value to the value in the column.
             foreach ($record as $key => $value) {
-                 
-                if($key == 'slug')
-                { 
+
+                if ($key == 'slug') {
                     $slug = $value;
                 }
                 if ($key == 'title') {
                     $title = $value;
                 }
-                if ($key == 10)
-                {
+                if ($key == 10) {
                     $date = $value;
                 }
             }
@@ -146,7 +128,7 @@ class PublicPastesContent
                         </div>
                     </div>
                 </a>
-            ', $slug, $title,$date);
+            ', $slug, $title, $date);
         }
 
 

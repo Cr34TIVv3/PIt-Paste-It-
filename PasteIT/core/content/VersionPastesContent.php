@@ -6,8 +6,6 @@ use core\Application;
 
 class VersionPastesContent
 {
-
-
     public static function begin()
     {
         echo '
@@ -33,25 +31,14 @@ class VersionPastesContent
 
     public static function generateContent($record)
     {
-        
+
         $output = '';
-
         $user_id = Application::$app->session->get('user');
-
-
         $sql = 'SELECT * FROM pastes p JOIN versions v ON p.id=v.id JOIN users u ON v.id_user=u.id WHERE p.id =' . $record->id;
-
         $statement = Application::$app->db->pdo->prepare($sql);
-
         $statement->execute();
-
         $result = $statement->fetchAll();
-
-
-        // var_dump($result);
-        
         foreach ($result as $record) {
-
             foreach ($record as $key => $value) {
 
                 if ($key == 'title') {
@@ -79,21 +66,17 @@ class VersionPastesContent
                            <td> %s </td>
                            <td><a href="%s"><i class="fas fa-search"></i></a></td>
             ', $user, $email, $title, $date, $slug);
-            
-           
-            if(Application::$app->isMember($record[0] ) || Application::$app->isOwner($record['id_user']) )
-            {
+
+
+            if (Application::$app->isMember($record[0]) || Application::$app->isOwner($record['id_user'])) {
                 $output .= '
-                           <td><p class="delteBtn" id="'.$slug.'/delete"><i class="fas fa-backspace"></i></p></td>
-                             </tr>  ' ; 
-            }
-            else 
-            {
+                           <td><p class="delteBtn" id="' . $slug . '/delete"><i class="fas fa-backspace"></i></p></td>
+                             </tr>  ';
+            } else {
                 $output .= '</tr>';
-            
             }
         }
-        
+
 
         return $output;
     }

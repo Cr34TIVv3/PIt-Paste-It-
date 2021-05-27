@@ -24,15 +24,12 @@ class HomeController extends Controller
       $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $paste->expiration));
       $paste->expiration = $sqltime;
 
-
       if ($paste->validate() && $paste->submit()) {
-        // Application::$app->session->setFlash('success', 'Welcome');
         Application::$app->response->redirect('/' . $paste->slug);
         exit;
       }
       return $this->render('home', ['model' => $paste]);
     } else {
-
       return $this->render('home', ['model' => $paste]);
     }
   }

@@ -26,20 +26,20 @@ $app->router->post('/update', [UpdateController::class, 'handleUpdate']);
 ///           require only get method
 
 $app->router->get('/', [FacingController::class, 'handleFacing']);
-$app->router->get('/contact', [ContactController::class, 'handleContact']); 
-$app->router->get('/faq', [FaqController::class, 'handleFaq']); 
-$app->router->get('/logout', [AccountController::class, 'logout']); 
+$app->router->get('/contact', [ContactController::class, 'handleContact']);
+$app->router->get('/faq', [FaqController::class, 'handleFaq']);
+$app->router->get('/logout', [AccountController::class, 'logout']);
 
 ///          require get and post
 
-$app->router->get('/signin', [AuthController::class, 'handleLogin']); 
+$app->router->get('/signin', [AuthController::class, 'handleLogin']);
 $app->router->post('/signin', [AuthController::class, 'handleLogin']);
 
-$app->router->get('/signup', [RegisterController::class, 'handleRegistration']); 
+$app->router->get('/signup', [RegisterController::class, 'handleRegistration']);
 $app->router->post('/signup', [RegisterController::class, 'handleRegistration']);
 
-$app->router->get('/account', [AccountController::class,'handleAccount']); 
-$app->router->post('/account', [AccountController::class,'handleAccount']); 
+$app->router->get('/account', [AccountController::class, 'handleAccount']);
+$app->router->post('/account', [AccountController::class, 'handleAccount']);
 
 $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);
@@ -48,32 +48,3 @@ $app->router->post('/home', [HomeController::class, 'handleHome']);
 
 
 $app->run();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

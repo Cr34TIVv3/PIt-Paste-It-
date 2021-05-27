@@ -5,29 +5,31 @@ use models\Paste;
 use core\DataProvider;
 ?>
 
-<script src="./scripts/window.js" ></script>
+<script src="./scripts/window.js"></script>
 
 
 
 <div class="source">
     <div class="main-container">
 
-       
+
         <h1><?php echo $record->title; ?></h1>
 
         <div class="members">
-            <h2> This is your post:</h2> 
-            <h2 id="seeOtherMembers"> See other members <i class="fas fa-users"></i></h2> 
+            <h2> This is your post:</h2>
+            <h2 id="seeOtherMembers"> See other members <i class="fas fa-users"></i></h2>
         </div>
 
-        <script>   
-                document.getElementById("seeOtherMembers").addEventListener("click", () => {
-                    ModalWindow.openModal({ title: "Members", content : "<?php echo DataProvider::getMembers($record->id); ?>"});
-
-                    document.getElementById("modal__close").addEventListener("click", e => ModalWindow.closeModal(e.target));
+        <script>
+            document.getElementById("seeOtherMembers").addEventListener("click", () => {
+                ModalWindow.openModal({
+                    title: "Members",
+                    content: "<?php echo DataProvider::getMembers($record->id); ?>"
                 });
 
-       </script>
+                document.getElementById("modal__close").addEventListener("click", e => ModalWindow.closeModal(e.target));
+            });
+        </script>
 
         <div class="pasteContent">
             <pre>
@@ -42,25 +44,25 @@ use core\DataProvider;
 
             <script src="scripts/highlither.js"></script>
             <script>
-                highlight_code("<?php echo $record->highlight?>");
+                highlight_code("<?php echo $record->highlight ?>");
             </script>
-        <?php else:?>
+        <?php else : ?>
             <script src="scripts/highlither.js"></script>
             <script>
-                highlight_code("<?php echo Paste::findOne(["id" => $record->id])->highlight?>");
+                highlight_code("<?php echo Paste::findOne(["id" => $record->id])->highlight ?>");
             </script>
-        <?php endif; ?> 
+        <?php endif; ?>
 
         <!-- show some option in order to update a post-->
 
 
-          <!-- SHOW THIS FOR MEMBERS ONLY-->
-          
+        <!-- SHOW THIS FOR MEMBERS ONLY-->
+
         <?php if (!Application::$app->isVersion) : ?>
-           
-          <?php if (Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id) ) : ?>
-                
-                
+
+            <?php if (Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id)) : ?>
+
+
                 <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
                 <h3> Make some changes?</h3>
                 <div class="form">
@@ -68,11 +70,11 @@ use core\DataProvider;
                 </div>
                 <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True, True) ?>
 
-            
+
                 <div class="field">
                     <input type="submit" value="Update The Paste">
                 </div>
-                <?php core\form\FormHome::end() ?>            
+                <?php core\form\FormHome::end() ?>
 
             <?php endif; ?>
 
@@ -80,13 +82,13 @@ use core\DataProvider;
             <!-- SHOW THIS FOR OWNERS ONLY-->
 
             <?php if (Application::$app->isOwner($record->id_user)) : ?>
-                    <?php $form = core\form\FormHome::begin('/'.$record->slug.'/addUser', "get") ?>
-                    <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True, True) ?>
+                <?php $form = core\form\FormHome::begin('/' . $record->slug . '/addUser', "get") ?>
+                <?php echo $form->field($record, 'email', 'Enter email address member:')->getInput(True, True) ?>
 
-                    <div class="field">
-                        <input type="submit" value="Add user">
-                    </div>
-                    <?php core\form\FormHome::end() ?>
+                <div class="field">
+                    <input type="submit" value="Add user">
+                </div>
+                <?php core\form\FormHome::end() ?>
             <?php endif; ?>
         <?php endif; ?>
 
@@ -101,11 +103,11 @@ use core\DataProvider;
         <?php endif; ?>
 
 
-  
+
 
         <?php if (Application::$app->isVersion && (Application::$app->isMember($record->id) || Application::$app->isOwner($record->id_user))) : ?>
             <i style="color: yellow;" class="fas fa-exclamation-triangle"></i>
-            <h6 style="color:beige;">Note: this is an older version: click <a style="color: chartreuse;" href="<?php echo '/'.Paste::findOne(["id" => $record->id])->slug ?>"> here </a> to preview the original version</h6>
+            <h6 style="color:beige;">Note: this is an older version: click <a style="color: chartreuse;" href="<?php echo '/' . Paste::findOne(["id" => $record->id])->slug ?>"> here </a> to preview the original version</h6>
 
             <?php $form = core\form\FormHome::begin('/' . $record->slug, "post") ?>
             <div class="field">
@@ -126,5 +128,3 @@ use core\DataProvider;
 
 
 <script src="/scripts/deleteAJAX.js"> </script>
-
-

@@ -34,26 +34,13 @@ class InternalPastesContent
     {
 
         $output = '';
-
         $user_id = Application::$app->session->get('user');
-
-
         $sql = 'SELECT * FROM PASTES WHERE id_user =' . $user_id . ' AND pastes.expiration > CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
-
         $statement = Application::$app->db->pdo->prepare($sql);
-
         $statement->execute();
-
         $result = $statement->fetchAll();
 
-
-
         foreach ($result as $record) {
-            //loop over each $result (row), setting $key to the column name and $value to the value in the column.
-            // echo "<pre>";
-            // var_dump($record);
-            // echo "</pre>";
-            // exit;
 
             foreach ($record as $key => $value) {
 
@@ -61,11 +48,10 @@ class InternalPastesContent
                     $title = $value;
                 }
                 if ($key == 'CREATED_AT') {
-                    $date = $value; 
+                    $date = $value;
                 }
                 if ($key == 'expiration') {
                     $expiration_date = $value;
-                    
                 }
                 if ($key == 'highlight') {
                     $syntax = $value;
@@ -86,8 +72,6 @@ class InternalPastesContent
                 
             ', $title, $date, $expiration_date, $syntax,  $access_modifier);
         }
-
-
 
         return $output;
     }

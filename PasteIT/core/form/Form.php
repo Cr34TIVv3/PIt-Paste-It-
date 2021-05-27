@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 namespace core\form;
+
 use core\Model;
 use core\form\Field;
 
@@ -14,21 +15,18 @@ class Form
                 <div itemprop="headline"  class="title">
                     Register Form
                 </div>
-                <form action = "%s" method = "%s">', $action ,  $method); 
-        return new Form() ;
+                <form action = "%s" method = "%s">', $action,  $method);
+        return new Form();
     }
-  
+
     public static function end()
     {
         echo '</form>
             </div>
         </div>';
     }
-    public function field(Model $model, $attribute, $flag=false)
+    public function field(Model $model, $attribute, $flag = false)
     {
-        return new Field($model,$attribute, $flag); 
+        return new Field($model, $attribute, $flag);
     }
-
-
-
 }

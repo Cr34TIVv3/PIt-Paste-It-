@@ -15,7 +15,6 @@ class Membership extends DbModel
         return "localhost:8081/insertMember";
     }
 
-   
     public static function tableName(): string
     {
         return 'members';
@@ -35,7 +34,6 @@ class Membership extends DbModel
     {
         return ['id_user', 'id_paste'];
     }
-
 
     public function getDisplayTitle(): string
     {

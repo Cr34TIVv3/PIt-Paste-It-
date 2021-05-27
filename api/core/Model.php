@@ -64,8 +64,6 @@ abstract class Model
                     {
                         $this->addErrorForRule($attribute,self::RULE_UNIQUE, ['field' => $attribute]);
                     }
-                    
-                    // $this->addError($attribute, self::RULE_MATCH, ['field' => $attribute]);
                 }
             }
         }
@@ -73,7 +71,6 @@ abstract class Model
         return empty($this->errors);
     }
  
-    
     private function addErrorForRule(string $attribute, string $rule, $params = []) {
         $message = $this->errorMessages()[$rule] ?? '' ; 
 
@@ -89,7 +86,6 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
-
     public function errorMessages() {
         return [
             self::RULE_EMAIL => 'This must be a valid email address',
@@ -104,12 +100,12 @@ abstract class Model
     {
         return $this->errors[$attribute] ?? false ;
     }
+
     public function getFirstError($attribute)
     {
         
         return $this->errors[$attribute][0] ?? false;
     }
-
 
 }
 

@@ -13,7 +13,7 @@ deleteButtons.forEach((button) => {
         request.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 let response = request.response;
-                // console.log(response);
+                console.log(response);
                 let redirect = response.redirect;
                 var row = button.parentElement.parentElement
                 row.remove();

@@ -59,7 +59,6 @@ class Application
 
         $this->user = $user;
         $primaryKey = $user->primaryKey();
-        ///de intrebat !!!!!!!
         $primaryValue = $user->{$primaryKey};
 
         $this->session->set('user', $primaryValue);

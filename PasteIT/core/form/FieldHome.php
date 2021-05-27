@@ -26,6 +26,7 @@ class FieldHome
 
         $this->name = $name;
     }
+    
     public function getCheckBox()
     {
         $output = sprintf('     
@@ -45,7 +46,7 @@ class FieldHome
         </div>
         <h1 itemprop="name">Optional settings</h1>
         <div class="line"></div>
-        <div class="settings">', $this->model->content); 
+        <div class="settings">', $this->model->content);
     }
 
     public function getSelector($params = [])  /// for every selector
@@ -63,17 +64,16 @@ class FieldHome
 
         return $output;
     }
+
     public function getInput($required = false, $break = false)  ///for password and title 
     {
 
         $output = sprintf('
         <label itemprop="name" > %s </label>
         ', $this->name);
-
         if ($break == true) {
             $output .= "<br>";
         }
-
         if ($required == true) {
             $output .=  sprintf('<input type="%s" name="%s" required>', $this->type, $this->attribute);
         } else {
@@ -89,8 +89,6 @@ class FieldHome
         if ($this->model->getFirstError($this->attribute) != false) {
             $error_message = 'Captcha invalid!';
         }
-
-
         return sprintf('<label for="captcha">Please Enter the Captcha Text</label>
         <img src="captcha.php" alt="CAPTCHA" class="captcha-image">
         <input type="button" id="refresh" name="captcha_challenge" value="refresh">
@@ -98,7 +96,6 @@ class FieldHome
         <script src="./scripts/captcha.js" ></script>
         <div class="invalid-feedback">%s</div>', $error_message);
     }
-
 
     public function passwordField()
     {

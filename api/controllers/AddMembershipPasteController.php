@@ -8,21 +8,20 @@ use core\Response;
 use models\Membership;
 use Exception;
 
-class AddMembershipPasteController extends Controller {
-    public function handleInsert(Request $request, Response $respone) 
+class AddMembershipPasteController extends Controller
+{
+    public function handleInsert(Request $request, Response $respone)
     {
-        $membership = new Membership(); 
+        $membership = new Membership();
         $data = json_decode(file_get_contents("php://input"));
-        $membership->loadData($data); 
+        $membership->loadData($data);
         try {
             $membership->save();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             echo json_encode(["response" => "Something went wrong!"]);
             $respone->setStatusCode(400);
             exit;
         }
         echo json_encode(["response" => "Membership added"]);
-
     }
 }

@@ -31,7 +31,6 @@ class Router
         $this->routes['delete'][$path] = $callback;
     }
 
-
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -39,9 +38,6 @@ class Router
         $method = $this->request->getMethod();
 
         $callback = $this->routes[$method][$path] ?? false;
-
-        // var_dump($callback);
-        // exit;
 
         if ($callback === false) {
             $this->response->setStatusCode(404);
