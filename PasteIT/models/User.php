@@ -16,6 +16,11 @@ class User extends UserModel
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
     }
+    public static function getUrlService(): string
+    {
+        return " ";
+    }
+
     public function update()
     {
         $sql = 'UPDATE users SET';
@@ -42,44 +47,7 @@ class User extends UserModel
 
         return true;
     }
-    public function validateMembership($record)
-    {
-         ///find the id  
-        /// check if the email is valid 
-        $sql = sprintf("SELECT id FROM users WHERE email = '%s'", $this->email);
-        $statement =  Application::$app->db->pdo->prepare($sql);
-        $statement->execute();
-
-        $object = $statement->fetchObject();
-       /// if the email is not valid 
-        if ($object == false) {
-            return false;
-        }
-       /// if the collaborator is the owner
-        if($object->id == Application::$app->user->id) 
-        {
-            Application::$app->session->setFlash('error', 'You are the owner of this post!');
-            return false;
-        }
-
-        /// if the membership is already added 
-        $sql = sprintf("SELECT COUNT(*) AS counter FROM members WHERE id_paste = '%s' AND id_user = '%s'", $record->id, $object->id);
-      
-        $statement =  Application::$app->db->pdo->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetchObject();
-        if($result->counter > 0)
-        {
-            Application::$app->session->setFlash('error', 'You allready added this user !'  );
-            return false;
-            
-        }
-         /// al good, the membership can be added!
-         
-       return true;
-        
-    }
-
+  
 
     public function addMembership($record)
     {

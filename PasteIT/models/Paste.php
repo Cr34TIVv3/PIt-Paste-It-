@@ -20,6 +20,7 @@ class Paste extends DbModel
     public string $captcha_answer;
 
 
+
     public function submit()
     {
 
@@ -209,6 +210,10 @@ class Paste extends DbModel
     public function attributes(): array
     {
         return ['id_user', 'slug', 'expiration', 'content', 'password', 'title', 'burn_after_read', 'highlight', 'access_modifier'];
+    }
+    public static function getUrlService(): string
+    {
+        return "localhost:8081/insertPaste";
     }
 
 

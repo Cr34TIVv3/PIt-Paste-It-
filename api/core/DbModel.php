@@ -18,37 +18,54 @@ abstract class DbModel extends Model
     
      public function save()
      {
-       
         $tableName  = $this->tableName();
         $attributes = $this->attributes();
-        // var_dump($attributes);
+
+
         $params = array_map(fn($attr) => ":$attr", $attributes); 
       
 
-        $statement = self::prepare("INSERT INTO $tableName ( ".implode(',' , $attributes).") 
-               VALUES(".implode(',' , $params) .")"); 
+        $query = "INSERT INTO $tableName ( ".implode(',' , $attributes).")  VALUES(".implode(',' , $params) .")";
+
+        $statement = self::prepare($query); 
        
-        var_dump(get_object_vars($this));
-        
-         
+
         foreach($attributes as $attribute)
         {
-            echo $attribute;
-             $statement->bindValue(":$attribute", $this->{$attribute});
+            $statement->bindValue(":$attribute", $this->{$attribute});
         }
+
         $statement->execute();
 
-       
-        return true;
 
+        return true;
+    }
+
+    
+    public function delete()
+    {
+        $tableName  = $this->tableName();
+        $attributes = $this->attributes();
+
+
+        $conditions =  implode("AND", array_map(fn($attr) => "$attr = :$attr" , $attributes));
+
+        $statement = self::prepare("DELETE FROM $tableName WHERE $conditions");
+        
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+
+        $statement->execute();
 
     }
 
+
     public static function findVersionDetalied($where) {
 
-        $statement = self::prepare("SELECT * FROM  pastes p  JOIN versions v ON v.id=p.id WHERE v.slug = '$where' AND expiration > CURRENT_TIMESTAMP;");
+        $statement = self::prepare("SELECT * FROM versions v JOIN pastes p ON v.id=p.id WHERE v.slug = '$where' AND expiration > CURRENT_TIMESTAMP;");
         $statement->execute();
-        return $statement->fetchObject();
+        return $statement->fetchObject(static::class);
     }
 
 
@@ -59,7 +76,7 @@ abstract class DbModel extends Model
 
 
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql AND expiration > CURRENT_TIMESTAMP");
-        
+
         foreach ($where as $key => $item) {
             $statement->bindValue(":$key", $item);
         }
