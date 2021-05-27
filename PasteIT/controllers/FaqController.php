@@ -2,6 +2,7 @@
 
 
 namespace controllers;
+
 use core\Controller;
 use core\Request;
 
@@ -12,6 +13,4 @@ class FaqController extends Controller
     {
         return $this->render('faq');
     }
-
-
 }

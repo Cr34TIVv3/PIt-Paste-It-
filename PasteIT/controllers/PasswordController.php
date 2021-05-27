@@ -1,10 +1,11 @@
 <?php
+
 namespace controllers;
 
 use core\Controller;
 use core\Request;
 
-class PasswordController extends Controller 
+class PasswordController extends Controller
 {
 
     public function handlePassword(Request $request, $record)

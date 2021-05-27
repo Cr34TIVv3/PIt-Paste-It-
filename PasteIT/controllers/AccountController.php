@@ -20,26 +20,20 @@ class AccountController extends Controller
     public function handleAccount(Request $request, Response $respone)
     {
         $user = new User();
-        if( $request->getMethod() === "post")
-        {
-            $user->loadData($request->getBody()); 
+        if ($request->getMethod() === "post") {
+            $user->loadData($request->getBody());
 
-            if($user->validate() && $user->update())
-            {
+            if ($user->validate() && $user->update()) {
                 Application::$app->session->setFlash('success', 'Your credential has been updated');
                 Application::$app->response->redirect('/account');
                 exit;
-            }
-            else 
-            {
+            } else {
                 Application::$app->session->setFlash('error', 'Invalid fields format');
             }
 
-            return $this->render('account', ['model' => $user ]);
-        }
-        else 
-        {
-            return $this->render('account', ['model' => $user ]);
+            return $this->render('account', ['model' => $user]);
+        } else {
+            return $this->render('account', ['model' => $user]);
         }
     }
 
