@@ -21,7 +21,7 @@ $app = new Application($root_dirname);
 
 
 $app->router->post('/insertPaste', [InsertPasteController::class, 'handleInsert']);
-$app->router->post('/deletePaste', [DeletePasteController::class, 'handleDelete']);
+$app->router->delete('/deletePaste', [DeletePasteController::class, 'handleDelete']);
 $app->router->post('/insertMember', [AddMembershipPasteController::class, 'handleInsert']);
 
 
