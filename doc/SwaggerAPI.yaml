@@ -1,0 +1,125 @@
+---
+swagger: "2.0"
+info:
+  description: An API destinated to support PasteIt application
+  version: 1.0.0
+  title: PasteIt
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: PasteIt
+  license:
+    name: MIT
+host: virtserver.swaggerhub.com
+basePath: /mna8/PasteIT/1.0.0
+schemes:
+- https
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /insertPaste:
+    post:
+      description: Create and add a new paste into database
+      operationId: addPaste
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: paste
+        description: Paste to add to database
+        required: true
+        schema:
+          $ref: '#/definitions/NewPaste'
+      responses:
+        "200":
+          description: successful message
+          schema:
+            $ref: '#/definitions/ResponseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ResponseModel'
+  /deletePaste:
+    delete:
+      description: Delete a paste based on attributes send
+      operationId: deletePaste
+      parameters:
+      - in: body
+        name: paste
+        description: Paste to add to database
+        required: true
+        schema:
+          $ref: '#/definitions/NewPaste'
+      responses:
+        "200":
+          description: paste deleted
+          schema:
+            $ref: '#/definitions/ResponseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ResponseModel'
+  /insertMember:
+    post:
+      description: Insert a member into database
+      operationId: addMember
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: member
+        description: Member to add to database
+        required: true
+        schema:
+          $ref: '#/definitions/NewMember'
+      responses:
+        "200":
+          description: successful message
+          schema:
+            $ref: '#/definitions/ResponseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ResponseModel'
+definitions:
+  NewPaste:
+    type: object
+    properties:
+      id_user:
+        type: integer
+      slug:
+        type: string
+      expiration:
+        type: string
+      content:
+        type: string
+      password:
+        type: string
+      title:
+        type: string
+      burn_after_read:
+        type: boolean
+      highlight:
+        type: string
+      access_modifier:
+        type: string
+      CREATED_AT:
+        type: string
+      UPDATED_AT:
+        type: string
+  NewMember:
+    type: object
+    properties:
+      id_paste:
+        type: string
+      id_user:
+        type: string
+  ResponseModel:
+    type: object
+    required:
+    - response
+    properties:
+      response:
+        type: string
