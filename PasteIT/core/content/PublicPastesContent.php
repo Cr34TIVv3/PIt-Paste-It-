@@ -90,7 +90,7 @@ class PublicPastesContent
         }
 
 
-        $sql = 'SELECT * FROM PASTES  WHERE PASTES.id_user is NULL ORDER BY pastes.CREATED_AT DESC LIMIT 10';
+        $sql = 'SELECT * FROM PASTES  WHERE PASTES.id_user is NULL AND pastes.expiration > CURRENT_TIMESTAMP ORDER BY pastes.CREATED_AT DESC LIMIT 10';
 
         $statement = Application::$app->db->pdo->prepare($sql);
 

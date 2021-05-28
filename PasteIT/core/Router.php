@@ -19,6 +19,7 @@ class Router
     public Request $request;
     public Response $response;
     protected array $routes = [];
+    protected array $smartRoutes = [];
 
     public function __construct(Request $request, Response $response)
     {
@@ -26,94 +27,107 @@ class Router
         $this->response = $response;
     }
 
-    public function get($path, $callback)
+    public function get($route, $callback, $is_smart = false)
     {
-        $this->routes['get'][$path] = $callback;
+        if ($is_smart) {
+            array_push($this->smartRoutes, $route);
+        }
+        $this->routes['get'][$route] = $callback;
     }
 
-    public function post($path, $callback)
+    public function post($route, $callback, $is_smart = false)
     {
-        $this->routes['post'][$path] = $callback;
+        if ($is_smart) {
+            array_push($this->smartRoutes, $route);
+        }
+        $this->routes['post'][$route] = $callback;
+    }
+
+    private function escapingSpecialChars($text)
+    {
+        $array = array();
+        $index = 0;
+        for ($i = 0; $i < strlen($text); $i++) {
+            if (strstr($text[$i], '/') != false) {
+                $array[$index++] = '\\';
+            }
+            $array[$index++] = $text[$i];
+        }
+        $output = implode("", $array);
+        return $output;
+    }
+
+    private function formatRegex($text)
+    {
+        $text = $this->escapingSpecialChars($text);
+        $text = '/^' . $text . '$/';
+        return $text;
+    }
+
+    private function getCallback()
+    {
+        $path = $this->request->getPath();
+        $method = $this->request->getMethod();
+
+        $callback = $this->routes[$method][$path] ?? false;
+
+        if ($callback == false) {
+            $routes = array_keys($this->routes[$method]);
+
+            foreach ($routes as $route) {
+                $regex = $this->formatRegex($route);
+                if (preg_match($regex, $path)) {
+                    return $this->routes[$method][$route];
+                }
+            }
+        } else {
+            return $callback;
+        }
+
+        $this->response->setStatusCode(404);
+        throw new NotFoundException();
+    }
+
+    public function isSmart($path)
+    {
+        foreach ($this->smartRoutes as $route) {
+            $regex = $this->formatRegex($route);
+            if (preg_match($regex, $path)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function resolve()
     {
-        $path = $this->request->getPath();
+        $route = $this->request->getPath();
 
-        $method = $this->request->getMethod();
+        $callback = $this->getCallback();
 
-        $callback = $this->routes[$method][$path] ?? false;
-        if ($callback === false) {
+        $additional_data = null;
 
-            if (PathValidator::validatePasswordRequest($path)) {
+        if ($this->isSmart($route)) {
+            $matches = array();
+            preg_match('/[0-9a-z]{40}/i',$route, $matches);
+            $slug = $matches[0];
 
-                $path = substr($path, 1, -9);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $passwordController = new PasswordController();
-                    return $passwordController->handlePassword($this->request, $recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $this->response->setStatusCode(400);
-                    throw new BadRequest();
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else if (PathValidator::validateAddUserRequest($path)) {
-                $path = substr($path, 1, -8);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $update = new UpdateController();
-                    return $update->handleUpdate($this->request, $recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $this->response->setStatusCode(400);
-                    throw new BadRequest();
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else if (PathValidator::validateDeleteRequest($path)) {
-                $path = substr($path, 1, -7);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $delete = new DeleteController();
-                    return $delete->handleDelete($recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $delete = new DeleteController();
-                    Application::$app->isVersion = true;
-                    //
-                    $recordVersions->slug = $path;
-                    //
-                    return $delete->handleDelete($recordVersions);
-                } else {
+            $recordPastes = Paste::findOneImproved('pastes', ['slug' => $slug]);
+            $recordVersions = Paste::findVersionDetalied($slug);
 
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
-            } else if (PathValidator::validatePasteGetRequest($path)) {
-                $path = substr($path, 1);
-                $recordPastes = Paste::findOneImproved('pastes', ['slug' => $path]);
-                $recordVersions = Paste::findVersionDetalied($path);
+            // echo "<pre>";
+            // var_dump($recordPastes);
+            // var_dump($recordVersions);
+            // echo "</pre>";
+            // exit;
 
-
-                if (!$recordPastes === false && !is_null($recordPastes->content)) {
-                    Application::$app->isVersion = false;
-                    $preview = new PreviewController();
-                    return $preview->handlePreview($this->request, $recordPastes);
-                } else if (!is_null($recordVersions->content)) {
-                    $preview = new PreviewController();
-                    Application::$app->isVersion = true;
-                    return $preview->handlePreview($this->request, $recordVersions);
-                } else {
-                    $this->response->setStatusCode(404);
-                    throw new NotFoundException();
-                }
+            if (!$recordPastes === false && !is_null($recordPastes->content)) {
+                Application::$app->isVersion = false;
+                $additional_data = $recordPastes;
+            } else if (!is_null($recordVersions->content)) {
+                Application::$app->isVersion = true;
+                $additional_data = $recordVersions;
             } else {
                 $this->response->setStatusCode(404);
                 throw new NotFoundException();
@@ -133,7 +147,7 @@ class Router
                 $middleware->execute();
             }
         }
-        return call_user_func($callback, $this->request, $this->response);
+        return call_user_func($callback, $this->request, $this->response, $additional_data);
     }
 
     public function renderView($view, $params = [], $styles = "")

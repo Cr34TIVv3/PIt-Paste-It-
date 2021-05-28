@@ -8,7 +8,7 @@ use core\Request;
 
 class FacingController extends Controller
 {
-   public function handleFacing(Request $request)
+   public function handleFacing()
    {
       return $this->render('facing');
    }

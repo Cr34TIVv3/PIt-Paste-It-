@@ -8,7 +8,9 @@ use controllers\RegisterController;
 use controllers\FacingController;
 use controllers\FaqController;
 use controllers\ContactController;
+use controllers\DeleteController;
 use controllers\HomeController;
+use controllers\PasswordController;
 use controllers\PreviewController;
 use controllers\UpdateController;
 use core\Application;
@@ -43,6 +45,18 @@ $app->router->post('/account', [AccountController::class, 'handleAccount']);
 
 $app->router->get('/home', [HomeController::class, 'handleHome']);
 $app->router->post('/home', [HomeController::class, 'handleHome']);
+
+//smart routes
+
+$app->router->get('/[a-z0-9]{40}', [PreviewController::class, 'handlePreview'], true);
+$app->router->post('/[a-z0-9]{40}', [PreviewController::class, 'handlePreview'], true);
+
+$app->router->get('/[a-z0-9]{40}/delete', [DeleteController::class, 'handleDelete'], true);
+
+$app->router->get('/[a-z0-9]{40}/password', [PasswordController::class, 'handlePassword'], true);
+
+$app->router->get('/[a-z0-9]{40}/addUser', [UpdateController::class, 'handleUpdate'], true);
+
 
 
 

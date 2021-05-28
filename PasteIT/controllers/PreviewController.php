@@ -5,11 +5,12 @@ namespace controllers;
 use core\Controller;
 use core\Application;
 use core\Request;
+use core\Response;
 use models\Paste;
 
 class PreviewController extends Controller
 {
-    public function handlePreview(Request $request, $record)
+    public function handlePreview(Request $request, Response $response, $record)
     {
         if ($request->getMethod() === 'post') {
 

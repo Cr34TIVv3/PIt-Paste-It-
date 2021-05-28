@@ -24,6 +24,7 @@ class HomeController extends Controller
       $sqltime = date('Y-m-d H:i:s', strtotime($sqltime . ' + ' . $paste->expiration));
       $paste->expiration = $sqltime;
 
+
       if ($paste->validate() && $paste->submit()) {
         Application::$app->response->redirect('/' . $paste->slug);
         exit;

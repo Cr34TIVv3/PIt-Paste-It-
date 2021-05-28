@@ -5,15 +5,20 @@ namespace controllers;
 use core\Controller;
 use core\Application;
 use core\Request;
-use models\Paste;
-use models\User;
 use core\exception\ForbiddenException;
+use core\exception\NotFoundException;
+use core\Response;
 use models\Membership;
 
 class UpdateController extends Controller
 {
-    public function handleUpdate(Request $request, $record)
+    public function handleUpdate(Request $request, Response $response, $record)
     {
+        if (Application::$app->isVersion) {
+            $this->response->setStatusCode(404);
+            throw new NotFoundException();
+        }
+
         if ($request->getMethod() === "get") {
 
             ///middleware !! 
