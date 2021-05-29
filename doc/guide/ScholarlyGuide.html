@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="./style_scholarly.css">
+  
+</head>
+
+<body prefix="schema: http://schema.org" itemscope="" itemtype="http://schema.org/WebPage">
+    <h1 itemprop="name">Paste It</h1>
+                                   <!-- Cuprins-->
+    <ol>
+        <li>
+            <a href="#authors"> <span>1 </span>Autori</a>
+        </li>
+        <li>
+            <a href="#introduction"> <span>2 </span>Introducere</a>
+            <ol>
+                <li><a href="#scope"> <span>2.1 </span>Scop</a></li>
+                <li><a href="#conventions"> <span>2.2</span> Convenții</a></li>
+                <li><a href="#productScope"><span>2.3</span> Țelul produsului</a></li>
+                <li><a href="#references"><span>2.4</span> Referinţe</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#generalDescription"><span>3.</span> Descreire generală</a>
+            <ol>
+                <li><a href="#productPerspective"><span>3.1</span> Perspectiva produsului</a></li>
+                <li><a href="#productFunctions"><span>3.2</span> Funcționalitățile produsului</a></li>
+                <li><a href="#classesAndCharacteristics"><span>3.3</span> Categorii de utilizatori</a></li>
+                <li><a href="#operationEnvironment"><span>3.4</span> Mediu de operare</a></li>
+                <li><a href="#designConstrains"><span>3.5</span> Design și constrângeri de implementare</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#externalRequirements"><span>4.</span> Interfață</a>
+            <ol>
+                <li><a href="#userInterface"><span>4.1</span> Interfață utilizator</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#functionalRequirements"><span>5.</span>Manual de utilizare</a>
+            <ol>
+                <li><a href="#register"><span>5.1 </span>Inregistrare</a></li>
+                <li><a href="#login"><span>5.2 </span>Autentificare</a></li>
+                <li><a href="#uploadCode"><span>5.3 </span>Încărcarea codului</a></li>
+                <li><a href="#postsManagement1"><span>5.4 </span>Gestionarea postărilor: editare/ștergere</a></li>
+                <li><a href="#postsManagement2"><span>5.5 </span>Gestionarea postărilor: adăugarea de membri</a></li>
+                <li><a href="#postsManagement3"><span>5.6 </span>Gestionarea postărilor: rollback</a></li>
+                <li><a href="#postsProtection"><span>5.7 </span>Protejarea postării prin parola</a></li>
+                <li><a href="#burnAfterRead"><span>5.8 </span>Burn after read</a></li>
+                <li><a href="#syntaxHighlight"><span>5.9 </span>Selectarea sintaxei</a></li>
+                <li><a href="#capcha"><span>5.10 </span>Probleme tip CAPCHA</a></li>
+                <li><a href="#postsModifiers"><span>5.11 </span>Postări publice/private</a></li>            </ol>
+        </li>
+        <li>
+            <a href="#bibliography"><span>7. </span>Referinţe bibliografice</a>
+        </li>
+    </ol>
+
+
+    <article id = "article" typeof = "schema:ScholarlyArticle" resource = "#"> 
+        <section id="authors"  typeof="sa:AuthorsList"> 
+                <h2><span>1. </span>Autori</h2>
+                <ol> 
+                    <li property = "schema:author" typeof="sa:ContributorRole"> 
+                        <a property = "schema:author" href="#" typeof="schema:Person"> 
+                                <span property= "schema:giveName" >Iustin</span>
+                                <span property= "schema:familyName" >Petrariu</span>
+                        </a>
+                        <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+                            <a property="schema:email" href="mailto:iustinian.petrariu@gmail.com" title="corresponding author">&#9993;</a>
+                        </sup>
+                    </li>
+
+                    <li property = "schema:author" typeof="sa:ContributorRole"> 
+                        <a property = "schema:author" href="#" typeof="schema:Person"> 
+                                <span property= "schema:giveName" >Rafael</span>
+                                <span property= "schema:familyName" >Burca</span>
+                        </a>
+                        <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+                            <a property="schema:email" href="mailto:rafael.burck1@gmail.com" title="corresponding author">&#9993;</a>
+                        </sup>
+                    </li>
+                </ol>
+        </section>
+
+
+        <section typeof="sa:ScholarlyArticle" role="doc-introduction" >
+                <h2 id="introduction"> <span>2. </span>Introducere</h2>
+                <p> 
+                    Paste It este o aplicație Web prin intermediul căreia se poate distribui cod sursă 
+                    (scris într-un anumit limbaj de programare). 
+                    Aplicația oferă suport pentru mai multe limbaje de programare (SQL, HTML/XML, C/C++) 
+                    și este în continuă dezvoltare.
+                    Pot posta atât utilizatorii autentificați, cât și cei care nu doresc să-și creeze un cont. 
+                </p>
+                
+                <h3 id="scope"><span>2.1 </span>Scop</h3>
+                <p>  
+                    Paste It este ușor de utilizat, intuitiv și gratis. Aplicație vine în ajutorul
+                    celor care doresc să facă share codului scris într-o manieră rapidă 
+                    și sigură. Iteracțiunea cu aplicația este simplă, trebuie doar să accesezi link-ul, 
+                    să dai copy-paste la propriul cod sau să scrii direct unul dupa care obții link-ul pe care 
+                    îl poți împărtăși cu oricine.
+                    De asemenea, se pot vizualiza și postări publice, iar utilizatorii care au cont
+                    își pot gestiona propriile postări.
+                </p>
+                
+                <h3 id="conventions"><span>2.2 </span>Convenții</h3>
+                <p>
+                    Aplicația este gândită pentru a fi ușor de utilizat. Un alt aspect important pe care aplicația îl urmărește
+                    este rapiditatea cu care clientul reușește să interacționeze cu aceasta. Astfel, pe pagina principală, utilizatorul
+                    poate posta printr-un singur click, întregul cod și poate crea un "New Paste" foarte rapid pe care mai apoi 
+                    îl poată distribui prin intermediul link-ului. De asemenea, toate opțiunile care pot fi atribuite unei noi postări se 
+                    regăsesc imediat sub codul incărcat de utilizator pentru ca o postare sa fie usor de configurat. în plus,
+                    gestionarea propriilor postări se poate face din contul utilizatorului în care acesta are acces la toate postările,
+                    iar pentru fiecare dintre ele are opțiunea de a o edita sau de a o șterge. La fel de ușor de găsit sunt și setările despre
+                    propriul cont făcut în aplicație: îți poți schimba username-ul, parola și chiar adresa de email din secțiunea 
+                    "account" pentru utilizatorii logați. 
+                
+                </p>
+
+                <h3 id="productScope"><span>2.3 </span>Țelul produsului</h3>
+                <p>
+                    Produsul are scopul de a furniza un mediu facil și plăcut, în care utilizatorul
+                    va putea să își distribuie codul sursă. Fiind utilizat strict pentru a susține un serviciu, acesta nu este încărcat de
+                    animații ce ar putea îngreuna browser-ul utilizatorului. Site-ul urmărește mai mult componenta funcțională decat cea a
+                    interfeței și urmărește să ofere utilizatorului o experiență cât mai directă cu funcționalitățile acesteia.
+                    
+                </p>
+                <h3 id="references"><span>2.4 </span>Referinţe</h3>           
+                <p>
+                    Pentru a crea un site cu o interfață cât mai accesibilă pentru utilizator, am documentat căteva site-uri 
+                    utile a caror link se regăsește mai jos. În plus, site-ul dispune de secțiuni cu diagrame cu rol informativ,
+                    pentru a spori încrederea utilizatorului în această aplicație. De asemenea, site-ul folosește un provider de icon-uri bazat
+                    pe SVG-uri pentru a îmbogăți experiența utilizatorului cu aplicația. 
+                </p>
+                <ol>
+                    <li><a href="https://www.pinterest.se/fromupnorth/web-design/">https://www.pinterest.se/fromupnorth/web-design/<a></li>
+                    <li><a href="https://www.w3schools.com/css/">https://www.w3schools.com/css/<a></li>
+                    <li><a href="https://www.w3schools.com/css/">https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css<a></li>
+                </ol>    
+        </section>
+
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter" >
+            <h2 id="generalDescription"> <span>3. </span>Descriere generală</h2>
+            
+
+            <h3 id= "productPerspective"> <span>3.1 </span>Perspectiva produsului</h3>
+            <p>
+               Produsul are scopul de a oferi o alternativă minimalistă de găzduire web.
+               Făcând o comparație cu un alt astfel de provider (i.e. GitHub), Paste It devine
+               o opțiune viabilă când vine vorba de proiecte de dimensiune mică sau când vrei să 
+               împărtășești rapid codul scris de către tine cu altcineva.
+            </p> 
+
+            <h3 id= "productFunctions"> <span>3.2 </span>Funcționalitățile produsului</h3>
+            <p>  
+                Site-ul dispune de multiple opțiuni care îți pot veni în ajutor atunci când dorești să încarci o nouă postare.
+                În primul rând, ai opțiunea de a face postări publice sau private. Dacă nu ai cont nu vei putea avea 
+                acces la a crea postări private. De asemenea, opțiunile de siguranță introduse, parola pentru fiecare postare și "burn after read"
+                cresc gradul de încredere pe care utilizatorul îl poate acorda site-ului întrucât postările pot fi făcute într-o manieră
+                sigura, dacă se dorește acest lucru. Mai mult decât atât, poți selecta ce utilizatori îți pot vedea și edita postările și poti 
+                urmări câte persoane au vazut o anumită postare pe care o deții. În plus, poți face un rollback la versiuni anterioare ale codului
+                în caz că s-a facut vreo modificare care a alterat în vreun fel postarea într-un mod nedorit.
+            </p>
+
+            <h3 id= "classesAndCharacteristics"> <span>3.3 </span>Categorii de utilizatori</h3>
+            <p>
+                Aplicația este destinată, în principal, programatorilor ce vor să își imparta secvente de cod relativ scurte.
+                Cu toate acestea, aceasta poate fi utilizata de către oricine doreste sa-si impartaseasca informatia, indiferent
+                de categoria sociala din care face parte. 
+            </p>
+         
+            <h3 id= "operationEnvironment"> <span>3.4</span> Mediu de operare </h3>
+            <p>              
+                Fiind o aplicatie Web, Paste It este scalabilă in orice browser ce rulează HTML, CSS, JS, neținând cont 
+                de o versiune anume a sistemului de operare a device-ului pe care rulează aplicația.
+            </p>
+
+            <h3 id= "designConstrains"> <span>3.5</span> Design și constrângeri de implementare </h3>
+            <p>              
+                Paste It este o platformă online cu ajutorul căreia poți stoca orice text pentru a-l distribui ușor mai departe.
+                Cu toate acestea, aplicația vine și cu căteva limitări. Astfel, este posibiă doar incărcarea de text pe pagina, fara 
+                a putea încărca un întreg fișier sau director care să conțină fișiere pe care să le poată distribui. Ideea principală a 
+                aplicației este doar de a facilita impărtășirea de text și nu de alt format. De asemenea și aici se intălnesc cateva limitări,
+                intrucât postarea pe care un utilizator o creează trebuie sa nu depășească o anumită dimensiune, însă această dimensiune
+                este destul de mare, ceea ce nu poate reprezenta o problemă pentru cel care creează postarea. Mai mult decât atât, 
+                pentru utilizatorii care au un cont, aceștia au o anumita limită în care își pot salva postările făcute, cele private și nu
+                dispun de un spațiu nelimitat. 
+                În ceea ce privește design-ul, aplicația are o pagină de start în care sunt sumarizate cele mai importante aspecte ale aplicației
+                de pe care utilizatorul poate trece ușor spre a-și crea prima sa postare. Sunt prezentate aspectele legate de constrângerile dintre un utilizator logat 
+                și unul nelogat. De asemenea, chart-urile introduse în ultima secțiunea prezintă traficul de pe aplicație și constau în a menține o evidență
+                a ultilizatorilor și a postărilor noi  de pe site făcute în ultima lună.
+            </p>
+
+            <img src="./ss5.JPG" alt="img5">
+            <img src="./ss6.JPG" alt="img5">
+
+            <h3 id= "userDocumentation"> <span>3.6 </span>Documentație pentru utilizator</h3>
+            <p>              
+                Secțiunea "FAQ" a site-ului este gânditată pentru a răspunde utilizatorului la cele mai frecvente întrebări pe care acesta
+                le poate avea în ceeea ce privește interacțiunea cu aplicația. Întrebările din secțiune sunt selectate dintre intrebările frecvente
+                ale utilizatorilor, iar modalitatea lor de afișare oferă utilizatorului o navigare rapidă și o identificare exactă a soluțiilor la majoritatea problemelor sau 
+                neclarităților pe care le poate avea în ceea ce privește interacțiunea cu site-ul. 
+            </p>
+
+        </section>
+
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">    
+
+            <h2 id="externalRequirements"><span>4. </span> Interfață</h2>
+
+            <h3 id="userInterface"><span>4.1</span> Interfață utilizator</h3>
+            <h4>Pagina principala:</h4>
+            <img src="./ss1.jpg" alt="img1">
+          
+            <h4>Secțiunea de FAQ: <h4>
+            <img src="./ss2.jpg" alt="img2">
+
+            <h4>Secțiunea de login: </h4>
+            <img src="./ss3.jpg" alt="img3">
+
+            <h4>Secțiunea de account: </h4>   
+            <img src="./ss4.jpg" alt="img4">
+
+        </section>
+   
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">   
+
+            <h2 id="functionalRequirements"><span>5. </span>Cerințe funcționale</h2>
+            
+            <h3 id="register"><span>5.1 </span>Înregistrare</h3>
+            <img src="./signup.JPG" alt="img4">
+            <p>
+                Utilizatorii care doresc opțiuni avansate și control asupra postărilor
+                pe care urmează să le facă, vor fi nevoiți să se înregistreze și să se
+                autentifice folosind credențialele lor unice. Datele oferite vor fi trimise
+                catre server prin formularul de înregistrare, doar după ce au fost validate corespunzător. 
+                Utilizatorul care dorește să-și creeze un cont trebuie mai întâi să acceseze pagina de "Sign UP" și să completeze
+                formularul corespunzator cu datele potrivite (credențialele utilizatorului). De asemenea, formularul are mai multe constrângeri 
+                asociate și astfel fiecare câmp trebuie completat, nu există câmpuri opționale. De asemenea, numele utilizatorui trebuie să aibă o lungime minimă (8 caractere), 
+                email-ul introdus trebuie să fie valid și să nu existe un alt utilizator cu același email înregistrat deja în baza de date , iar parola trebuie să fie
+                de o lungime minimă (8 caractere). În plus, validarea parolei se face prin reintroducerea acesteia. Orice greșeală de completare din partea utilizatorului este însoțită
+                cu mesaje de eroare sugestive care ghidează pașii spre rezolvarea problemelor. De asemenea, dacă s-a apasat "submit", dar sunt date greșite, se vor șterge doar acestea și vor 
+                rămâne cele care sunt introduse corect.
+                Un cont realizat cu succes va fi însoțit de un mesaj sugestiv și de o redirectare a user-ului spre pagina de home, fără însă a loga utilizatorul, acesta va trebui ulterior să introducă datele 
+                contului realizat pentru a se loga.
+            </p>
+
+            <h3 id="login"><span>5.2 </span>Autentificare</h3>
+            <img src="./login.JPG" alt="img4">
+            <p>
+                Utilizatorii care dețin un cont se pot autentifica pe pagina de login în care
+                trebuie să-și introducă adresa de email și parola. Datele
+                introduse de către utilizator vor fi validate. În cazul în care logarea a avut
+                succes, utilizatorul va fi redirectat către pagina de home în care acesta va putea
+                să își creeze noua lui postare. Toate mesajele de eroare sau de nerespectarea unor constrângeri în ceea ce privește completarea formularului vor fi sugestiv oferite 
+                utilizatorului pentru a corecta eventualele greșeli.
+            </p>
+            
+            <h3  typeof="sa:MaterialsAndMethods" role="doc-chapter" id="uploadCode"><span>5.3 </span>Încărcarea codului - crearea unei postări</h3>
+            <img src="./home.JPG" alt="img4">
+            <p>
+                Aceasta este funcționalitatea de bază a aplicației fără de care
+                specificul acesteia nu ar exista. Orice utilizator (autentificat sau nu)
+                are dreptul de a crea postări. Postările se creează de pe pagina de home a aplicației apăsând butonul de "Create New Paste". 
+                Chiar dacă toți utilizatorii pot crea o postare, este însă o limitare în ceea ce privește funcționalitățile la care are acces un utilizator care are un cont, față de un utilizator nelogat.
+                Așadar, opțiunile care sunt disponibile în funcție de categoria de user sunt afișate imediat sub postarea creată. Dupa ce se completează câmpul cu datele unei postări (de exemplu un cod sursă), utilizatorul 
+                poate trece mai apoi pentru a selecta diverse opțiuni. 
+            </p>
+
+            <h3 id="postsManagement1"><span>5.4 </span>Gestionarea postărilor : editare și ștergere</h3>
+            <img src="./account.JPG" alt="img4">
+            <p>
+                Gestionarea postarilor se poate face prin intermediul a doua pagini: pagina de home in care utilizatorul poate vedea postarile sale recente, 
+                dar si din pagina de "account". Diferenta dintre cele doua moduri de gestionare si vizualizare a postarilor este faptul ca in pagina in care este contul utilizatorului acesta poate 
+                vedea si postari la care nu este direct detinator sau creator, insa la care a fost invitat
+                spre a fi colobarator si astfel, pentru aceste postari se va afisa cine este creatorul de drept al paste-ului. Pagina de home, in schimb, va afisa doar paste-urile utilizatorului , fara cele la care este implicat de catre alti useri.
+                Așadar, din propriul cont, utilizatorul își poate gestiona postările: poate modifica
+                conținutul lor și le poate șterge, făcând click pe unul din cele două butoane asociate în partea dreaptă a fiecărei postări.
+
+            </p>
+
+            <h3 id="postsManagement2"><span>5.5 </span>Gestionarea postărilor : adăugarea de membri</h3>
+            <img src="./other_members.JPG" alt="img4">
+            <p>
+
+                În cazul utilizatorilor care au un cont există posibilitatea de a adăuga membri care să modifice postarea și să lucreze împreună la un post. Acest lucru se poate realiza dând click pe o postare
+                anume unde se va găsi , imediat sub postare, câmpul cu formular pentru adăugarea unui membru. Utilizatorul trebuie să introducă email-ul corect al unui utilizator cu cont, dupa care poate vedea toți
+                colaboratorii de la o anumită postare apăsând pe butonul din partea de sus a unei postări: "See other members". Se vor valida datele introduse de utilizator : acesta nu se poate adăuga pe sine și nici nu poate
+                adăuga un utilizator de mai multe ori sau un utilizator care nu există în baza de date.
+            
+            </p>
+
+            <h3 id="postsManagement3"><span>5.6 </span>Gestionarea postărilor : rollback la versiuni anterioare </h3>
+            <img src="./version.JPG" alt="img4">
+            <p>
+                Pentru toate postările pe care le face un utilizator acesta poate alege să editeze anumite postări și pentru fiecare editare pe care o va face va trebui să menționeze un titlu sugestiv, similar cu un commit în github
+                ,iar pentru postarea respectivă se va crea o nouă versiune care va fi catalogată drept versiunea principală a postării, iar versiunea veche va putea fi vizualizată imediat sub postare într-o secțiune denumită 
+                "See other versions" care are menirea de a arăta user-ul toate versiunile și modificările aduse acelei postări. În cazul în care se dorește trecerea la o versiune anterioară, acest lucru este ușor de făcut întrucât
+                utilizator care va vizualiza o versiune a unei postări și nu o versiune principală,  va fi notificat de acest lucru printr-un warning :"This is an older version..", iar dacă se dorește postarea respectivă poate deveni
+                din nou principală, iar postarea ințială devine acum o versiune.
+
+
+            </p>
+
+            <h3 id="postsProtection"><span>5.7 <span>Protejarea postării prin parolă</h3>
+            <img src="./password.JPG" alt="img4">
+            <p>
+                Pentru utilizatorii care au un cont, există opțiunea de a proteja postarea
+                facută prin intermediul unei parole introduse de către aceștia. Astfel, pentru 
+                cei care vor dori să acceseze postarea va fi necesară introducerea acestei parole pentru 
+                a putea mai departe să vizualizeze textul introdus de către utilizator. Așadar, această 
+                opțiune restricționeaza accesul la postări și oferă încredere pentru a utiliza aplicația în continuare.
+                De asemenea, postarile care au parolă pot fi facute si publice, însă vor avea asociat un icon sugestiv prin care se va întelege că acel post este protejat.
+            </p>
+
+            <h3 id="burnAfterRead"><span>5.8 </span>Burn after read</h3>
+            <img src="./preview_blocks.JPG" alt="img4">
+            <p>
+                Opțiunea de "Burn after read" apare în momentul în care dorești să creezi o nouă
+                postare. Bifând această opțiune, respectivul paste mai poate fi văzut o singură
+                dată de un străin, urmâd ca aceasta să fie ștears. Paste-urile publice cu opțiunea
+                de burn after read vor avea un semn distinctiv. De asemenea, creatorului postarii va putea sa vada de oricâte ori dorește postarea respectivă, 
+                fară ca aceasta sa devină indisponibilă, însă daca un străin vede această postare atunci ea nu mai poate fi vazută a doua oară de către nimeni.
+            </p>
+
+            <h3 id="syntaxHighlight"><span>5.9 </span>Selectarea sintaxei</h3> 
+            <img src="./sql_h.JPG" alt="img4">
+            <img src="./xml_h.JPG" alt="img4">
+            <img src="./cpp_h.JPG" alt="img4">
+
+            <p>
+                Codurile postate de către utilizatori vor fi colorate conform unei sintaxe 
+                selectate de către aceștia (sintax highlighter) pentru a putea fi citite ușor
+                de către oricine are acces la postarea respectivă. Aplicația este într-o continuă dezvoltare
+                și se pot adăuga mai multe sintaxe pe care site-ul să le recunoască. Momentan aplicația 
+                poate colora textul scris de către utilizatori conform următoarelor limbaje : XML, SQL, C++.
+            
+            </p>
+
+            <h3 id="capcha"><span>5.10 </span>Probleme tip CAPTCHA</h3>
+            <img src="./captcha.JPG" alt="img4">
+            <p>
+                Rezolvarea de către utilizator a problemelor de tip CAPTCHA este necesară pentru a
+                preveni tentativele de spam ce ar putea suprasolicita, respectiv îngreuna,
+                acțiunile serverului. O astfel de problemă va apărea înainte de a face publică
+                o nouă postare. Totodată, există un buton ce reseteaza problema respectivă cu una nouă în dacă se dorește acest lucru.
+                Daca captcha introdus nu este corect, atunci se va afișa un mesaj de eroare sugestiv și utilizatorul va trebui să reintroducă corect datele, însă nu
+                va trebui să rescrie iar postarea, acest lucru facându-se automat.
+            </p>
+
+            <h3 id="postsModifiers"><span>5.11 </span>Postări publice/private</h3>
+            <img src="./public_pastes.JPG" alt="img4">
+            <p>
+                Postările pe care toți utilizatorii le pot crea sunt de două feluri: private sau publice. Pentru utilizatorii 
+                care nu au un cont se pot face doar postări private, care pot fi vizualizate de către oricine, neavând acces la diverse
+                opțiuni de confidentialitate care se pot asocia unei postări. Cu un cont creat, poți avea acces la opțiunea de a crea postări private
+                care pot fi văzute doar de către deținătorii linkului respectiv.
+            </p>
+
+        </section>
+
+        <section typeof="sa:ReferenceList" id="referinte" role="doc-bibliography">   
+            <h2 id="bibliography"><span>7. </span>Referințe bibliografice</h3>
+                <ol>
+                    <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="Scholarly-html"
+                        resource="https://w3c.github.io/scholarly-html/">
+                        <cite property="schema:name">
+                            <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+                        </cite>, de
+                        <span property="schema:author" typeof="schema:Person">
+                                    <span property="schema:givenName">Tzviya</span>
+                                    <span property="schema:aditionalName">Wiley</span>
+                                    <span property="schema:familiyName">Siegman</span>
+        
+                        </span>&amp;
+                        <span property="schema:author" typeof="schema:Person">
+                            <span property="schema:givenName">Robin</span>
+                            <span property="schema:familiyName">Berjon</span>
+                        </span>
+                    </li>
+                    <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="Scholarly-html"
+                        resource="https://vivliostyle.github.io/vivliostyle_doc/samples/scholarly/index.html">
+                        <cite property="schema:name">
+                            <a href="https://vivliostyle.github.io/vivliostyle_doc/samples/scholarly/index.html">What is Scholarly HTML?</a>
+                        </cite>, de
+                        <span property="schema:author" typeof="schema:Person">
+                                    <span property="schema:givenName">Robin</span>
+                                    <span property="schema:familiyName">Berjon</span>
+        
+                        </span>&amp;
+                        <span property="schema:author" typeof="schema:Person">
+                            <span property="schema:givenName">Sebastien</span>
+                            <span property="schema:familiyName">Ballesteros</span>
+                        </span>
+                    </li>
+                    <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="busaco"
+                        resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                         <span property="schema:author" typeof="schema:Person">
+                                <span property="schema:givenName">Sabin</span>
+                                <span property="schema:aditionalName">Corneliu</span>
+                                <span property="schema:familiyName">Buraga</span>
+                         </span>,
+                        <cite property="schema:name">
+                            <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                                Site-ul disciplinei "Tehnologii Web"
+                            </a> parte a
+                            <span typeof="schema:Organization"
+                                  resource="https://www.uaic.ro">
+                                    <a href="https://www.uaic.ro">
+                                     <span property="schema:name">UAIC</span>
+                                  </a>
+                            </span>
+                        </cite>
+                    </li>
+
+                    <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="busaco"
+                        resource="https://www.w3schools.com">
+                        <cite property="schema:name">
+                            <a href="https://www.w3schools.com">
+                                W3School
+                            </a> 
+                        </cite>
+                    </li>
+                </ol>
+                
+
+                
+        </section>
+
+    </article>
+</body>
+
+</html>

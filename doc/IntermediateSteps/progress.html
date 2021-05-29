@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Progress</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="subject" content="Paste It">
+    <meta name="description" content="Paste It. Provide a simple way to share your code">
+    <meta name="keywords" content="share code, paste code, copy code, share, code" />
+    <meta name="author" content=" Petrariu Iustin, Burca Rafael">
+</head>
+<body>
+
+<h1>Progresul aplicației : Paste It</h1>
+
+<h2>Frontend</h2>
+
+<ul>
+    <li> 
+        Primul pas a constat în a ne documenta cu privire la tehnologiile ce aveau să fie folosite (i.e. HTML, CSS) 
+        pentru a efectua prima componentă a proiectului.
+    </li>
+    
+    <li>
+        Pas cu pas am încercat să formatăm, pe rand, mai multe pagini, încercând diverse layout-uri/culori pentru a observa care se potrivesc mai bine.
+        Una dintre primele pagini stucturate a fost cea de home, în care ne-am gândit atât la design, cât și la funcționalitățile viitoare pe care trebuie
+        să le oferim utilizatorului. Astfel, am adoptat un design cât mai minimalist și intuitiv pentru a fi ușor de folosit. De asemenea, pentru această primă parte a proiectului
+        am documentat și câteva surse cu privire la impactul pe care-l poate avea design-ul în interacțiunea cu utilizatorul. Astfel, am optat pentru a folosi o tema dark întrucât 
+        vedem multiple avantaje: este o tema propice citirii întrucat nu deranjează ochii utilizatorului, pentru utilizatorii de telefon cu tehnologie OLED (sau orice alt tehnologie similara) reduce consumul bateriei, fiind totodata
+        îndrăgită de developeri.
+    </li>
+    <li>
+        Dupa realizarea paginii de home, am început integrarea paginii de contact în care ne-am prezentat și am oferit câteva informații despre noi. In cadrul acestei pagini am folosit 
+        un design destul de simplu, dar modern. De asemenea, ne-am gândit la o pagina care să descrie produsul pe care-l construim și acea pagină să fie prima cu care
+        intracționează utilizatorul pentru a-i oferi acestuia cateva informații persuasive cu privire la funcționalitățile oferite. Astfel, pagina care vine în întâmpinarea utilizatorului
+        îi prezintă acestuia pe scurt detaliile legate de aplicație, beneficiile în a avea un cont creat cât și câteva statistici pentru a spori încrederea cu privire la serviciile oferite.
+        Pagina este creata din trei secțiuni care descriu cele menționate mai sus. 
+    </li>
+
+    <li>
+        Cum în interacțiunea cu o aplicație pot exista destul de multe întrebări în legătură cu diverse aspecte, sau neînțelegeri în felul in care se poate folosi, 
+        ne-am gândit să proiectăm și o pagină de Q&A în care utilizatorul să poată vedea răspunsurile la toate întrebările pe care le poate avea în legătură cu aplicația. Din alte exemple
+        de bună practică pe care le-am văzut și experimentat, am decis să alegem un design care să ofere rapid răspunsul la o întrebare pe care o poate avea un user fără ca acesta să caute prea mult.        
+    </li>
+
+    <li>
+        Multe dintre funcționalitățile aplicației devin accesibile doar după crearea unui cont. Astfel, am creat cele doua pagini de SignIn și SignUp și ne-am gândit că pot avea un design similar. 
+        De asemenea, cele doua pagini am dorit să fie prietenoase cu utilizatorul și în acest fel orice tip de erori care pot aparea în completarea formularului sunt insoțite de mesaje de eroare
+        semnificative din care acesta își poate da seama rapid ce anume a greșit sau dacă a reușit cu succes să creeze contul. În plus, datele completate care sunt valide nu vor fi șterse în formular,
+        ci doar vor trebui completate acele câmpuri pentru care sunt greșeli sau în care nu au fost respectate anumite reguli (ex : numele de utilizator să aibă o anumită lungime minimă sau parola rescrisă nu coincide
+        cu parola oferită inițial). Testarea în detaliu a acestor pagini a fost realizată în partea a doua a proiectului (backend) întrucat puteam oferi modele reale pentru a ne testa produsul.
+    </li>
+
+    <li>
+        Odată cu oferirea posibilității de a crea un cont, ne-am gândit să construim și o pagină în care utilizatorul își poate gestiona propriul cont. Astfel, în cadrul acestei pagini, un utilizator
+        poate vedea datele sale proprii pe care le-a furnizat aplicației, poate actualiza nume de utilizator, parola sau email-ul și poate să vadă toate postările pe care le-a făcut în cadrul aplicației. 
+        Totodată, în această pagină, utilizatorul poate vedea și postările în care ești direct implicat (este colaborator) si poate face operații precum ștergerea unei postări sau editarea acesteia. 
+        In mod similar, testarea pentru această pagină a fost făcută în mod intens în componenta de backend în care aveam datele necesare pentru a testa toate funcționalitățile.
+    </li>
+    <li>
+        Una dintre paginile pentru care am invesit mult timp în proiectare a fost acea pagină care îți oferă spre vizualizare și editare postarea noua pe care tocmai ai realizat-o în aplicație. 
+        Această pagină este una destul de complexă, întrucat însumează multe elemente ce țin de funcționalitățile principale ale aplicației. Un utilizator trebuie să poată vizualiza postarea pe care
+        tocmai a făcut-o, să poată adăuga anumiți membri cu care dorește să lucreze la postare, să poată vedea versiunile mai vechi (dacă există) ale acelei postări și dacă dorește să revină la una dintre
+        acele versiuni, atunci să poată face rollback. De asemenea, dacă postarea pe care o vizualizează este o versiune și nu este postarea principală atunci utilizatorul, dacă este deținătorul acelei postari
+        sau chiar un membru, trebuie să aibă posibilitatea de a face această postare principală. Cum nucleul aplicației depinde mult de această pagină, în partea a doua, aceste 
+        funcționalități au fost intens verificate și testate. 
+    </li>
+
+</ul>
+
+
+<h2> Backend </h2>
+<ul>
+    <li> În vederea realizării componentei de backend, ne-am hotarât să recurgem la utilizarea design patternului MVC (Model-View-Controller) scris in limbajul PHP. Astfel, am adaptat prima parte a proiectului 
+         și am tranziționat fișierele HTML în fișiere PHP (ca să obținem componenta de Views). Pentru realizarea design-ul MVC am documentat diverse surse de bună practică pentru a înțelege mai bine acest model 
+         și am încercat pe cat posibil să scriem un cod care respectă multe din principiile ingineriei software  (SOLID, DRY, KISS). De asemenea, în ceea ce privește siguranța aplicației am recurs la metode care evită SQL-injection.
+         Astfel, rezultatului documentării și efortul depus în scrierea unui cod cât mai corect a rezultat, în final, în realizarea unui proiect care poate fi ușor extins și modificat, care are diverse funcționalități în cod 
+         printre care, dintre cele mai importante, menționăm: realizarea și validarea de rute cu expresii regulate, încărcarea dinamică a conținutului în pagini, formulare dinamice generate cu ajutorul PHP-ul cu clase specializate, 
+         diverse interogări SQL care se modelează în funcție de datele oferite, middleware-uri care protejeaza anumite rute pentru care utilizatorul nu poate avea acces.
+    </li>
+         
+
+    <li>
+        Primul pas l-a reprezentat tranziția de la fișirele HTML la fișiere PHP. Am adaptat apoi conținutul pentru a putea fi incărcat dinamic cu PHP. Am separat anumite layout-uri principale 
+        pe care le folosim pe pagini și le-am despărțit pe cele pe care le încărcam în funcție de pagina pe care se află utilizatorul. Pentru a testa apoi noile moduri de încărcare a paginilor
+        ne-am creat rutele specializate, la început fară să utilizam expresii regulate și am facut primii pași în a scrie controllere ce se ocupă de logica încărcării view-urilor. 
+        Dupa ce ne-am asigurat că paginile se încarcă corect si alegem corect un anumit view pentru fiecare pagina in parte, am început să creăm modelele pentru a comunica cu baza de date. Astfel, am început să ne gândim la cum ar trebui modelate tabelele pentru a indeplini 
+        toate funcționalitățile pe care trebuie să le oferim utilizatorului într-o manieră care să faciliteze accesul ușor la date și o comunicare eficientă cu baza de date. In acest sens, am creat o componentă externă a aplicației ce are rolul
+        de a oferit un setup bazei de date (migrations) prin crearea de tabele și de recorduri adiționale acestora.
+    </li>
+
+    <li>
+        Având un model al bazei de date realizat, am început implementarea primei funcționalități pe care o oferim utilizatorilor, și anume crearea unui cont. Astfel, formularul pentru a colecta
+        datele utilizatorului este încărcat dinamic din PHP cu clase specializate, întrucât am dorit să putem modifica ușor un formular pe viitor în caz că vom avea nevoie să adăugăm un câmp în plus.
+        Astfel, atât pentru formularul de SignIn cât și pentru SignUp, acestea sunt încărcate dinamic din PHP, ceea ce le face foarte ușor de modificat pe viitor. De asemenea,
+        pentru că am dorit o interfață cât mai prietenoasă cu utilizatorul și pentru că ne-am mai întâlnit și noi cu aceste bune practici pe diferite site-uri, am implementat un formular care îți oferă 
+        mesaje sugestive în cazul în care greșești anumite câmpuri și de asemenea, dacă ai dat submit, dar ai greșit un câmp, va trebui să introduci din nou doar acel câmp pe care l-ai introdus greșit.
+        Dacă totul este corect și ai reușit sa-ți creezi un cont atunci se va afișa un mesaj sugestiv (flash message) care îți va indica acest lucru. În plus, am optat pentru anumite restricții pe care 
+        le impunem utilizatorului atunci când completează formularul, acestea constând în a utiliza o adresă de email validă, a rescrie parola care să coincida cu cea introdusa inițial, cât și constrângeri 
+        în ceea ce privește lungimea datelor introduse (pentru parola, username). 
+        Finalizarea celor două pagini a constat în diverse teste, fie cu date eronate care nu treceau constrângerile impuse, fie cu email-uri care deja existau în baza de date și erau ale altor utilizatori, 
+        fie încercarea de trimitere a formularelor goale sau a caracterelor malițioase și de asemenea, SQL-injection.
+    </li>
+
+    <li>
+        Întrucât am oferit posibilitatea utilizatorilor de a-și crea un cont am început să implementăm rând pe rând pricipalele funcționalități pe care trebuia să le oferim utiliazatorilor. Astfel, cum totul ține de crearea
+        unei postări, am implementat pagina de home prin care poți realiza o postare. Cum unei postări îi poți atribui diverse atribute în funcție de tipul de utilizator (logat sau nelogat) am adăugat un formular
+        în care poți selecta diverse opțiuni cu privire la postarea pe care tocmai ai realizat-o: sintaxa folosită, tipul de acces la postare (privată, publică), parola (opțională), burn after read (opțional) și mai apoi 
+        am implementat și intrebările de tip Captcha pentru utilizatorii nelogati. 
+        Odată ce am putut introduce corect o postare în baza de date cu toate informațiile adiționale de mai sus, am început să ne gândim cum implementăm toate cerințele care îl privesc pe un utilizator ce are cont.
+        Totodată am structurat și am regândit pagina de home pentru a afișa paste-uri publice alte altor utilizatori pe care un user să le poată accesa. 
+    </li>
+
+    <li>
+        În continuare am implementat funcționaliățile specifice cerinței: burn after read, password protection, public/private posts, sistemul de rollback (ce include și un istoric pentru versiunile anterioare) și de control al paste-urilor (create/delete/update).
+        Astfel, pentru functionalitatea de burn after read un utilizator poate selecta aceasta optiune la momentul creeaza o postare si intelegerea acestei optiuni este ca , daca cineva va accesa postarea 
+        respectiva atunci persoana nu va mai putea vizualiza pentru a doua oara acea postare si ea nu va mai fi accesibila pentru nimeni. Daca , insa, cel care acceseaza postarea este chiar cel care a creat-o atunci
+        functia de burn after read nu are niciun comportament, intrucat daca esti detinatorul postarii iti poti vedea postarea de oricate ori doresti si doar un alt utilizator o poate face inaccesibila pentru toata lungimea
+        odata ce a vizualizat-o. La finalul implementarii am testat aceasta functionalitate si ne-am gandit sa adaugam mici detalii de design care sa arate daca o postare are aceasta functionalitate printr-un icon. 
+        Pentru password protection, am creat o rută seaparată prin care utilizatorul î-și poate insera parola într-un formular în vedere obținerii accesului la conținut.
+        Sistemul cu modificatori de acces pe paste-uri funcționează astfel: paste-urile care sunt publice vor fi disponibile într-un panel comun pentru toți utilizatorii, în timp ce cele private vor fi accesibile doar prin prisma linkului, fiind totodată vizibile în pagina de account personală - 
+        este de menționat faptul că fiecare paste este unic determinat prin intermediul unui slug (o encodare a paste-ului de 40 de caractere, vizibilă in URL). De asemenea, am facut ca pentru un utilizator
+        nelogat posibilitatea de a face o postare privata este imposibila si de asemenea timpul ei de expirare este de 30 de zile. 
+        Sistemul de rollback survine unei necesitati. Cand un utilizator doreste sa faca o modificare paste-ului respectiv, versiunea curenta este salvata, fiind inlocuita de cea noua. Lista cu versiuni apare pe pagina de preview a paste-ului respectiv, unde membrii le pot manipula cum doresc. (Bonus: am realizat un sistem de preview a membrilor unui paste )
+    </li>
+
+     
+    <li>
+        Odata cu finalizarea cerintelor obligatorii, ne-am concentrat atentia asupra externalizarii unor operatiuni pe care aplicatia le facea frecvent.
+        Astfel am realizat un REST API conform specificației OpenAPI compusa de noi (..link..). API-ul este specializat in a face 3 operatiuni: inserarea de paste-uri, stergerea de pasteri si adaugarea de membrii afiliati unui paste.
+    </li>
+
+
+
+     
+
+</ul>
+
+
+</body>
+</html>

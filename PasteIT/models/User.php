@@ -11,10 +11,20 @@ class User extends UserModel
     public String $email = '';
     public String $password = '';
     public String $repeat = '';
+
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-        return parent::save();
+        $tableName  = $this->tableName();
+        $attributes = $this->attributes();
+        $params = array_map(fn ($attr) => ":$attr", $attributes);
+        $query = "INSERT INTO $tableName ( " . implode(',', $attributes) . ")  VALUES(" . implode(',', $params) . ")";
+        $statement = self::prepare($query);
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+        $statement->execute();
+        return true;
     }
     public static function getUrlService(): string
     {
