@@ -1,0 +1,54 @@
+body {
+    background: linear-gradient(
+    0deg,
+    rgba(22, 27, 55, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+* {
+    color: #98B6B1;
+}
+
+.my-pastes {
+    margin-bottom: 40px;
+  }
+  
+  .my-pastes table {
+    min-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .my-pastes td,
+  .my-pastes th {
+    text-align: left;
+    padding: 5px;
+  }
+  
+  .my-pastes tr:nth-child(even) {
+    background-color: #565c65;
+  }
+  
+  .line {
+    width: auto;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    border-bottom: 4px solid #629677;
+    position: inherit;
+    height: 0px;
+  }
+  
+  .my-pastes {
+    margin-top: 10px;
+  }
+  
+  .fas.fa-pen:hover {
+    cursor: pointer;
+  }
+  
+  .fas.fa-times:hover {
+    cursor: pointer;
+  }

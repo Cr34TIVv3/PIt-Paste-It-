@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoloader.php';
+require_once __DIR__ . '/PasteIT/vendor/autoloader.php';
 
 use core\Application;
 

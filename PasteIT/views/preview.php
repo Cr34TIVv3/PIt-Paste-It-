@@ -55,6 +55,8 @@ use core\DataProvider;
 
         <!-- show some option in order to update a post-->
 
+        
+
 
         <!-- SHOW THIS FOR MEMBERS ONLY-->
 
@@ -68,6 +70,23 @@ use core\DataProvider;
                 <div class="form">
                     <textarea name="content" id="text-area" cols="30" rows="10"> <?php echo $record->content; ?></textarea>
                 </div>
+
+                
+
+                <?php  
+                    $toTransfer = array(
+                        'slug'       => $record->slug,
+                        'expiration' => $record->expiration,
+                        'title'      => $record->title,
+                        'content'    => $record->content,
+                        'syntax'     => $record->highlight
+                    );
+
+                    $_SESSION['toTransfer'] = $toTransfer; 
+                ?>
+
+                <h3 id="csv"> <a href="/download.php" download="File.csv"> Export as CSV <i class="fas fa-file-download"></i> </a> </h3>
+
                 <?php echo $form->field($record, 'title', 'Change Paste Name/Title:')->getInput(True, True) ?>
 
 

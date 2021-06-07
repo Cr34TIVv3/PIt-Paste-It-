@@ -21,6 +21,7 @@ class PreviewController extends Controller
                 ///make some validations 
 
                 if ($updatedPaste->update($record)) {
+                    Application::$app->session->setFlash('success', "Paste updated!");
                     Application::$app->response->redirect('/' . $record->slug);
                     exit;
                 }

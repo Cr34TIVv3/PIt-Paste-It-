@@ -131,7 +131,7 @@ h1{
     display: block;
     font-size: 25px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-right: 10px;
   }
   
@@ -151,7 +151,7 @@ h1{
   }
   
   .features {
-    padding-top: 2px;
+    padding-top: 7px;
   }
   
   .public-pastes span {
@@ -185,13 +185,6 @@ h1{
 .code-keyword{
   color: blue;
   font-weight: bold;
+
 }
 
-#csv {
-  float: right;
-}
-
-a {
-  text-decoration: none;
-  color: #69995D;
-}

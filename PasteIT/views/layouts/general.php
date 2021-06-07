@@ -1,6 +1,5 @@
 <?php
 use core\Application;
-use core\DataProvider;
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +77,7 @@ use core\DataProvider;
 
     <div class="footer">
         <p>Copyright &copy; Paste IT</p>
-        <p>Scholarly HTML <a href="./scholarly.html">HERE</a></p>
+        <p>Scholarly HTML <a href="./doc/IntermediateSteps/progress.html">HERE</a></p>
     </div>
 </body>
 

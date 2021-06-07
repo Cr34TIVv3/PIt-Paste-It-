@@ -20,7 +20,6 @@ class UpdateController extends Controller
         }
 
         if ($request->getMethod() === "get") {
-
             ///middleware !! 
             if (!(Application::$app->isOwner($record->id_user) || Application::$app->isMember($record->id))) {
                 throw new ForbiddenException();
@@ -36,6 +35,9 @@ class UpdateController extends Controller
             /// make validation
             if ($membership->save()) {
                 Application::$app->session->setFlash('success', 'You added a new member to modify your post');
+            }
+            else {
+                Application::$app->session->setFlash('error', 'User invalid!!!');
             }
             Application::$app->response->redirect('/' . $record->slug);
             exit;
@@ -63,12 +65,13 @@ class UpdateController extends Controller
         /// check if the email is valid 
         $email = $request->getBody()['email'];
         $sql = sprintf("SELECT id FROM users WHERE email = '%s'", $email);
-        $statement =  Application::$app->db->pdo->prepare($sql);
+        $statement = Application::$app->db->pdo->prepare($sql);
         $statement->execute();
 
         $object = $statement->fetchObject();
         /// if the email is not valid 
         if ($object == false) {
+            Application::$app->session->setFlash('error', 'Invalid email!');
             return false;
         }
         /// if the collaborator is the owner
@@ -84,7 +87,7 @@ class UpdateController extends Controller
         $statement->execute();
         $result = $statement->fetchObject();
         if ($result->counter > 0) {
-            Application::$app->session->setFlash('error', 'You allready added this user !');
+            Application::$app->session->setFlash('error', 'You already added this user !');
             return false;
         }
         /// al good, the membership can be added!

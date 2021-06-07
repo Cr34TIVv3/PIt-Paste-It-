@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Scholarly HTML</title>
-    <link rel="stylesheet" href="./style_scholarly.css">
+    <link rel="stylesheet" href="css/style_scholarly.css">
   
 </head>
 
@@ -33,28 +33,36 @@
                 <li><a href="#classesAndCharacteristics"><span>3.3</span> Categorii de utilizatori</a></li>
                 <li><a href="#operationEnvironment"><span>3.4</span> Mediu de operare</a></li>
                 <li><a href="#designConstrains"><span>3.5</span> Design și constrângeri de implementare</a></li>
+                <li><a href="#userDocumentation"><span>3.6</span> Documentație pentru utilizator</a></li>
             </ol>
         </li>
         <li>
-            <a href="#externalRequirements"><span>4.</span> Interfață</a>
+            <a href="#externalRequirements"><span>4.</span> Cerințe externe</a>
             <ol>
                 <li><a href="#userInterface"><span>4.1</span> Interfață utilizator</a></li>
+                <li><a href="#softwareInterface"><span>4.2</span> Interfață software</a></li>
+                <li><a href="#communicationInterface"><span>4.3</span> Interfață de comunicare</a></li>
             </ol>
         </li>
         <li>
-            <a href="#functionalRequirements"><span>5.</span>Manual de utilizare</a>
+            <a href="#functionalRequirements"><span>5.</span>Cerințe funcționale</a>
             <ol>
                 <li><a href="#register"><span>5.1 </span>Inregistrare</a></li>
                 <li><a href="#login"><span>5.2 </span>Autentificare</a></li>
                 <li><a href="#uploadCode"><span>5.3 </span>Încărcarea codului</a></li>
-                <li><a href="#postsManagement1"><span>5.4 </span>Gestionarea postărilor: editare/ștergere</a></li>
-                <li><a href="#postsManagement2"><span>5.5 </span>Gestionarea postărilor: adăugarea de membri</a></li>
-                <li><a href="#postsManagement3"><span>5.6 </span>Gestionarea postărilor: rollback</a></li>
-                <li><a href="#postsProtection"><span>5.7 </span>Protejarea postării prin parola</a></li>
-                <li><a href="#burnAfterRead"><span>5.8 </span>Burn after read</a></li>
-                <li><a href="#syntaxHighlight"><span>5.9 </span>Selectarea sintaxei</a></li>
-                <li><a href="#capcha"><span>5.10 </span>Probleme tip CAPCHA</a></li>
-                <li><a href="#postsModifiers"><span>5.11 </span>Postări publice/private</a></li>            </ol>
+                <li><a href="#postsManagement"><span>5.4 </span>Gestionarea postărilor</a></li>
+                <li><a href="#postsProtection"><span>5.5 </span>Protejarea postării prin parola</a></li>
+                <li><a href="#burnAfterRead"><span>5.6 </span>Burn after read</a></li>
+                <li><a href="#syntaxHighlight"><span>5.7 </span>Selectarea sintaxei</a></li>
+                <li><a href="#capcha"><span>5.8 </span>Probleme tip CAPCHA</a></li>
+                <li><a href="#postsModifiers"><span>5.9 </span>Postări publice/private</a></li>            </ol>
+        </li>
+        <li>
+            <a href="#nonfunctionalRequirements"><span>6. </span>Cerințe nonfuncționale</a>
+            <ol>
+                <li><a href="#safety"><span>6.1 </span>Cerințe de siguranță</a></li>
+                <li><a href="#security"><span>6.2 </span>Cerințe de securitate</a></li>
+            </ol>
         </li>
         <li>
             <a href="#bibliography"><span>7. </span>Referinţe bibliografice</a>
@@ -94,7 +102,7 @@
                 <p> 
                     Paste It este o aplicație Web prin intermediul căreia se poate distribui cod sursă 
                     (scris într-un anumit limbaj de programare). 
-                    Aplicația oferă suport pentru mai multe limbaje de programare (SQL, HTML/XML, C/C++) 
+                    Aplicația oferă suport pentru mai multe limbaje de programare (Java, Haskell, C/++) 
                     și este în continuă dezvoltare.
                     Pot posta atât utilizatorii autentificați, cât și cei care nu doresc să-și creeze un cont. 
                 </p>
@@ -198,8 +206,8 @@
                 a ultilizatorilor și a postărilor noi  de pe site făcute în ultima lună.
             </p>
 
-            <img src="./ss5.JPG" alt="img5">
-            <img src="./ss6.JPG" alt="img5">
+            <img src="./resources/ss5.JPG" alt="img5">
+            <img src="./resources/ss6.JPG" alt="img5">
 
             <h3 id= "userDocumentation"> <span>3.6 </span>Documentație pentru utilizator</h3>
             <p>              
@@ -213,156 +221,138 @@
 
         <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">    
 
-            <h2 id="externalRequirements"><span>4. </span> Interfață</h2>
+            <h2 id="externalRequirements"><span>4. </span> Cerințe externe</h2>
 
             <h3 id="userInterface"><span>4.1</span> Interfață utilizator</h3>
             <h4>Pagina principala:</h4>
-            <img src="./ss1.jpg" alt="img1">
+            <img src="./resources/ss1.jpg" alt="img1">
           
             <h4>Secțiunea de FAQ: <h4>
-            <img src="./ss2.jpg" alt="img2">
+            <img src="./resources/ss2.jpg" alt="img2">
 
             <h4>Secțiunea de login: </h4>
-            <img src="./ss3.jpg" alt="img3">
+            <img src="./resources/ss3.jpg" alt="img3">
 
             <h4>Secțiunea de account: </h4>   
-            <img src="./ss4.jpg" alt="img4">
+            <img src="./resources/ss4.jpg" alt="img4">
+            
+
+            <h3 id="softwareInterface"><span>4.2 </span>Interfață software</h3>
+            <p>
+                Aplicația dispune de o conectare la o bază de date relațională: MySQL, pentru
+                a realiza anumie acțiuni ale utilizatorului (i.e. încărcarea de paste-uri, înregistrare,
+                autentificare). În plus, la nivel de interfață, aplicația utilizeaza un CDN extern ce
+                furnizează icon-uri pentru a completa experiența utilizatorului cu aplicația.
+            </p>
+            
+            <h3 id="communicationInterface"><span>4.3 </span>Interfață de comunicare</h3>
+            <p>
+                La nivelul comunicării dintre clienti si server, se utilizeaza protocolul HTTP in
+                vederea comunicarii dintre server catre client, clientul urmarind transmiterea prin
+                socket a obiectelor de tip JSON.
+            </p>
+            
 
         </section>
    
         <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">   
 
             <h2 id="functionalRequirements"><span>5. </span>Cerințe funcționale</h2>
-            
+
             <h3 id="register"><span>5.1 </span>Înregistrare</h3>
-            <img src="./signup.JPG" alt="img4">
             <p>
                 Utilizatorii care doresc opțiuni avansate și control asupra postărilor
                 pe care urmează să le facă, vor fi nevoiți să se înregistreze și să se
                 autentifice folosind credențialele lor unice. Datele oferite vor fi trimise
-                catre server prin formularul de înregistrare, doar după ce au fost validate corespunzător. 
-                Utilizatorul care dorește să-și creeze un cont trebuie mai întâi să acceseze pagina de "Sign UP" și să completeze
-                formularul corespunzator cu datele potrivite (credențialele utilizatorului). De asemenea, formularul are mai multe constrângeri 
-                asociate și astfel fiecare câmp trebuie completat, nu există câmpuri opționale. De asemenea, numele utilizatorui trebuie să aibă o lungime minimă (8 caractere), 
-                email-ul introdus trebuie să fie valid și să nu existe un alt utilizator cu același email înregistrat deja în baza de date , iar parola trebuie să fie
-                de o lungime minimă (8 caractere). În plus, validarea parolei se face prin reintroducerea acesteia. Orice greșeală de completare din partea utilizatorului este însoțită
-                cu mesaje de eroare sugestive care ghidează pașii spre rezolvarea problemelor. De asemenea, dacă s-a apasat "submit", dar sunt date greșite, se vor șterge doar acestea și vor 
-                rămâne cele care sunt introduse corect.
-                Un cont realizat cu succes va fi însoțit de un mesaj sugestiv și de o redirectare a user-ului spre pagina de home, fără însă a loga utilizatorul, acesta va trebui ulterior să introducă datele 
-                contului realizat pentru a se loga.
+                prin intermediul unei cereri de tip "POST" realizată de
+                către formularul de înregistrare, doar după ce au fost validate corespunzător.
             </p>
 
             <h3 id="login"><span>5.2 </span>Autentificare</h3>
-            <img src="./login.JPG" alt="img4">
             <p>
-                Utilizatorii care dețin un cont se pot autentifica pe pagina de login în care
-                trebuie să-și introducă adresa de email și parola. Datele
-                introduse de către utilizator vor fi validate. În cazul în care logarea a avut
-                succes, utilizatorul va fi redirectat către pagina de home în care acesta va putea
-                să își creeze noua lui postare. Toate mesajele de eroare sau de nerespectarea unor constrângeri în ceea ce privește completarea formularului vor fi sugestiv oferite 
-                utilizatorului pentru a corecta eventualele greșeli.
+                Utilizatorii care dețin un cont se pot autentifica pe pagina de "login" în care
+                trebuie să-și introducă numele de utilizator(sau adresa de email) și parola. Datele
+                introduse de către utilizator vor fi trimise printr-o cerere a formularului către server. 
             </p>
             
-            <h3  typeof="sa:MaterialsAndMethods" role="doc-chapter" id="uploadCode"><span>5.3 </span>Încărcarea codului - crearea unei postări</h3>
-            <img src="./home.JPG" alt="img4">
+            <h3  typeof="sa:MaterialsAndMethods" role="doc-chapter" id="uploadCode"><span>5.3 </span>Încărcarea codului</h3>
             <p>
                 Aceasta este funcționalitatea de bază a aplicației fără de care
                 specificul acesteia nu ar exista. Orice utilizator (autentificat sau nu)
-                are dreptul de a crea postări. Postările se creează de pe pagina de home a aplicației apăsând butonul de "Create New Paste". 
-                Chiar dacă toți utilizatorii pot crea o postare, este însă o limitare în ceea ce privește funcționalitățile la care are acces un utilizator care are un cont, față de un utilizator nelogat.
-                Așadar, opțiunile care sunt disponibile în funcție de categoria de user sunt afișate imediat sub postarea creată. Dupa ce se completează câmpul cu datele unei postări (de exemplu un cod sursă), utilizatorul 
-                poate trece mai apoi pentru a selecta diverse opțiuni. 
+                are dreptul de a crea postări. Încărcarea se va face prin intermediul unui
+                textarea care va trimite o cerere de tip "POST" către server.
             </p>
 
-            <h3 id="postsManagement1"><span>5.4 </span>Gestionarea postărilor : editare și ștergere</h3>
-            <img src="./account.JPG" alt="img4">
+
+            <h3 id="postsManagement"><span>5.4 </span>Gestionarea postărilor</h3>
             <p>
-                Gestionarea postarilor se poate face prin intermediul a doua pagini: pagina de home in care utilizatorul poate vedea postarile sale recente, 
-                dar si din pagina de "account". Diferenta dintre cele doua moduri de gestionare si vizualizare a postarilor este faptul ca in pagina in care este contul utilizatorului acesta poate 
-                vedea si postari la care nu este direct detinator sau creator, insa la care a fost invitat
-                spre a fi colobarator si astfel, pentru aceste postari se va afisa cine este creatorul de drept al paste-ului. Pagina de home, in schimb, va afisa doar paste-urile utilizatorului , fara cele la care este implicat de catre alti useri.
-                Așadar, din propriul cont, utilizatorul își poate gestiona postările: poate modifica
-                conținutul lor și le poate șterge, făcând click pe unul din cele două butoane asociate în partea dreaptă a fiecărei postări.
-
+                Din propriul cont, utilizatorul își poate gestiona postările: poate modifica
+                conținutul lor și le poate șterge.
             </p>
 
-            <h3 id="postsManagement2"><span>5.5 </span>Gestionarea postărilor : adăugarea de membri</h3>
-            <img src="./other_members.JPG" alt="img4">
-            <p>
-
-                În cazul utilizatorilor care au un cont există posibilitatea de a adăuga membri care să modifice postarea și să lucreze împreună la un post. Acest lucru se poate realiza dând click pe o postare
-                anume unde se va găsi , imediat sub postare, câmpul cu formular pentru adăugarea unui membru. Utilizatorul trebuie să introducă email-ul corect al unui utilizator cu cont, dupa care poate vedea toți
-                colaboratorii de la o anumită postare apăsând pe butonul din partea de sus a unei postări: "See other members". Se vor valida datele introduse de utilizator : acesta nu se poate adăuga pe sine și nici nu poate
-                adăuga un utilizator de mai multe ori sau un utilizator care nu există în baza de date.
-            
-            </p>
-
-            <h3 id="postsManagement3"><span>5.6 </span>Gestionarea postărilor : rollback la versiuni anterioare </h3>
-            <img src="./version.JPG" alt="img4">
-            <p>
-                Pentru toate postările pe care le face un utilizator acesta poate alege să editeze anumite postări și pentru fiecare editare pe care o va face va trebui să menționeze un titlu sugestiv, similar cu un commit în github
-                ,iar pentru postarea respectivă se va crea o nouă versiune care va fi catalogată drept versiunea principală a postării, iar versiunea veche va putea fi vizualizată imediat sub postare într-o secțiune denumită 
-                "See other versions" care are menirea de a arăta user-ul toate versiunile și modificările aduse acelei postări. În cazul în care se dorește trecerea la o versiune anterioară, acest lucru este ușor de făcut întrucât
-                utilizator care va vizualiza o versiune a unei postări și nu o versiune principală,  va fi notificat de acest lucru printr-un warning :"This is an older version..", iar dacă se dorește postarea respectivă poate deveni
-                din nou principală, iar postarea ințială devine acum o versiune.
-
-
-            </p>
-
-            <h3 id="postsProtection"><span>5.7 <span>Protejarea postării prin parolă</h3>
-            <img src="./password.JPG" alt="img4">
+            <h3 id="postsProtection"><span>5.5 <span>Protejarea postării prin parolă</h3>
             <p>
                 Pentru utilizatorii care au un cont, există opțiunea de a proteja postarea
                 facută prin intermediul unei parole introduse de către aceștia. Astfel, pentru 
                 cei care vor dori să acceseze postarea va fi necesară introducerea acestei parole pentru 
-                a putea mai departe să vizualizeze textul introdus de către utilizator. Așadar, această 
-                opțiune restricționeaza accesul la postări și oferă încredere pentru a utiliza aplicația în continuare.
-                De asemenea, postarile care au parolă pot fi facute si publice, însă vor avea asociat un icon sugestiv prin care se va întelege că acel post este protejat.
+                putea mai departe să vizualizeze textul introdus de către utilizator. Așadar, această 
+                opțiune criptează postările și oferă încredere pentru a utiliza aplicația în continuare.
             </p>
 
-            <h3 id="burnAfterRead"><span>5.8 </span>Burn after read</h3>
-            <img src="./preview_blocks.JPG" alt="img4">
+            <h3 id="burnAfterRead"><span>5.6 </span>Burn after read</h3>
             <p>
-                Opțiunea de "Burn after read" apare în momentul în care dorești să creezi o nouă
+                Opțiunea de "Burn after read" apare în momentul în care vrei sa creezi o nouă
                 postare. Bifând această opțiune, respectivul paste mai poate fi văzut o singură
-                dată de un străin, urmâd ca aceasta să fie ștears. Paste-urile publice cu opțiunea
-                de burn after read vor avea un semn distinctiv. De asemenea, creatorului postarii va putea sa vada de oricâte ori dorește postarea respectivă, 
-                fară ca aceasta sa devină indisponibilă, însă daca un străin vede această postare atunci ea nu mai poate fi vazută a doua oară de către nimeni.
+                dată de un străin, urmâd ca acesta să fie șters.
             </p>
 
-            <h3 id="syntaxHighlight"><span>5.9 </span>Selectarea sintaxei</h3> 
-            <img src="./sql_h.JPG" alt="img4">
-            <img src="./xml_h.JPG" alt="img4">
-            <img src="./cpp_h.JPG" alt="img4">
-
+            <h3 id="syntaxHighlight"><span>5.7 </span>Selectarea sintaxei</h3> 
             <p>
                 Codurile postate de către utilizatori vor fi colorate conform unei sintaxe 
-                selectate de către aceștia (sintax highlighter) pentru a putea fi citite ușor
+                selectate de către acesta (sintax highlighting) pentru a putea fi citite ușor
                 de către oricine are acces la postarea respectivă. Aplicația este într-o continuă dezvoltare
                 și se pot adăuga mai multe sintaxe pe care site-ul să le recunoască. Momentan aplicația 
-                poate colora textul scris de către utilizatori conform următoarelor limbaje : XML, SQL, C++.
-            
+                poate colora textul scris de către utilizatori conform următoarelor limbaje : Java, C/C++, Haskell.
             </p>
 
-            <h3 id="capcha"><span>5.10 </span>Probleme tip CAPTCHA</h3>
-            <img src="./captcha.JPG" alt="img4">
+            <h3 id="capcha"><span>5.8 </span>Probleme tip CAPCHA</h3>
             <p>
-                Rezolvarea de către utilizator a problemelor de tip CAPTCHA este necesară pentru a
+
+                Rezolvarea de către utilizator a problemelor de tip CAPCHA este necesară pentru a
                 preveni tentativele de spam ce ar putea suprasolicita, respectiv îngreuna,
-                acțiunile serverului. O astfel de problemă va apărea înainte de a face publică
-                o nouă postare. Totodată, există un buton ce reseteaza problema respectivă cu una nouă în dacă se dorește acest lucru.
-                Daca captcha introdus nu este corect, atunci se va afișa un mesaj de eroare sugestiv și utilizatorul va trebui să reintroducă corect datele, însă nu
-                va trebui să rescrie iar postarea, acest lucru facându-se automat.
+                acțiunile serverului. O astfel de problemă va apărea atunci când utilizatorul va
+                dori să-și modifice informațiile din cont, precum si inainte de a face publica
+                o noua postare.
+
             </p>
 
-            <h3 id="postsModifiers"><span>5.11 </span>Postări publice/private</h3>
-            <img src="./public_pastes.JPG" alt="img4">
+            <h3 id="postsModifiers"><span>5.9 </span>Postări publice/private</h3>
             <p>
-                Postările pe care toți utilizatorii le pot crea sunt de două feluri: private sau publice. Pentru utilizatorii 
+                Postările pe care toti utilizatorii le pot crea sunt de două feluri: private sau publice. Pentru utilizatorii 
                 care nu au un cont se pot face doar postări private, care pot fi vizualizate de către oricine, neavând acces la diverse
                 opțiuni de confidentialitate care se pot asocia unei postări. Cu un cont creat, poți avea acces la opțiunea de a crea postări private
-                care pot fi văzute doar de către deținătorii linkului respectiv.
+                care pot fi văzute doar de către utilizatorii pe care titularul postării îi selectează.
             </p>
+
+        </section>
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">   
+
+            <h2 id="nonfunctionalRequirements"><span>6. </span>Cerințe nonfuncționale</h3> 
+            <h3 id = "safety"> <span>6.1</span> Cerințe de siguranță</h3>
+            <p>
+                Paste It este un produs sigur. Singura problemă care ar putea apărea ar fi legată de 
+                pierderea informațiilor din baza de date folosită, însă probabilitatea de a se întampla 
+                acest lucru este foarte mică.
+            </p> 
+
+            <h3 id = "security"><span>6.2</span> Cerințe de securitate </h3>
+            <p>
+                Aplicatia este protejata impotriva atacurilor de tip SQL-injection. In plus, pentru a 
+                asigura faptul că nu se crează spam nedorit și pentru a diminua request-urile dăunătoare,
+                utilizatorii care nu sunt autentificați vor trebui să raspundă corect la o întrebare de tip CAPTCHA. 
+                De asemenea, dacă utilizatorul dorește sa-și modifice credențialele, acesta este nevoit
+                să răspundă corect la un test CAPCHA.
+            </p> 
 
         </section>
 
@@ -438,3 +428,42 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

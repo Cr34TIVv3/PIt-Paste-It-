@@ -8,6 +8,7 @@ class m0003_create_table_members
     {
         $db = Application::$app->db;
         $SQL = "CREATE TABLE members (
+            id INT AUTO_INCREMENT PRIMARY KEY,
             id_paste INT NOT NULL,
             id_user INT NOT NULL,
             CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP
