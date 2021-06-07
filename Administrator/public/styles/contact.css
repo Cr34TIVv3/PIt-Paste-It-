@@ -1,0 +1,51 @@
+body{
+  background-color: black;
+  background-image: url("/resources/background.jpg");
+}
+
+
+.card-container{
+  margin-top: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.card{
+  box-shadow: 0 4px 8px 0 rgba(233, 228, 228, 0.2);
+  max-width: 300px;
+  text-align: center;
+  background-color: white;
+}
+
+.card-container .card img{
+  width: 100%;
+}
+
+.media{
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 5px;
+  display: grid;
+  align-items: center;
+}
+
+.media a svg{
+  width: 5vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-container
+  {
+    flex-direction: column;
+  }
+  .card {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+}
+
+
+
+
+
